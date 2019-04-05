@@ -152,9 +152,13 @@ export default class App extends Component  {
           setDestinationLocation={this.setDestinationLocation}
           setRoute={this.setRoute}
           setNap={this.setNap}
+          dropBoundary={this.dropBoundary}
          />
       case "nap":
-        return <NapContainer stopVibration={this.stopVibrationFunction} /> 
+        return <NapContainer 
+          stopVibration={this.stopVibrationFunction}
+          dropBoundary={this.dropBoundary}
+           /> 
       default:
         return <LoadingComponent />  
     }

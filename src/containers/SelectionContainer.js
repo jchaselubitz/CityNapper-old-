@@ -56,6 +56,7 @@ export default class SelectionContainer extends Component {
             }}>
               <Button title="Search" onPress={() => this.props.switchContainer('search')} />
               <Button title="Start Nap" onPress={() => this.props.acceptSelection()}/>
+              <Button title="End Nap" onPress={() => this.props.dropBoundary(this.props.destName)}/>
             </View>
           </View>
   

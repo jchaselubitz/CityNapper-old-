@@ -7,11 +7,6 @@ import SelectionContainer from './SelectionContainer'
 
 export default class TripPlannerContainer extends Component {
 
-   //logic for displaying following options:
-      //Map + selection options
-      //search + list
-      //when selection is set, map should show route
-
   state = {
     selectedLocalContainer: 'main',
     selectionHolder: {}
@@ -44,6 +39,7 @@ export default class TripPlannerContainer extends Component {
           acceptSelection={this.acceptSelection}
           switchContainer={this.setContainerSelection}
           destName={this.props.destName}
+          dropBoundary={this.props.dropBoundary}
           />
       case "search":
         return <SearchComponent 

@@ -3,6 +3,7 @@ import StylesHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
 import { SearchBar, ListItem} from 'react-native-elements';
 import {AppRegistry, KeyboardAvoidingView, View, StyleSheet, FlatList} from 'react-native';
+import { Divider } from 'react-native-elements';
 const styles = StylesHelper.styles
 
 export default class SearchComponent extends Component {
@@ -56,16 +57,29 @@ export default class SearchComponent extends Component {
           value={this.state.searchText}
           autoCorrect={false}             
         />   
-        <KeyboardAvoidingView behavior="padding" enabled>
-        <FlatList 
+        {/* <KeyboardAvoidingView behavior="padding" enabled> */}
+          <FlatList 
             data={this.state.searchResults} 
+            keyboardShouldPersistTaps="always"
             renderItem={({item}) => 
+            <>
               <ListItem
-                title={`${item.name}, ${item.address}`}
-                onPress={() => this.props.handleSelection(item)}
-              />} 
+                title={item.name}
+                subtitle={item.address}
+                onPress={(event) => this.props.handleSelection(item)}
+              />
+              <Divider
+                style={{ 
+                  backgroundColor: 'grey',
+                  marginLeft: 10,
+                  marginRight: 10
+               }} />
+              </>
+            } 
+            keyExtractor={item => item.address} 
+            
             />
-             </KeyboardAvoidingView>
+        {/* </KeyboardAvoidingView> */}
         </View>
      )
    }
