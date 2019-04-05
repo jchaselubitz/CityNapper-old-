@@ -57,7 +57,6 @@ export default class SearchComponent extends Component {
           value={this.state.searchText}
           autoCorrect={false}             
         />   
-        {/* <KeyboardAvoidingView behavior="padding" enabled> */}
           <FlatList 
             data={this.state.searchResults} 
             keyboardShouldPersistTaps="always"
@@ -79,7 +78,6 @@ export default class SearchComponent extends Component {
             keyExtractor={item => item.address} 
             
             />
-        {/* </KeyboardAvoidingView> */}
         </View>
      )
    }
