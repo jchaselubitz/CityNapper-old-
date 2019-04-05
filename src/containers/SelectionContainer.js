@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {AppRegistry, View, Text} from 'react-native';
+import {AppRegistry, View, Button} from 'react-native';
 import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
 
@@ -38,10 +38,13 @@ export default class SelectionContainer extends Component {
               flexDirection: 'column',
               justifyContent: 'center'
             }}>
-            <Text>
-              Just some silly text
-            </Text>
-           
+            <View style={{
+              flexDirection: 'row',
+              justifyContent: 'center'
+            }}>
+              <Button title="Search" onPress={() => this.props.switchContainer('search')} />
+              <Button title="Start Nap" />
+            </View>
           </View>
   
         </View>

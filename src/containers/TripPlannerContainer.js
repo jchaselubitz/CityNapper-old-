@@ -21,6 +21,10 @@ export default class TripPlannerContainer extends Component {
     this.props.setNap
   }
 
+  setContainerSelection = (string) => {
+    this.setState({ selectedLocalContainer: string });
+  }
+
   showViewContainer = () => {
     switch (this.state.selectedLocalContainer) {
       case "main":
@@ -32,6 +36,7 @@ export default class TripPlannerContainer extends Component {
           routeCoords={this.props.routeCoords}
           x={this.props.x} 
           acceptSelection={this.acceptSelection}
+          switchContainer={this.setContainerSelection}
           />
       case "search":
         return <SearchComponent 
