@@ -1,10 +1,11 @@
 
 import React, {Component} from 'react';
-import Keys from '../helpers/Keys'
+import Keys from './src/helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
+import LoadingComponent from './src/components/LoadingComponent'
 import TripPlannerContainer from './src/containers/TripPlannerContainer'
 import Boundary, {Events} from 'react-native-boundary';
-import {AppRegistry} from 'react-native';
+import {AppRegistry, KeyboardAvoidingView} from 'react-native';
 
 export default class App extends Component  {
   state = {
@@ -27,7 +28,8 @@ export default class App extends Component  {
         this.setState({
           currentLatitude: position.coords.latitude,
           currentLongitude: position.coords.longitude,
-          error: null
+          error: null,
+          // selectedViewContainer: this.lastSelectedViewContainer()
         })
       },
       (error) => this.setState({ error: error.message }),
@@ -35,13 +37,13 @@ export default class App extends Component  {
     )
   } 
 
-  setDestinationLocation = (location) => {
+  setDestinationLocation = (destination) => {
     this.setState({ 
-      destLatitude: location.latitude,
-      destLongitude:location.longitude,
-      destName: location.name,
-      destAddress: location.address 
-    });
+      destLatitude: destination.location.latitude,
+      destLongitude: destination.location.longitude,
+      destName: destination.name,
+      destAddress: destination.address 
+    }, () => this.setRoute());
   }
 
   setNap = () => {
@@ -56,16 +58,20 @@ export default class App extends Component  {
   //==========ROUTE MAPPING FUNCTIONS===============
 
   setRoute = () => {
-    if (this.state.currentLatitude != null && this.state.currentLongitude!=null)
+    // alert(this.state.destLatitude)
+    if (this.state.currentLatitude != null && this.state.destLatitude!=null)
      {
        let concatStart = this.state.currentLatitude +","+this.state.currentLongitude
-       let concatDestination = this.state.destLatitude +","+this.state.destLongitude
+       let concatDestination = this.state.destLatitude+","+this.state.destLongitude
        this.getDirections(concatStart, concatDestination)
+     } else {
+       alert("insufficient data")
      }
   }
 
   async getDirections(tripOrigin, tripDestination) {
     try {
+        // let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=51.586111&destination=-0.034444&key=${Keys.GoogleKey}`)
         let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${tripOrigin}&destination=${tripDestination}&key=${Keys.GoogleKey}`)
         let respJson = await resp.json();
         let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
@@ -130,6 +136,11 @@ export default class App extends Component  {
     this.setState({ selectedViewContainer: container });
   }
 
+  lastSelectedViewContainer = () => {
+    //This will go to device memory and get the last selected container
+    this.setViewContainer("trip")
+  }
+
   showViewContainer = () => {
     switch (this.state.selectedViewContainer) {
       case "trip":
@@ -147,7 +158,7 @@ export default class App extends Component  {
       case "nap":
         return <NapContainer stopVibration={this.stopVibrationFunction} /> 
       default:
-        return <TripPlannerContainer />  
+        return <LoadingComponent />  
     }
   }
 
@@ -156,6 +167,7 @@ export default class App extends Component  {
     return (
       <>
       {this.showViewContainer()}
+
       </>
     );
   }

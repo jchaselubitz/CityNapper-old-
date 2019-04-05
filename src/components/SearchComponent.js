@@ -12,23 +12,23 @@ export default class SearchComponent extends Component {
     error: null
   }
 
-  searchRegion = {
+  searchRegion = () => ({
     latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
     longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1
-  };
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01
+  });
   
     setSearchText = (text) => {
       this.setState({
         searchText: text
-      }, this.placeSearch(this.state.searchText))
+      }, () => this.placeSearch(this.state.searchText))
     }
     
     placeSearch = (searchText) => {
       RNReverseGeocode.searchForLocations(
         searchText,
-        this.searchRegion,
+        this.searchRegion(),
         (err, results) => {
           this.setState({
             error: err,
@@ -42,10 +42,12 @@ export default class SearchComponent extends Component {
      return (
        <View>
         <SearchBar        
-          placeholder="Where are you going?" 
+          placeholder="Where are you going?"
+          // containerStyle 
           lightTheme
           round={true}
-          // inputStyle={styles.searchInput} //STYLE
+          showLoading={true}
+          inputStyle={styles.searchInput} //STYLE
           onClear={() => this.placeSearch('')}         
           onChangeText={text => this.setSearchText(text)}
           value={this.state.searchText}
@@ -54,17 +56,17 @@ export default class SearchComponent extends Component {
         <FlatList 
             data={this.state.searchResults} 
             renderItem={({item}) => 
-              <ListItem 
-                title={item.name, item.address}
-                onPress={() => this.props.setTempDestinationLocation(item)}
-                
+              <ListItem
+                title={`${item.name}, ${item.address}`}
+                onPress={() => this.props.setDestinationLocation(item)}
               />} 
             />
         </View>
      )
    }
 
-
+  //  <KeyboardAvoidingView behavior="padding" enabled>
+  //  </KeyboardAvoidingView>
 }
 
 AppRegistry.registerComponent('CityNapper', () => SearchComponent);

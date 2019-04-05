@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {AppRegistry} from 'react-native';
+import {AppRegistry, View, Text} from 'react-native';
 import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
 import SearchComponent from '../components/SearchComponent'
+import SelectionContainer from './SelectionContainer'
 
 export default class TripPlannerContainer extends Component {
 
@@ -11,34 +12,43 @@ export default class TripPlannerContainer extends Component {
       //search + list
       //when selection is set, map should show route
 
-
   state = {
-    mapOrSearch: 'map',
+    selectedLocalContainer: 'main',
     selectionHolder: {}
   }
 
- 
   acceptSelection = () => {
     this.props.setNap
   }
 
-  render() { 
-    return (
-      <>
-        <MapContainer
+  showViewContainer = () => {
+    switch (this.state.selectedLocalContainer) {
+      case "main":
+        return <SelectionContainer
           currentLatitude={this.props.currentLatitude}
           currentLongitude={this.props.currentLongitude}
           destLatitude={this.props.destLatitude}
           destLongitude={this.props.destLongitude}
           routeCoords={this.props.routeCoords}
-          x={this.state.x}
-        />
-        <SearchComponent 
+          x={this.props.x} 
+          acceptSelection={this.acceptSelection}
+          />
+      case "search":
+        return <SearchComponent 
           currentLatitude={this.props.currentLatitude}
           currentLongitude={this.props.currentLongitude}
-          setDestinationLocation={this.setDestinationLocation}
-        />
-      </>  
+          setDestinationLocation={this.props.setDestinationLocation}
+          />
+      default:
+        return <LoadingComponent />  
+    }
+  }
+
+  render() { 
+    return (
+      <>
+      {this.showViewContainer()}
+      </>
      );
   }
 }

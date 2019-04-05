@@ -33,15 +33,15 @@ export default class MapContainer extends Component {
           title={"Your Destination"}
         />}
         
-      {!!this.props.currentLatitude && !!this.props.currentLatitude && this.props.x == 'true' && 
+      {!!this.props.currentLatitude && !!this.props.currentLongitude && this.props.x === 'true' && 
         <MapView.Polyline
-            coordinates={this.props.coords}
+            coordinates={this.props.routeCoords}
             strokeWidth={2}
             strokeColor="red"
-          />
-        }
+        />
+      }
 
-        {!!this.props.currentLatitude && !!this.props.currentLatitude && this.props.x == 'error' && 
+        {!!this.props.currentLatitude && !!this.props.currentLongitude && this.props.x == 'error' && 
           <MapView.Polyline
                   coordinates={[
                       {latitude: this.props.currentLatitude, longitude: this.props.currentLatitude},
