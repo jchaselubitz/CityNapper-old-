@@ -71,7 +71,6 @@ export default class App extends Component  {
 
   async getDirections(tripOrigin, tripDestination) {
     try {
-        // let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=51.586111&destination=-0.034444&key=${Keys.GoogleKey}`)
         let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${tripOrigin}&destination=${tripDestination}&key=${Keys.GoogleKey}`)
         let respJson = await resp.json();
         let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
@@ -92,15 +91,13 @@ export default class App extends Component  {
   //==========BOUNDARY MAPPING FUNCTIONS===============
 
   setBoundary = () =>  {
-    Alert.alert("You have set a location")
-    
     Boundary.add({
       lat: this.state.destLatitude,
       lng: this.state.destLongitude,
       radius: 50, // in meters
       id: this.state.destName,
     })
-      .then(() => console.log("success!"))
+      .then(() => alert("You have set a location!"))
       .catch(e => console.error("error :(", e));
    
     Boundary.on(Events.ENTER, ids => {
@@ -111,7 +108,7 @@ export default class App extends Component  {
   }
 
   dropBoundary = (locName) => {
-    Alert.alert("Location Removed")
+    alert("Location Removed")
     Boundary.remove(locName)
     .then(() => console.log('Location Dropped'))
     .catch(e => console.log('failed to drop location', e))
@@ -151,6 +148,7 @@ export default class App extends Component  {
           x={this.state.x}
           destLatitude={this.state.destLatitude}
           destLongitude={this.state.destLongitude}
+          destName={this.state.destName}
           setDestinationLocation={this.setDestinationLocation}
           setRoute={this.setRoute}
           setNap={this.setNap}

@@ -40,7 +40,10 @@ export default class SearchComponent extends Component {
   
    render () {
      return (
-       <View>
+       <View style={{
+         paddingTop: 40
+       }}
+       >
         <SearchBar        
           placeholder="Where are you going?"
           // containerStyle 
@@ -52,21 +55,23 @@ export default class SearchComponent extends Component {
           onChangeText={text => this.setSearchText(text)}
           value={this.state.searchText}
           autoCorrect={false}             
-        />    
+        />   
+        <KeyboardAvoidingView behavior="padding" enabled>
         <FlatList 
             data={this.state.searchResults} 
             renderItem={({item}) => 
               <ListItem
                 title={`${item.name}, ${item.address}`}
-                onPress={() => this.props.setDestinationLocation(item)}
+                onPress={() => this.props.handleSelection(item)}
               />} 
             />
+             </KeyboardAvoidingView>
         </View>
      )
    }
 
-  //  <KeyboardAvoidingView behavior="padding" enabled>
-  //  </KeyboardAvoidingView>
+   
+  
 }
 
 AppRegistry.registerComponent('CityNapper', () => SearchComponent);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {AppRegistry, View, Button} from 'react-native';
+import {AppRegistry, View, Text, Button} from 'react-native';
 import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
 
@@ -11,13 +11,13 @@ export default class SelectionContainer extends Component {
     return (
       <>
       <View style={{
-          flex: 2,
+          flex: 6,
           flexDirection: 'column',
           justifyContent: 'center',
         }}>
  
           <View style={{
-              flex: 1, 
+              flex: 3, 
               backgroundColor: 'white',
               flexDirection: 'column',
               justifyContent: 'center'
@@ -31,7 +31,6 @@ export default class SelectionContainer extends Component {
               x={this.props.x}
             />
           </View>
-   
           <View style={{
               flex: 1, 
               backgroundColor: 'white',
@@ -42,8 +41,21 @@ export default class SelectionContainer extends Component {
               flexDirection: 'row',
               justifyContent: 'center'
             }}>
+              <Text>{this.props.destName !== "" ? this.props.destName : ""}</Text>
+            </View>
+          </View>
+          <View style={{
+              flex: 2, 
+              backgroundColor: 'white',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+            <View style={{
+              flexDirection: 'row',
+              justifyContent: 'center'
+            }}>
               <Button title="Search" onPress={() => this.props.switchContainer('search')} />
-              <Button title="Start Nap" />
+              <Button title="Start Nap" onPress={() => this.props.acceptSelection()}/>
             </View>
           </View>
   
