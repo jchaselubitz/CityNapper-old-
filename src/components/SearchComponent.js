@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import StylesHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
 import { SearchBar, ListItem} from 'react-native-elements';
 import {AppRegistry, KeyboardAvoidingView, View, StyleSheet, FlatList} from 'react-native';
+const styles = StylesHelper.styles
 
 export default class SearchComponent extends Component {
   state = {

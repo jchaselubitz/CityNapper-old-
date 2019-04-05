@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {AppRegistry} from 'react-native';
+import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
+import SearchComponent from '../components/SearchComponent'
 
 export default class TripPlannerContainer extends Component {
 
