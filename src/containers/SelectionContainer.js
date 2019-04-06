@@ -3,6 +3,7 @@ import {AppRegistry, View, Text} from 'react-native';
 import {Button, LinearGradient} from 'react-native-elements';
 import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 export default class SelectionContainer extends Component {
 

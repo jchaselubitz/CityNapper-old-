@@ -4,6 +4,7 @@ import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
 import SearchComponent from '../components/SearchComponent'
 import SelectionContainer from './SelectionContainer'
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 export default class TripPlannerContainer extends Component {
 

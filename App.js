@@ -6,6 +6,7 @@ import LoadingComponent from './src/components/LoadingComponent'
 import TripPlannerContainer from './src/containers/TripPlannerContainer'
 import Boundary, {Events} from 'react-native-boundary';
 import {AppRegistry, Vibration} from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 export default class App extends Component  {
   state = {
@@ -172,12 +173,19 @@ export default class App extends Component  {
 
   render() {
     return (
-      <>
-      {this.showViewContainer()}
-
+     
+      <AppNavigator />      {this.showViewContainer()}
       </>
-    );
+    
   }
 }
+
+const AppNavigator = createStackNavigator({
+  home: {
+    screen: HomeScreen
+  }
+})
+
+export default createAppContainer(AppNavigator)
 
 AppRegistry.registerComponent('CityNapper', () => App);
