@@ -5,7 +5,7 @@ import * as Polyline from '@mapbox/polyline'
 import LoadingComponent from './src/components/LoadingComponent'
 import TripPlannerContainer from './src/containers/TripPlannerContainer'
 import Boundary, {Events} from 'react-native-boundary';
-import {AppRegistry, KeyboardAvoidingView} from 'react-native';
+import {AppRegistry, Vibration} from 'react-native';
 
 export default class App extends Component  {
   state = {
@@ -15,7 +15,7 @@ export default class App extends Component  {
     currentLongitude: null,
     destLatitude: null,
     destLongitude: null,
-    destName: "",
+    destName: "-",
     destAddress: '',
     routeCoords: [],
     x: 'true'
@@ -90,26 +90,31 @@ export default class App extends Component  {
 
   //==========BOUNDARY MAPPING FUNCTIONS===============
 
+  //FEATURE: Saved Boundarys that are always on
+
   setBoundary = () =>  {
+    if (this.state.destName !== "-")
     Boundary.add({
       lat: this.state.destLatitude,
       lng: this.state.destLongitude,
-      radius: 50, // in meters
+      radius: 500, // in meters
       id: this.state.destName,
     })
       .then(() => alert("You have set a location!"))
       .catch(e => console.error("error :(", e));
    
-    Boundary.on(Events.ENTER, ids => {
-      Alert.alert(`Wake up! you are at ${this.state.destName}!!`)
+    Boundary.on(Events.ENTER, id => {
+      alert(`Wake up! you are at ${id}!!`)
       this.startVibrationFunction()
       
     });
   }
 
-  dropBoundary = (locName) => {
+  dropBoundary = (id) => {
+    if (id !== "-")
     alert("Location Removed")
-    Boundary.remove(locName)
+    this.stopVibrationFunction()
+    Boundary.remove(id)
     .then(() => console.log('Location Dropped'))
     .catch(e => console.log('failed to drop location', e))
   }

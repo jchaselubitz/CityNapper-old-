@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {AppRegistry, View, Text, Button} from 'react-native';
+import {AppRegistry, View, Text} from 'react-native';
+import {Button, LinearGradient} from 'react-native-elements';
 import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
 
@@ -50,13 +51,21 @@ export default class SelectionContainer extends Component {
               flexDirection: 'column',
               justifyContent: 'center'
             }}>
+            <View style={{padding: 30}}>
+            <Button 
+              color="black" 
+              title="Search"
+              type="outline" 
+              onPress={() => this.props.switchContainer('search')} />
+            </View>
+            
             <View style={{
               flexDirection: 'row',
               justifyContent: 'center'
             }}>
-              <Button title="Search" onPress={() => this.props.switchContainer('search')} />
-              <Button title="Start Nap" onPress={() => this.props.acceptSelection()}/>
-              <Button title="End Nap" onPress={() => this.props.dropBoundary(this.props.destName)}/>
+              <Button buttonStyle={{margin: 10}}  title="Start Nap" onPress={() => this.props.acceptSelection()}/>
+
+              <Button buttonStyle={{margin: 10}} title="End Nap" onPress={() => this.props.dropBoundary(this.props.destName)}/>
             </View>
           </View>
   

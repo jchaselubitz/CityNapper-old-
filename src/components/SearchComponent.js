@@ -6,6 +6,8 @@ import {AppRegistry, KeyboardAvoidingView, View, StyleSheet, FlatList} from 'rea
 import { Divider } from 'react-native-elements';
 const styles = StylesHelper.styles
 
+//GET ACCESS TO CONTACTS
+
 export default class SearchComponent extends Component {
   state = {
     searchText: '',
@@ -50,7 +52,6 @@ export default class SearchComponent extends Component {
           // containerStyle 
           lightTheme
           round={true}
-          showLoading={true}
           inputStyle={styles.searchInput} //STYLE
           onClear={() => this.placeSearch('')}         
           onChangeText={text => this.setSearchText(text)}
