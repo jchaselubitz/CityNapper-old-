@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import StylesHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
 import { SearchBar, ListItem} from 'react-native-elements';
-import {AppRegistry, KeyboardAvoidingView, View, StyleSheet, FlatList} from 'react-native';
+import {AppRegistry, View, Button, FlatList} from 'react-native';
 import { Divider } from 'react-native-elements';
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 const styles = StylesHelper.styles

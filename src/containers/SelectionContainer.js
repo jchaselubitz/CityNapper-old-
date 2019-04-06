@@ -9,6 +9,8 @@ export default class SelectionContainer extends Component {
 
   //acceptSelection
 
+
+
   render() { 
     return (
       <>
@@ -53,13 +55,22 @@ export default class SelectionContainer extends Component {
               justifyContent: 'center'
             }}>
             <View style={{padding: 30}}>
-            <Button 
+
+            <Button
               color="black" 
               title="Search"
               type="outline" 
-              onPress={() => this.props.switchContainer('search')} />
+              onPress={() => this.props.navigation.navigate('search')}
+             />
+
+            {/* <Button 
+              color="black" 
+              title="Search"
+              type="outline" 
+              onPress={() => this.props.switchContainer('search')} /> */}
+
             </View>
-            
+
             <View style={{
               flexDirection: 'row',
               justifyContent: 'center'
