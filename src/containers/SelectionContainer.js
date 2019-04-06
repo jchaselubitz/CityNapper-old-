@@ -3,13 +3,11 @@ import {AppRegistry, View, Text} from 'react-native';
 import {Button, LinearGradient} from 'react-native-elements';
 import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { withNavigation } from 'react-navigation'
 
-export default class SelectionContainer extends Component {
+class SelectionContainer extends Component {
 
   //acceptSelection
-
-
 
   render() { 
     return (
@@ -55,19 +53,16 @@ export default class SelectionContainer extends Component {
               justifyContent: 'center'
             }}>
             <View style={{padding: 30}}>
-
+         
             <Button
-              color="black" 
               title="Search"
               type="outline" 
-              onPress={() => this.props.navigation.navigate('search')}
+              onPress={() => this.props.navigation.navigate('search', {
+                currentLatitude: this.props.currentLatitude,
+                currentLongitude: this.props.currentLongitude,
+                handleSelection: this.props.handleSelection,
+              })}
              />
-
-            {/* <Button 
-              color="black" 
-              title="Search"
-              type="outline" 
-              onPress={() => this.props.switchContainer('search')} /> */}
 
             </View>
 
@@ -76,7 +71,6 @@ export default class SelectionContainer extends Component {
               justifyContent: 'center'
             }}>
               <Button buttonStyle={{margin: 10}}  title="Start Nap" onPress={() => this.props.acceptSelection()}/>
-
               <Button buttonStyle={{margin: 10}} title="End Nap" onPress={() => this.props.dropBoundary(this.props.destName)}/>
             </View>
           </View>
@@ -86,5 +80,8 @@ export default class SelectionContainer extends Component {
      );
   }
 }
+
+
+export default withNavigation(SelectionContainer)
  
 AppRegistry.registerComponent('CityNapper', () => SelectionContainer);

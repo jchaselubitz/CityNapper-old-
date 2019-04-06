@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import Keys from './src/helpers/Keys'
+import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import {AppRegistry, Vibration} from 'react-native';
-import StylesHelper from '../helpers/StyleHelper'
-import MapContainer from './MapContainer'
-import SearchComponent from '../components/SearchComponent'
 import SelectionContainer from './SelectionContainer'
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import SearchComponent from '../components/SearchComponent'
+import { createStackNavigator } from 'react-navigation'
 
-export default class TripPlannerContainer extends Component {
+class TripContainer extends Component {
 
   state = {
     error: null,
@@ -100,6 +98,8 @@ export default class TripPlannerContainer extends Component {
   }
 
 
+  //=========== Selection ==================
+
   acceptSelection = () => {
     this.setNap()
   }
@@ -142,50 +142,37 @@ export default class TripPlannerContainer extends Component {
     }
   }
 
-
-//   showViewContainer = () => {
-//     switch (this.state.selectedLocalContainer) {
-//       case "main":
-//         return <SelectionContainer
-//           currentLatitude={this.props.currentLatitude}
-//           currentLongitude={this.props.currentLongitude}
-//           destLatitude={this.props.destLatitude}
-//           destLongitude={this.props.destLongitude}
-//           routeCoords={this.props.routeCoords}
-//           x={this.props.x} 
-//           acceptSelection={this.acceptSelection}
-//           switchContainer={this.setContainerSelection}
-//           destName={this.props.destName}
-//           dropBoundary={this.props.dropBoundary}
-//           />
-//       case "search":
-//         return <SearchComponent 
-//           currentLatitude={this.props.currentLatitude}
-//           currentLongitude={this.props.currentLongitude}
-//           handleSelection={this.handleSelection}
-//           />
-//       default:
-//         return <LoadingComponent />  
-//     }
-//   }
-
-//   render() { 
-//     return (
-//       <>
-//       {this.showViewContainer()}
-//       </>
-//      );
-//   }
-// }
-
-
+  
   render() { 
-    return (
-      <>
-      {this.showViewContainer()}
-      </>
-     );
+    <SelectionContainer
+          currentLatitude={this.state.currentLatitude}
+          currentLongitude={this.state.currentLongitude}
+          destLatitude={this.state.destLatitude}
+          destLongitude={this.state.destLongitude}
+          destName={this.state.destName}
+          routeCoords={this.state.routeCoords}
+          x={this.state.x} 
+          handleSelection={this.handleSelection}
+          acceptSelection={this.acceptSelection}
+          setDestinationLocation={this.setDestinationLocation}
+          setRoute={this.setRoute}
+          setNap={this.setNap}
+          dropBoundary={this.dropBoundary}
+          navigation={this.props.navigation}
+          />
   }
 }
- 
-AppRegistry.registerComponent('CityNapper', () => TripPlannerContainer);
+
+const TripStack = createStackNavigator({
+    Trip: TripContainer,
+    Selection: SelectionContainer,
+    Search: SearchComponent
+  },
+  {
+    initialRouteName: 'Trip',
+  }
+);
+
+export { TripStack }
+
+AppRegistry.registerComponent('CityNapper', () => TripContainer);

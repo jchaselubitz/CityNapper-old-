@@ -4,12 +4,16 @@ import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
 import { SearchBar, ListItem} from 'react-native-elements';
 import {AppRegistry, View, Button, FlatList} from 'react-native';
 import { Divider } from 'react-native-elements';
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { withNavigation } from 'react-navigation'
 const styles = StylesHelper.styles
+
+const { navigation } = this.props.navigation;
+const currentLatitude = navigation.getParam('currentLatitude');
+const currentLongitude = navigation.getParam('currentLongitude');
 
 //GET ACCESS TO CONTACTS
 
-export default class SearchComponent extends Component {
+class SearchComponent extends Component {
   state = {
     searchText: '',
     searchResults: [],
@@ -17,8 +21,8 @@ export default class SearchComponent extends Component {
   }
 
   searchRegion = () => ({
-    latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
-    longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,
+    latitude: !!currentLatitude ? currentLatitude : 0,
+    longitude: !!currentLongitude ? currentLongitude : 0,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01
   });
@@ -48,10 +52,7 @@ export default class SearchComponent extends Component {
          paddingTop: 40
        }}
        >
-        <Button
-            title="Go to Details... again"
-            onPress={() => this.props.navigation.push('TripPlanner')}
-          />
+  
         <SearchBar        
           placeholder="Where are you going?"
           // containerStyle 
@@ -71,7 +72,7 @@ export default class SearchComponent extends Component {
               <ListItem
                 title={item.name}
                 subtitle={item.address}
-                onPress={(event) => this.props.handleSelection(item)}
+                onPress={(event) => handleSelection(item)}
               />
               <Divider
                 style={{ 
@@ -87,9 +88,8 @@ export default class SearchComponent extends Component {
         </View>
      )
    }
-
-   
-  
 }
+
+export default withNavigation(SearchComponent)
 
 AppRegistry.registerComponent('CityNapper', () => SearchComponent);
