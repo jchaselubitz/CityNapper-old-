@@ -106,11 +106,6 @@ class TripContainer extends Component {
     this.setNap()
   }
 
-  handleSelection = (item) => {
-    this.setDestinationLocation(item)
-  }
-
-
   //==========ROUTE MAPPING FUNCTIONS===============
 
   setRoute = () => {
@@ -154,7 +149,7 @@ class TripContainer extends Component {
             destName={this.state.destName}
             routeCoords={this.state.routeCoords}
             x={this.state.x} 
-            handleSelection={this.handleSelection}
+            // handleSelection={this.handleSelection}
             acceptSelection={this.acceptSelection}
             setDestinationLocation={this.setDestinationLocation}
             setRoute={this.setRoute}

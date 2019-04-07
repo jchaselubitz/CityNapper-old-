@@ -7,8 +7,7 @@ import MapContainer from './MapContainer'
 import { withNavigation } from 'react-navigation'
 
 class SelectionContainer extends Component {
-  static navigationOptions = { title: 'SelectionContainer' }
-  //acceptSelection
+
   render() { 
     return (
       <>
@@ -52,7 +51,7 @@ class SelectionContainer extends Component {
               flexDirection: 'column',
               justifyContent: 'center'
             }}>
-            <View style={{padding: 30}}>
+            <View >
          
             <Button
               title="Search"
@@ -60,7 +59,7 @@ class SelectionContainer extends Component {
               onPress={() => this.props.navigation.navigate('Search', {
                 currentLatitude: this.props.currentLatitude,
                 currentLongitude: this.props.currentLongitude,
-                handleSelection: this.props.handleSelection,
+                setDestinationLocation: this.props.setDestinationLocation,
               })}
              />
 
@@ -84,6 +83,6 @@ class SelectionContainer extends Component {
 
 
 
-export default SelectionContainer
+export default withNavigation(SelectionContainer)
  
 AppRegistry.registerComponent('CityNapper', () => SelectionContainer);
