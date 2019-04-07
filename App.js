@@ -8,6 +8,7 @@ import {AppRegistry} from 'react-native';
 import { createAppContainer } from 'react-navigation';
 
 const AppContainer = createAppContainer(TripStack);
+console.disableYellowBox = true;
 
 export default class App extends Component  {
 
@@ -15,21 +16,5 @@ export default class App extends Component  {
     return <AppContainer />;
   }
 }
-
-
-
-// const TripStack = createStackNavigator(
-//   {
-//     Trip: {
-//       screen: TripContainer
-//     },
-//     Search: {
-//       screen: SearchComponent
-//     }
-//   },
-//   {
-//     initialRouteName: 'Trip',
-//   }
-// );
 
 AppRegistry.registerComponent('CityNapper', () => App);

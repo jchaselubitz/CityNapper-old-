@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MapView from 'react-native-maps'
 import StylesHelper from '../helpers/StyleHelper'
-import {AppRegistry, KeyboardAvoidingView, View, StyleSheet, FlatList} from 'react-native';
+import {AppRegistry} from 'react-native';
 
 const styles = StylesHelper.styles
 const selectedMapType = "standard"

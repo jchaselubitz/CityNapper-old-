@@ -62,7 +62,7 @@ class SearchComponent extends Component {
           placeholder="Where are you going?"
           // containerStyle 
           lightTheme
-          round={true}
+          round={false}
           inputStyle={styles.searchInput} //STYLE
           onClear={() => this.placeSearch('')}         
           onChangeText={text => setSearchText(text)}

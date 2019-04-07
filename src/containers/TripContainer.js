@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
-import {AppRegistry, Vibration, View, Text} from 'react-native';
+import {AppRegistry, Vibration, View, Text, Button, TouchableOpacity} from 'react-native';
 import { Boundary } from 'react-native-boundary'
-import {Button, LinearGradient} from 'react-native-elements';
+import {  } from 'react-native-elements';
 import StyleHelper from '../helpers/StyleHelper'
 
 const styles = StyleHelper.styles
 
 class TripContainer extends Component {
-  static navigationOptions = { title: 'TripContainer' }
+  static navigationOptions = { title: 'Your Trip' }
 
   state = {
     error: null,
@@ -163,47 +163,28 @@ class TripContainer extends Component {
             x={this.state.x}
           />
         </View>
-        <View style={{
-            flex: 1, 
-            backgroundColor: 'white',
-            flexDirection: 'column',
-            justifyContent: 'center'
-          }}>
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'center'
-          }}>
-            <Text>{this.state.destName !== "-" ? this.state.destName : ""}</Text>
+        <View style={styles.tripSelectionContainer}>
+          <View style={{ flex: 2, flexDirection: "column", marginTop: 40 }}>
+          <Text style={{fontSize: 32}}>{this.state.destName !== "-" ? this.state.destName : ""}</Text>
           </View>
-        </View>
-        <View style={{
-            flex: 2, 
-            backgroundColor: 'white',
-            flexDirection: 'column',
-            justifyContent: 'center'
-          }}>
-          <View >
-       
-          <Button
-            title="Search"
-            type="outline" 
+          {/* <View style={{justifyContent: "space-between"}}> */}
+          <TouchableOpacity
+            style={styles.buttonPrimary}
             onPress={() => this.props.navigation.navigate('Search', {
               currentLatitude: this.state.currentLatitude,
               currentLongitude: this.state.currentLongitude,
               setDestinationLocation: this.setDestinationLocation,
-            })}
-           />
-
+            })}>
+            <Text style={styles.buttonText} >Search</Text>
+          </TouchableOpacity>
+          <TouchableOpacity  style={styles.buttonSecondary} onPress={() => this.acceptSelection()}>
+            <Text style={styles.buttonText}>Start Nap</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonSecondary} onPress={() => this.dropBoundary(this.props.destName)}>
+            <Text style={styles.buttonText}>End Nap</Text>
+          </TouchableOpacity>
           </View>
-
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'center'
-          }}>
-            <Button buttonStyle={{margin: 10}}  title="Start Nap" onPress={() => this.acceptSelection()}/>
-            <Button buttonStyle={{margin: 10}} title="End Nap" onPress={() => this.dropBoundary(this.props.destName)}/>
-          </View>
-        </View>
+        {/* </View> */}
 
       </View>
     </>
@@ -216,19 +197,3 @@ export default TripContainer
 AppRegistry.registerComponent('CityNapper', () => TripContainer);
 
 
-// return <SelectionContainer
-//             currentLatitude={this.state.currentLatitude}
-//             currentLongitude={this.state.currentLongitude}
-//             destLatitude={this.state.destLatitude}
-//             destLongitude={this.state.destLongitude}
-//             destName={this.state.destName}
-//             routeCoords={this.state.routeCoords}
-//             x={this.state.x} 
-//             // handleSelection={this.handleSelection}
-//             acceptSelection={this.acceptSelection}
-//             setDestinationLocation={this.setDestinationLocation}
-//             setRoute={this.setRoute}
-//             setNap={this.setNap}
-//             dropBoundary={this.dropBoundary}
-//             navigation={this.props.navigation}
-//             />

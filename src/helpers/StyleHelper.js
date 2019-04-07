@@ -1,15 +1,36 @@
 import {StyleSheet} from 'react-native';
+import {Button} from 'react-native-elements';
 
 const styles = StyleSheet.create({
-  button: {
+  buttonPrimary: {
     marginBottom: 10,
     padding: 10,
     width: 260,
+    flexDirection:'column',
     alignItems: 'center',
-    backgroundColor: '#2196F3'
+    justifyContent: 'flex-start',
+    backgroundColor: '#626a7f',
+    width: '80%',
+    borderRadius: 4
+  },
+  buttonSecondary: {
+    marginBottom: 10,
+    padding: 10,
+    width: 260,
+    flexDirection:'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: '#626a7f',
+    width: '80%',
+    fontSize: 18,
+    borderRadius: 4
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
   },
   map: {
-    flex: 4,
+    flex: 1,
     backgroundColor: 'gray',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -23,6 +44,15 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     color: "black"
+  },
+  tripSelectionContainer: {
+    flex: 6, 
+    backgroundColor: 'white',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10
+
   }
 })
 
