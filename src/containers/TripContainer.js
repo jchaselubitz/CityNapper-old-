@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
-import {AppRegistry, Vibration} from 'react-native';
+import MapContainer from './MapContainer'
+import {AppRegistry, Vibration, View, Text} from 'react-native';
 import { Boundary } from 'react-native-boundary'
-import SelectionContainer from './SelectionContainer'
-import SearchComponent from '../components/SearchComponent'
-import { createStackNavigator, withNavigation } from 'react-navigation'
+import {Button, LinearGradient} from 'react-native-elements';
+import StyleHelper from '../helpers/StyleHelper'
+
+const styles = StyleHelper.styles
 
 class TripContainer extends Component {
   static navigationOptions = { title: 'TripContainer' }
@@ -99,7 +101,6 @@ class TripContainer extends Component {
     Vibration.cancel()
   }
 
-
   //=========== Selection ==================
 
   acceptSelection = () => {
@@ -110,10 +111,10 @@ class TripContainer extends Component {
 
   setRoute = () => {
     // alert(this.state.destLatitude)
-    if (this.props.currentLatitude != null && this.props.destLatitude!=null)
+    if (this.state.currentLatitude != null && this.state.destLatitude!=null)
      {
-       let concatStart = this.props.currentLatitude +","+this.props.currentLongitude
-       let concatDestination = this.props.destLatitude+","+this.props.destLongitude
+       let concatStart = this.state.currentLatitude +","+this.state.currentLongitude
+       let concatDestination = this.state.destLatitude+","+this.state.destLongitude
        this.getDirections(concatStart, concatDestination)
      } else {
        alert("insufficient data")
@@ -139,28 +140,95 @@ class TripContainer extends Component {
     }
   }
 
-  
-  render() { 
-      return <SelectionContainer
+  //======================================= VIEW =================================
+
+  render() {
+    return (
+    <>
+    <View style={{
+        flex: 6,
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}>
+
+        <View style={{
+            flex: 3, 
+          }}>
+          <MapContainer
             currentLatitude={this.state.currentLatitude}
             currentLongitude={this.state.currentLongitude}
             destLatitude={this.state.destLatitude}
             destLongitude={this.state.destLongitude}
-            destName={this.state.destName}
             routeCoords={this.state.routeCoords}
-            x={this.state.x} 
-            // handleSelection={this.handleSelection}
-            acceptSelection={this.acceptSelection}
-            setDestinationLocation={this.setDestinationLocation}
-            setRoute={this.setRoute}
-            setNap={this.setNap}
-            dropBoundary={this.dropBoundary}
-            navigation={this.props.navigation}
-            />
-            
+            x={this.state.x}
+          />
+        </View>
+        <View style={{
+            flex: 1, 
+            backgroundColor: 'white',
+            flexDirection: 'column',
+            justifyContent: 'center'
+          }}>
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'center'
+          }}>
+            <Text>{this.state.destName !== "-" ? this.state.destName : ""}</Text>
+          </View>
+        </View>
+        <View style={{
+            flex: 2, 
+            backgroundColor: 'white',
+            flexDirection: 'column',
+            justifyContent: 'center'
+          }}>
+          <View >
+       
+          <Button
+            title="Search"
+            type="outline" 
+            onPress={() => this.props.navigation.navigate('Search', {
+              currentLatitude: this.state.currentLatitude,
+              currentLongitude: this.state.currentLongitude,
+              setDestinationLocation: this.setDestinationLocation,
+            })}
+           />
+
+          </View>
+
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'center'
+          }}>
+            <Button buttonStyle={{margin: 10}}  title="Start Nap" onPress={() => this.acceptSelection()}/>
+            <Button buttonStyle={{margin: 10}} title="End Nap" onPress={() => this.dropBoundary(this.props.destName)}/>
+          </View>
+        </View>
+
+      </View>
+    </>
+    )      
     }
 }
 
 export default TripContainer
 
 AppRegistry.registerComponent('CityNapper', () => TripContainer);
+
+
+// return <SelectionContainer
+//             currentLatitude={this.state.currentLatitude}
+//             currentLongitude={this.state.currentLongitude}
+//             destLatitude={this.state.destLatitude}
+//             destLongitude={this.state.destLongitude}
+//             destName={this.state.destName}
+//             routeCoords={this.state.routeCoords}
+//             x={this.state.x} 
+//             // handleSelection={this.handleSelection}
+//             acceptSelection={this.acceptSelection}
+//             setDestinationLocation={this.setDestinationLocation}
+//             setRoute={this.setRoute}
+//             setNap={this.setNap}
+//             dropBoundary={this.dropBoundary}
+//             navigation={this.props.navigation}
+//             />

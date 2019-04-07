@@ -7,38 +7,39 @@ import { Divider } from 'react-native-elements';
 import { withNavigation } from 'react-navigation'
 const styles = StylesHelper.styles
 
-const { navigation } = this.props;
-const currentLatitude = navigation.getParam('currentLatitude');
-const currentLongitude = navigation.getParam('currentLongitude');
-const setDestinationLocation = navigation.getParam('setDestinationLocation')
-//GET ACCESS TO CONTACTS
-
 class SearchComponent extends Component {
-  static navigationOptions = { title: "Search" }
 
   state = {
     searchText: '',
     searchResults: [],
     error: null
   }
-
-  searchRegion = () => ({
-    latitude: !!currentLatitude ? currentLatitude : 0,
-    longitude: !!currentLongitude ? currentLongitude : 0,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01
-  });
   
+ 
+   render () {
+
+    const { navigation } = this.props;
+    const currentLatitude = navigation.getParam('currentLatitude');
+    const currentLongitude = navigation.getParam('currentLongitude');
+    const setDestinationLocation = navigation.getParam('setDestinationLocation')
+
+    searchRegion = () => ({
+      latitude: !!currentLatitude ? currentLatitude : 0,
+      longitude: !!currentLongitude ? currentLongitude : 0,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    });
+
     setSearchText = (text) => {
       this.setState({
         searchText: text
-      }, () => this.placeSearch(this.state.searchText))
+      }, () => placeSearch(this.state.searchText))
     }
     
     placeSearch = (searchText) => {
       RNReverseGeocode.searchForLocations(
         searchText,
-        this.searchRegion(),
+        searchRegion(),
         (err, results) => {
           this.setState({
             error: err,
@@ -47,12 +48,16 @@ class SearchComponent extends Component {
         }
       );
     }
-  
-   render () {
+
+    handleSelection = (item) => {
+      setDestinationLocation(item)
+      navigation.navigate('Trip')
+
+    }
+
      return (
-       <View 
-       >
-  
+       
+       <View >
         <SearchBar        
           placeholder="Where are you going?"
           // containerStyle 
@@ -60,7 +65,7 @@ class SearchComponent extends Component {
           round={true}
           inputStyle={styles.searchInput} //STYLE
           onClear={() => this.placeSearch('')}         
-          onChangeText={text => this.setSearchText(text)}
+          onChangeText={text => setSearchText(text)}
           value={this.state.searchText}
           autoCorrect={false}             
         />   
@@ -72,7 +77,7 @@ class SearchComponent extends Component {
               <ListItem
                 title={item.name}
                 subtitle={item.address}
-                onPress={() => setDestinationLocation(item)}
+                onPress={() => handleSelection(item)}
               />
               <Divider
                 style={{ 
@@ -90,6 +95,6 @@ class SearchComponent extends Component {
    }
 }
 
-export default withNavigation(SearchComponent)
+export default SearchComponent
 
 AppRegistry.registerComponent('CityNapper', () => SearchComponent);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {AppRegistry, View, Text} from 'react-native';
+import {AppRegistry } from 'react-native';
 import {Button, LinearGradient} from 'react-native-elements';
 import SearchComponent from '../components/SearchComponent'
 import StylesHelper from '../helpers/StyleHelper'
