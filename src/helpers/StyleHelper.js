@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: '#fcf6ec',
   },
   map: {
     flex: 1,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     color: "black"
   },
   tripSelectionContainer: {
-    flex: 6, 
+    flex: 3, 
     backgroundColor: 'white',
     flexDirection: 'column',
     justifyContent: 'space-between',

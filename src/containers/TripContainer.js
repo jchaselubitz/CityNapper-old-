@@ -3,7 +3,7 @@ import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
 import {AppRegistry, Vibration, View, Text, Button, TouchableOpacity} from 'react-native';
-import { Boundary } from 'react-native-boundary'
+import Boundary, {Events} from 'react-native-boundary';
 import {  } from 'react-native-elements';
 import StyleHelper from '../helpers/StyleHelper'
 
@@ -67,7 +67,7 @@ class TripContainer extends Component {
     Boundary.add({
       lat: this.state.destLatitude,
       lng: this.state.destLongitude,
-      radius: 500, // in meters
+      radius: 50, // in meters
       id: this.state.destName,
     })
       .then(() => alert("You have set a location!"))
@@ -164,7 +164,7 @@ class TripContainer extends Component {
           />
         </View>
         <View style={styles.tripSelectionContainer}>
-          <View style={{ flex: 2, flexDirection: "column", marginTop: 40 }}>
+          <View style={{ flex: 4, flexDirection: "column", marginTop: 40 }}>
           <Text style={{fontSize: 32}}>{this.state.destName !== "-" ? this.state.destName : ""}</Text>
           </View>
           {/* <View style={{justifyContent: "space-between"}}> */}
