@@ -7,13 +7,14 @@ import { Divider } from 'react-native-elements';
 import { withNavigation } from 'react-navigation'
 const styles = StylesHelper.styles
 
-const { navigation } = this.props.navigation;
-const currentLatitude = navigation.getParam('currentLatitude');
-const currentLongitude = navigation.getParam('currentLongitude');
+// const { navigation } = this.props.navigation;
+// const currentLatitude = navigation.getParam('currentLatitude');
+// const currentLongitude = navigation.getParam('currentLongitude');
 
 //GET ACCESS TO CONTACTS
 
 class SearchComponent extends Component {
+  // static navigationOptions = { title: 'SearchComponent' }
   state = {
     searchText: '',
     searchResults: [],
@@ -90,6 +91,6 @@ class SearchComponent extends Component {
    }
 }
 
-export default withNavigation(SearchComponent)
+export default SearchComponent
 
 AppRegistry.registerComponent('CityNapper', () => SearchComponent);

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {AppRegistry, View, Text} from 'react-native';
 import {Button, LinearGradient} from 'react-native-elements';
+import SearchComponent from '../components/SearchComponent'
 import StylesHelper from '../helpers/StyleHelper'
 import MapContainer from './MapContainer'
 import { withNavigation } from 'react-navigation'
 
 class SelectionContainer extends Component {
-
+  static navigationOptions = { title: 'SelectionContainer' }
   //acceptSelection
-
   render() { 
     return (
       <>
@@ -57,7 +57,7 @@ class SelectionContainer extends Component {
             <Button
               title="Search"
               type="outline" 
-              onPress={() => this.props.navigation.navigate('search', {
+              onPress={() => this.props.navigation.navigate('Search', {
                 currentLatitude: this.props.currentLatitude,
                 currentLongitude: this.props.currentLongitude,
                 handleSelection: this.props.handleSelection,
@@ -82,6 +82,8 @@ class SelectionContainer extends Component {
 }
 
 
-export default withNavigation(SelectionContainer)
+
+
+export default SelectionContainer
  
 AppRegistry.registerComponent('CityNapper', () => SelectionContainer);

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import {AppRegistry, Vibration} from 'react-native';
+import { Boundary } from 'react-native-boundary'
 import SelectionContainer from './SelectionContainer'
 import SearchComponent from '../components/SearchComponent'
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, withNavigation } from 'react-navigation'
 
 class TripContainer extends Component {
+  static navigationOptions = { title: 'TripContainer' }
 
   state = {
     error: null,
@@ -144,35 +146,26 @@ class TripContainer extends Component {
 
   
   render() { 
-    <SelectionContainer
-          currentLatitude={this.state.currentLatitude}
-          currentLongitude={this.state.currentLongitude}
-          destLatitude={this.state.destLatitude}
-          destLongitude={this.state.destLongitude}
-          destName={this.state.destName}
-          routeCoords={this.state.routeCoords}
-          x={this.state.x} 
-          handleSelection={this.handleSelection}
-          acceptSelection={this.acceptSelection}
-          setDestinationLocation={this.setDestinationLocation}
-          setRoute={this.setRoute}
-          setNap={this.setNap}
-          dropBoundary={this.dropBoundary}
-          navigation={this.props.navigation}
-          />
-  }
+      return <SelectionContainer
+            currentLatitude={this.state.currentLatitude}
+            currentLongitude={this.state.currentLongitude}
+            destLatitude={this.state.destLatitude}
+            destLongitude={this.state.destLongitude}
+            destName={this.state.destName}
+            routeCoords={this.state.routeCoords}
+            x={this.state.x} 
+            handleSelection={this.handleSelection}
+            acceptSelection={this.acceptSelection}
+            setDestinationLocation={this.setDestinationLocation}
+            setRoute={this.setRoute}
+            setNap={this.setNap}
+            dropBoundary={this.dropBoundary}
+            navigation={this.props.navigation}
+            />
+            
+    }
 }
 
-const TripStack = createStackNavigator({
-    Trip: TripContainer,
-    Selection: SelectionContainer,
-    Search: SearchComponent
-  },
-  {
-    initialRouteName: 'Trip',
-  }
-);
-
-export { TripStack }
+export default TripContainer
 
 AppRegistry.registerComponent('CityNapper', () => TripContainer);
