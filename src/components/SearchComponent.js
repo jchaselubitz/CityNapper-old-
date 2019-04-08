@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import StylesHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
 import { SearchBar, ListItem} from 'react-native-elements';
-import {AppRegistry, View, Button, FlatList} from 'react-native';
+import {AppRegistry, View, FlatList, TextInput} from 'react-native';
 import { Divider } from 'react-native-elements';
-import { withNavigation } from 'react-navigation'
+
 const styles = StylesHelper.styles
 
 class SearchComponent extends Component {
+  static navigationOptions = { header: null }
 
   state = {
     searchText: '',
@@ -15,7 +16,6 @@ class SearchComponent extends Component {
     error: null
   }
   
- 
    render () {
 
     const { navigation } = this.props;
@@ -56,41 +56,41 @@ class SearchComponent extends Component {
     }
 
      return (
-       
-       <View >
-        <SearchBar        
-          placeholder="Where are you going?"
-          // containerStyle 
-          lightTheme
-          round={false}
-          inputStyle={styles.searchInput} //STYLE
-          onClear={() => this.placeSearch('')}         
-          onChangeText={text => setSearchText(text)}
-          value={this.state.searchText}
-          autoCorrect={false}             
-        />   
-          <FlatList 
-            data={this.state.searchResults} 
-            keyboardShouldPersistTaps="always"
-            renderItem={({item}) => 
-            <>
-              <ListItem
-                title={item.name}
-                subtitle={item.address}
-                onPress={() => handleSelection(item)}
-              />
-              <Divider
-                style={{ 
-                  backgroundColor: 'grey',
-                  marginLeft: 10,
-                  marginRight: 10
-               }} />
-              </>
-            } 
-            keyExtractor={item => item.address} 
-            
+       <>
+      
+       <View>
+        <View style={styles.modalHeader}/>
+          <TextInput
+            style={styles.searchBar}
+            placeholder="Where are you going?"
+            placeholderTextColor="#626a7f"
+            onChangeText={text => setSearchText(text)}
+            autoCorrect={false}    
+          />
+  
+        <FlatList 
+          data={this.state.searchResults} 
+          keyboardShouldPersistTaps="always"
+          renderItem={({item}) => 
+          <>
+            <ListItem
+              title={item.name}
+              subtitle={item.address}
+              onPress={() => handleSelection(item)}
             />
+            <Divider
+              style={{ 
+                backgroundColor: 'grey',
+                marginLeft: 10,
+                marginRight: 10
+              }} />
+            </>
+          } 
+          keyExtractor={item => item.address} 
+          
+          />
         </View>
+        </>
      )
    }
 }

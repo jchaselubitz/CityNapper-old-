@@ -12,8 +12,13 @@ const TripStack = createStackNavigator(
     },
     Search: {
       screen: SearchComponent
-    }
+    },
+  },
+  {
+    mode: 'modal',
+    header: null
   }
+
 );
 
 export default TripStack

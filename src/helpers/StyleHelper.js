@@ -63,12 +63,46 @@ const styles = StyleSheet.create({
   },
 
   //================SEARCH=================
+
+  modalHeader: {
+    position: 'relative',
+      top: 0,
+    backgroundColor: 'transparent',
+    width: '100%',
+    height: 44,
+  },
+
+  searchBar: {
+    position: 'relative',
+    top: 0,
+    height: 48,
+    padding: 8,
+    margin: 16,
+    borderColor: '#5C6174',
+    backgroundColor: 'white',
+    borderWidth: 0,
+    borderRadius: 8,
+    flexDirection:'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    shadowColor: "darkgrey",
+    shadowRadius: 16,
+    shadowOpacity: 0.9,
+    shadowOffset: {
+      height: 6
+    },
+    
+  },
+
   flatList: {
     flex: 6
   },
+
   searchInput: {
     color: "black"
   },
+
   separator: {
     borderBottomColor: '#bbb',
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -120,7 +154,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2
     }
-  }
+  },
+ 
 })
 
 export default {
