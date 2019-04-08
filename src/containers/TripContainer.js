@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
-import {AppRegistry, Vibration, View, Text, Button, TouchableOpacity} from 'react-native';
+import {AppRegistry, Vibration, View, Text, TouchableOpacity} from 'react-native';
 import Boundary, {Events} from 'react-native-boundary';
-import {  } from 'react-native-elements';
 import StyleHelper from '../helpers/StyleHelper'
 
 const styles = StyleHelper.styles
+const PATTERN = [ 100, 50]
 
 class TripContainer extends Component {
   static navigationOptions = { title: 'Your Trip' }
@@ -21,7 +21,7 @@ class TripContainer extends Component {
     destName: "-",
     destAddress: '',
     routeCoords: [],
-    x: 'true'
+    x: 'true',
   }
 
   componentDidMount () {
@@ -49,14 +49,12 @@ class TripContainer extends Component {
     }, () => this.setRoute());
   }
 
+  acceptSelection = () => {
+    this.setNap()
+  }
+
   setNap = () => {
     this.setBoundary()
-
-    //switches to nap Running
-     //props include 
-        //destination name
-        //this.dropBoundary
-        //this.stopVibrationFunction
   }
 
   //==========BOUNDARY MAPPING FUNCTIONS===============
@@ -67,10 +65,10 @@ class TripContainer extends Component {
     Boundary.add({
       lat: this.state.destLatitude,
       lng: this.state.destLongitude,
-      radius: 50, // in meters
+      radius: 500, // in meters
       id: this.state.destName,
     })
-      .then(() => alert("You have set a location!"))
+      .then(() => alert(`You have set a location!`))
       .catch(e => console.error("error :(", e));
    
     Boundary.on(Events.ENTER, id => {
@@ -91,7 +89,6 @@ class TripContainer extends Component {
 
   //===========ALERT==================
 
-  PATTERN = [ 100, 50] ;
 
   startVibrationFunction = () => {
     Vibration.vibrate(PATTERN, true)
@@ -103,9 +100,7 @@ class TripContainer extends Component {
 
   //=========== Selection ==================
 
-  acceptSelection = () => {
-    this.setNap()
-  }
+
 
   //==========ROUTE MAPPING FUNCTIONS===============
 
@@ -140,20 +135,27 @@ class TripContainer extends Component {
     }
   }
 
-  //======================================= VIEW =================================
+  //======================================= VIEWS =================================
+  
+  CreateView = 0
+
+  DisplayView = 0
+
+  //======================================= RENDER =================================
+
+  setSelectorState = () => {
+    return this.state.destLatitude !== null ? DisplayView : CreateView
+  }
 
   render() {
     return (
     <>
     <View style={{
-        flex: 6,
+        flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
       }}>
 
-        <View style={{
-            flex: 3, 
-          }}>
+      
           <MapContainer
             currentLatitude={this.state.currentLatitude}
             currentLongitude={this.state.currentLongitude}
@@ -162,29 +164,29 @@ class TripContainer extends Component {
             routeCoords={this.state.routeCoords}
             x={this.state.x}
           />
-        </View>
+      
         <View style={styles.tripSelectionContainer}>
-          <View style={{ flex: 4, flexDirection: "column", marginTop: 40 }}>
-          <Text style={{fontSize: 32}}>{this.state.destName !== "-" ? this.state.destName : ""}</Text>
-          </View>
-          {/* <View style={{justifyContent: "space-between"}}> */}
           <TouchableOpacity
-            style={styles.buttonPrimary}
+            style={styles.buttonSearch}
             onPress={() => this.props.navigation.navigate('Search', {
               currentLatitude: this.state.currentLatitude,
               currentLongitude: this.state.currentLongitude,
               setDestinationLocation: this.setDestinationLocation,
             })}>
-            <Text style={styles.buttonText} >Search</Text>
+            <Text style={styles.searchButtonText}>Search</Text>
           </TouchableOpacity>
-          <TouchableOpacity  style={styles.buttonSecondary} onPress={() => this.acceptSelection()}>
-            <Text style={styles.buttonText}>Start Nap</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonSecondary} onPress={() => this.dropBoundary(this.props.destName)}>
-            <Text style={styles.buttonText}>End Nap</Text>
-          </TouchableOpacity>
+          
+          <View style={styles.tripSelectionCard}>
+            <TouchableOpacity  style={styles.buttonSecondary} onPress={() => this.acceptSelection()}>
+              <Text style={styles.buttonText}>Start Nap</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonSecondary} onPress={() => this.dropBoundary(this.props.destName)}>
+              <Text style={styles.buttonText}>End Nap</Text>
+            </TouchableOpacity>
           </View>
-        {/* </View> */}
+
+        </View>
+          
 
       </View>
     </>
@@ -197,3 +199,24 @@ export default TripContainer
 AppRegistry.registerComponent('CityNapper', () => TripContainer);
 
 
+// DisplayView = 
+// <View style={styles.tripSelectionContainer}>
+// <View style={{ marginBottom: 30 }}>
+// <Text style={{fontSize: 28}}>{this.state.destName !== "-" ? this.state.destName : ""}</Text>
+// </View>
+// <TouchableOpacity
+//   style={styles.buttonSearch}
+//   onPress={() => this.props.navigation.navigate('Search', {
+//     currentLatitude: this.state.currentLatitude,
+//     currentLongitude: this.state.currentLongitude,
+//     setDestinationLocation: this.setDestinationLocation,
+//   })}>
+//   <Text style={styles.searchButtonText}>Search</Text>
+// </TouchableOpacity>
+// <TouchableOpacity  style={styles.buttonSecondary} onPress={() => this.acceptSelection()}>
+//   <Text style={styles.buttonText}>Start Nap</Text>
+// </TouchableOpacity>
+// <TouchableOpacity style={styles.buttonSecondary} onPress={() => this.dropBoundary(this.props.destName)}>
+//   <Text style={styles.buttonText}>End Nap</Text>
+// </TouchableOpacity>
+// </View>

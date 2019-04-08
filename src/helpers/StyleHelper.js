@@ -2,38 +2,57 @@ import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
 const styles = StyleSheet.create({
-  buttonPrimary: {
-    marginBottom: 10,
-    padding: 10,
-    width: 260,
+  buttonSearch: {
+    position: 'absolute',
+      top: 0,
+      left: 8,
+      right: 8,
+    zIndex: 3,
+    marginBottom: 8,
+    height: 48,
+    width: '96%',
+    padding: 8,
+    borderColor: '#5C6174',
+    backgroundColor: 'white',
+    borderWidth: 3,
+    borderRadius: 8,
     flexDirection:'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#626a7f',
-    width: '80%',
-    borderRadius: 4
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    shadowColor: "darkgrey",
+    shadowRadius: 16,
+    shadowOpacity: 0.7,
   },
   buttonSecondary: {
-    marginBottom: 10,
-    padding: 10,
-    width: 260,
-    flexDirection:'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    position: 'relative',
+    bottom: 0,
+    left: 8,
+    right: 8,
+    zIndex: 3,
+    marginBottom: 8,
+    height: 40,
+    width: '96%',
+    padding: 8,
     backgroundColor: '#626a7f',
-    width: '80%',
-    fontSize: 18,
-    borderRadius: 4
+    borderRadius: 8,
+    flexDirection:'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignSelf: 'stretch'
+  },
+  searchButtonText: {
+    fontSize: 16,
+    color: '#5C6174',
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#fcf6ec',
   },
   map: {
-    flex: 1,
+    zIndex: 0,
     backgroundColor: 'gray',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
@@ -45,14 +64,45 @@ const styles = StyleSheet.create({
   searchInput: {
     color: "black"
   },
+  separator: {
+    borderBottomColor: '#bbb',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
   tripSelectionContainer: {
+    paddingTop: 32,
+    position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 16,
     flex: 3, 
-    backgroundColor: 'white',
+
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10
-
+    alignContent: 'space-between',
+    margin: 16,
+    borderRadius: 12,
+    shadowColor: "darkgrey",
+    shadowRadius: 16,
+    shadowOpacity: 0.7
+  },
+  tripSelectionCard: {
+    zIndex: 1,
+    backgroundColor: 'white',
+    shadowColor: "darkgrey",
+    shadowRadius: 16,
+    shadowOpacity: 0.7,
+    position: 'relative',
+      left: 0,
+      right: 0,
+      bottom: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'stretch',
+    justifyContent: 'flex-end',
+    paddingTop: 24,
+    borderRadius: 12,
+    
   }
 })
 
