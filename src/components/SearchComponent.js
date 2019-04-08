@@ -76,28 +76,31 @@ class SearchComponent extends Component {
           renderItem={({item}) => 
           <>
           <View style={{
-            flex: 6,
+            flex: 10,
             flexDirection: 'row',
+            marginLeft: 8
           }}>
             <View style={styles.listIcon}>
               <Icon
                   name='marker'
                   type='foundation'
-                  color='black'
+                  color='#333333'
                 />
               </View>
             <View style={{
-              flex: 5
+              flex: 9
             }}>
               <ListItem
                 title={item.name}
                 subtitle={item.address}
                 onPress={() => handleSelection(item)}
               />
-              </View>
-          </View>
-            <Divider
+              <Divider
               style={styles.listDivider} />
+              </View>
+
+          </View>
+            
             </>
           } 
           keyExtractor={item => item.address} 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
+import { Icon} from 'react-native-elements';
 import {AppRegistry, Vibration, View, Text, TouchableOpacity} from 'react-native';
 import Boundary, {Events} from 'react-native-boundary';
 import StyleHelper from '../helpers/StyleHelper'
@@ -51,6 +52,16 @@ class TripContainer extends Component {
 
   acceptSelection = () => {
     this.setNap()
+  }
+  
+  rejectSelection = () => {
+    this.setState({ 
+      destLatitude: null,
+      destLongitude: null,
+      destName: "-",
+      destAddress: '',
+      routeCoords: [],
+     });
   }
 
   setNap = () => {
@@ -152,10 +163,10 @@ class TripContainer extends Component {
       </TouchableOpacity>
       
       <View style={styles.tripSelectionCard}>
-        <TouchableOpacity  style={styles.buttonFavorite} onPress={() => this.acceptSelection()}>
+        <TouchableOpacity  style={styles.buttonFavorite} >
           <Text style={styles.buttonFavoriteText}>Home stop</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonFavorite} onPress={() => this.dropBoundary(this.props.destName)}>
+        <TouchableOpacity style={styles.buttonFavorite} >
           <Text style={styles.buttonFavoriteText}>Work stop</Text>
         </TouchableOpacity>
       </View>
@@ -167,18 +178,26 @@ class TripContainer extends Component {
   DisplayView = () => {
     return (
       <View style={styles.tripSelectionContainer}>
-        <TouchableOpacity
-        style={styles.buttonStartNap}
-        onPress={() => this.acceptSelection()}>
-        <Text style={styles.buttonNapText}>Start Nap</Text>
-      </TouchableOpacity>
+        {/* <View style={styles.tripDisplayCard}></View> */}
+          <TouchableOpacity
+            style={styles.cancelNapButton}
+            onPress={() => this.rejectSelection()}>
+            <Text style={styles.cancelNapText}>cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonStartNap}
+            onPress={() => this.acceptSelection()}>
+            <Text style={styles.buttonNapText}>Start Nap</Text>
+        </TouchableOpacity>
         <View style={styles.tripDisplayCard}>
           {this.state.destName === "-" ? 
             "The name for this destination is missing!" 
             : 
             <>
+           <View>
             <Text style={styles.destinationTitleText}>{this.state.destName}</Text>
             <Text style={styles.destinationSubtitleText}>{this.state.destAddress}</Text>
+            </View>
             </> }
     
         </View>
@@ -219,3 +238,22 @@ export default TripContainer
 
 AppRegistry.registerComponent('CityNapper', () => TripContainer);
 
+{/* <View style={{
+              flex: 10,
+              flexDirection: 'row',
+              justifyContent: 'flex-start'
+
+            }}>
+            <View >
+              <Text style={styles.destinationTitleText}>{this.state.destName}</Text>
+            </View>
+            <View >
+              <Icon
+                  name='x'
+                  type='foundation'
+                  color='darkgrey'
+                />
+             </View>
+            </View>
+            <Text style={styles.destinationSubtitleText}>{this.state.destAddress}</Text>
+            </> } */}

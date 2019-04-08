@@ -61,6 +61,38 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+
+  cancelNapButton: {
+    position: 'absolute',
+      top: 0,
+      right: 140,
+    zIndex: 3,
+    marginTop: 8,
+    marginBottom: 16,
+    height: 40,
+    padding: 8,
+    backgroundColor: 'white',
+    borderColor: '#626a7f',
+    borderWidth: 1,
+    borderRadius: 8,
+    flexDirection:'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    shadowColor: "black",
+    shadowRadius: 16,
+    shadowOpacity: 0.7,
+    shadowOffset: {
+      height: 6
+    }
+  },
+
+  cancelNapText: {
+    fontSize: 16,
+    // fontWeight: 'bold',
+    color: '#626a7f',
+  },
+
   destinationTitleText: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -78,8 +110,8 @@ const styles = StyleSheet.create({
   buttonSearch: {
     position: 'absolute',
       top: 0,
-      left: 16,
-      right: 16,
+      left: 24,
+      right: 24,
     zIndex: 3,
     marginBottom: 16,
     height: 48,
@@ -152,9 +184,7 @@ const styles = StyleSheet.create({
   listDivider: {
       backgroundColor: 'grey',
       marginLeft: 10,
-      marginRight: 10
   },
-
 
 
   // separator: {
