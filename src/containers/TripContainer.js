@@ -66,7 +66,13 @@ class TripContainer extends Component {
 
   setNap = () => {
     this.setBoundary()
-  }
+    this.props.navigation.navigate('Nap', {
+      destName: this.state.destName,
+      endNap: this.endNapAndDropBoundary
+    })
+  } 
+     
+
 
   //==========BOUNDARY MAPPING FUNCTIONS===============
   //FEATURE: Saved Boundaries that are always on
@@ -79,17 +85,17 @@ class TripContainer extends Component {
       radius: 500, // in meters
       id: this.state.destName,
     })
-      .then(() => alert(`You have set a location!`))
+      .then(() => console.log("boundary set"))
       .catch(e => console.error("error :(", e));
    
     Boundary.on(Events.ENTER, id => {
-      alert(`Wake up! you are at ${id}!!`)
       this.startVibrationFunction()
+      alert(`Wake up! you are at ${id}!!`)
       
     });
   }
 
-  dropBoundary = (id) => {
+  endNapAndDropBoundary = (id) => {
     if (id !== "-")
     alert("Location Removed")
     this.stopVibrationFunction()
@@ -238,22 +244,3 @@ export default TripContainer
 
 AppRegistry.registerComponent('CityNapper', () => TripContainer);
 
-{/* <View style={{
-              flex: 10,
-              flexDirection: 'row',
-              justifyContent: 'flex-start'
-
-            }}>
-            <View >
-              <Text style={styles.destinationTitleText}>{this.state.destName}</Text>
-            </View>
-            <View >
-              <Icon
-                  name='x'
-                  type='foundation'
-                  color='darkgrey'
-                />
-             </View>
-            </View>
-            <Text style={styles.destinationSubtitleText}>{this.state.destAddress}</Text>
-            </> } */}
