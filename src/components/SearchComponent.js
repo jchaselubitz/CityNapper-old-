@@ -56,10 +56,11 @@ class SearchComponent extends Component {
     }
 
      return (
-       <>
-      
+       
+        
+        <View>
        <View>
-        <View style={styles.modalHeader}/>
+       <View style={styles.modalHeader}/>
           <TextInput
             style={styles.searchBar}
             placeholder="Where are you going?"
@@ -67,7 +68,7 @@ class SearchComponent extends Component {
             onChangeText={text => setSearchText(text)}
             autoCorrect={false}    
           />
-  
+        </View>
         <FlatList 
           data={this.state.searchResults} 
           keyboardShouldPersistTaps="always"
@@ -90,7 +91,7 @@ class SearchComponent extends Component {
           
           />
         </View>
-        </>
+        
      )
    }
 }

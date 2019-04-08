@@ -2,39 +2,7 @@ import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
 const styles = StyleSheet.create({
-  buttonSearch: {
-    position: 'absolute',
-      top: 0,
-      left: 16,
-      right: 16,
-    zIndex: 3,
-    marginBottom: 16,
-    height: 48,
-    padding: 8,
-    borderColor: '#5C6174',
-    backgroundColor: 'white',
-    borderWidth: 0,
-    borderRadius: 8,
-    flexDirection:'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    alignSelf: 'stretch',
-    shadowColor: "darkgrey",
-    shadowRadius: 16,
-    shadowOpacity: 0.9,
-    shadowOffset: {
-      height: 6
-    }
-  },
-  searchButtonText: {
-    fontSize: 14,
-    color: '#5C6174',
-  },
   buttonSecondary: {
-    // position: 'relative',
-    // bottom: 0,
-    // left: 16,
-    // right: 16,
     zIndex: 3,
     marginBottom: 8,
     marginLeft: 16,
@@ -63,21 +31,15 @@ const styles = StyleSheet.create({
   },
 
   //================SEARCH=================
-
-  modalHeader: {
-    position: 'relative',
+  buttonSearch: {
+    position: 'absolute',
       top: 0,
-    backgroundColor: 'transparent',
-    width: '100%',
-    height: 44,
-  },
-
-  searchBar: {
-    position: 'relative',
-    top: 0,
+      left: 16,
+      right: 16,
+    zIndex: 3,
+    marginBottom: 16,
     height: 48,
     padding: 8,
-    margin: 16,
     borderColor: '#5C6174',
     backgroundColor: 'white',
     borderWidth: 0,
@@ -86,9 +48,41 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     alignSelf: 'stretch',
-    shadowColor: "darkgrey",
+    shadowColor: "black",
     shadowRadius: 16,
-    shadowOpacity: 0.9,
+    shadowOpacity: 0.7,
+    shadowOffset: {
+      height: 6
+    }
+  },
+  searchButtonText: {
+    fontSize: 14,
+    color: '#5C6174',
+  },
+  modalHeader: {
+    position: 'absolute',
+      top: 0,
+    backgroundColor: '#5C6174',
+    width: '100%',
+    height: 124,
+  },
+
+  searchBar: {
+    height: 48,
+    padding: 8,
+    margin: 16,
+    marginTop: 56,
+    borderColor: '#5C6174',
+    backgroundColor: 'white',
+    borderWidth: 0,
+    borderRadius: 8,
+    flexDirection:'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    shadowColor: "black",
+    shadowRadius: 8,
+    shadowOpacity: 0.6,
     shadowOffset: {
       height: 6
     },
@@ -107,7 +101,9 @@ const styles = StyleSheet.create({
     borderBottomColor: '#bbb',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+
   //================CONTAINERS AND SPACERS=================
+
   tripSelectionContainer: {
     paddingTop: 32,
     paddingBottom: 0,
@@ -122,9 +118,10 @@ const styles = StyleSheet.create({
     margin: 0,
     borderRadius: 12,
   },
+
   tripSelectionCard: {
     zIndex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#5C6174',
     shadowColor: "darkgrey",
     shadowRadius: 16,
     shadowOpacity: 0.9,

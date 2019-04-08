@@ -175,7 +175,7 @@ class TripContainer extends Component {
               setDestinationLocation: this.setDestinationLocation,
             })}>
             {/* need to add search icon */}
-            <Text style={styles.searchButtonText}>Search</Text>
+            <Text style={styles.searchButtonText}>Where are you going?</Text>
           </TouchableOpacity>
           
           <View style={styles.tripSelectionCard}>
