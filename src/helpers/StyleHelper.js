@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5C6174',
     width: '100%',
     height: 124,
+    alignSelf: 'stretch',
   },
 
   searchBar: {
@@ -129,21 +130,37 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 6
     },
-    
-  },
-
-  flatList: {
-    flex: 6
   },
 
   searchInput: {
     color: "black"
   },
 
-  separator: {
-    borderBottomColor: '#bbb',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+  //================ RESULTS LIST =================
+
+  flatList: {
+    marginTop: 4
   },
+
+  listIcon: {
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: 'center',
+      alignSelf: 'center',
+  },
+
+  listDivider: {
+      backgroundColor: 'grey',
+      marginLeft: 10,
+      marginRight: 10
+  },
+
+
+
+  // separator: {
+  //   borderBottomColor: '#bbb',
+  //   borderBottomWidth: StyleSheet.hairlineWidth,
+  // },
 
   //================CONTAINERS AND SPACERS=================
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StylesHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
-import { SearchBar, ListItem} from 'react-native-elements';
+import { Icon, ListItem} from 'react-native-elements';
 import {AppRegistry, View, FlatList, TextInput} from 'react-native';
 import { Divider } from 'react-native-elements';
 
@@ -58,7 +58,7 @@ class SearchComponent extends Component {
      return (
        
         
-        <View>
+      <View>
        <View>
        <View style={styles.modalHeader}/>
           <TextInput
@@ -69,27 +69,41 @@ class SearchComponent extends Component {
             autoCorrect={false}    
           />
         </View>
+        <View style={styles.flatList}>
         <FlatList 
           data={this.state.searchResults} 
           keyboardShouldPersistTaps="always"
           renderItem={({item}) => 
           <>
-            <ListItem
-              title={item.name}
-              subtitle={item.address}
-              onPress={() => handleSelection(item)}
-            />
+          <View style={{
+            flex: 6,
+            flexDirection: 'row',
+          }}>
+            <View style={styles.listIcon}>
+              <Icon
+                  name='marker'
+                  type='foundation'
+                  color='black'
+                />
+              </View>
+            <View style={{
+              flex: 5
+            }}>
+              <ListItem
+                title={item.name}
+                subtitle={item.address}
+                onPress={() => handleSelection(item)}
+              />
+              </View>
+          </View>
             <Divider
-              style={{ 
-                backgroundColor: 'grey',
-                marginLeft: 10,
-                marginRight: 10
-              }} />
+              style={styles.listDivider} />
             </>
           } 
           keyExtractor={item => item.address} 
           
           />
+          </View>
         </View>
         
      )
