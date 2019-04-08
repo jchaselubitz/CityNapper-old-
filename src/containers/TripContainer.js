@@ -10,7 +10,7 @@ const styles = StyleHelper.styles
 const PATTERN = [ 100, 50]
 
 class TripContainer extends Component {
-  static navigationOptions = { title: 'Your Trip' }
+  // static navigationOptions = { title: 'Your Trip' }
 
   state = {
     error: null,
@@ -173,6 +173,7 @@ class TripContainer extends Component {
               currentLongitude: this.state.currentLongitude,
               setDestinationLocation: this.setDestinationLocation,
             })}>
+            {/* need to add search icon */}
             <Text style={styles.searchButtonText}>Search</Text>
           </TouchableOpacity>
           

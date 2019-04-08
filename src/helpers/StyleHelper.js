@@ -5,12 +5,12 @@ const styles = StyleSheet.create({
   buttonSearch: {
     position: 'absolute',
       top: 0,
-      left: 8,
-      right: 8,
+      left: 16,
+      right: 16,
     zIndex: 3,
-    marginBottom: 8,
+    marginBottom: 16,
     height: 48,
-    width: '96%',
+
     padding: 8,
     borderColor: '#5C6174',
     backgroundColor: 'white',
@@ -22,24 +22,28 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     shadowColor: "darkgrey",
     shadowRadius: 16,
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.9,
+    shadowOffset: {
+      height: 6
+    }
   },
   buttonSecondary: {
-    position: 'relative',
-    bottom: 0,
-    left: 8,
-    right: 8,
+    // position: 'relative',
+    // bottom: 0,
+    // left: 16,
+    // right: 16,
     zIndex: 3,
     marginBottom: 8,
+    marginLeft: 16,
+    marginRight: 16,
     height: 40,
-    width: '96%',
     padding: 8,
     backgroundColor: '#626a7f',
     borderRadius: 8,
     flexDirection:'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
   },
   searchButtonText: {
     fontSize: 16,
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     shadowColor: "darkgrey",
     shadowRadius: 16,
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.9,
     position: 'relative',
       left: 0,
       right: 0,
@@ -100,7 +104,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'stretch',
     justifyContent: 'flex-end',
-    paddingTop: 24,
+    paddingTop: 32,
+    paddingBottom: 8,
     borderRadius: 12,
     
   }
