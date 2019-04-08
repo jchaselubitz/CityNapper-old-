@@ -137,26 +137,69 @@ class TripContainer extends Component {
 
   //======================================= VIEWS =================================
   
-  CreateView = 0
+  CreateView = () => {
+    return (
+      <View style={styles.tripSelectionContainer}>
+        <TouchableOpacity
+        style={styles.buttonSearch}
+        onPress={() => this.props.navigation.navigate('Search', {
+          currentLatitude: this.state.currentLatitude,
+          currentLongitude: this.state.currentLongitude,
+          setDestinationLocation: this.setDestinationLocation,
+        })}>
+        {/* need to add search icon */}
+        <Text style={styles.searchButtonText}>Where are you going?</Text>
+      </TouchableOpacity>
+      
+      <View style={styles.tripSelectionCard}>
+        <TouchableOpacity  style={styles.buttonFavorite} onPress={() => this.acceptSelection()}>
+          <Text style={styles.buttonFavoriteText}>Home stop</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonFavorite} onPress={() => this.dropBoundary(this.props.destName)}>
+          <Text style={styles.buttonFavoriteText}>Work stop</Text>
+        </TouchableOpacity>
+      </View>
 
-  DisplayView = 0
+    </View>
+    )
+  }
+
+  DisplayView = () => {
+    return (
+      <View style={styles.tripSelectionContainer}>
+        <TouchableOpacity
+        style={styles.buttonStartNap}
+        onPress={() => this.acceptSelection()}>
+        <Text style={styles.buttonNapText}>Start Nap</Text>
+      </TouchableOpacity>
+        <View style={styles.tripDisplayCard}>
+          {this.state.destName === "-" ? 
+            "The name for this destination is missing!" 
+            : 
+            <>
+            <Text style={styles.destinationTitleText}>{this.state.destName}</Text>
+            <Text style={styles.destinationSubtitleText}>{this.state.destAddress}</Text>
+            </> }
+    
+        </View>
+
+    </View>
+    )
+  }
 
   //======================================= RENDER =================================
 
   setSelectorState = () => {
-    return this.state.destLatitude !== null ? DisplayView : CreateView
+    return this.state.destLatitude !== null ? this.DisplayView() : this.CreateView()
   }
 
   render() {
     return (
-    <>
-    
-    <View style={{
-        flex: 1,
-        flexDirection: 'column',
-      }}>
-        <View style={styles.notchKiller}/>
-        
+      <View style={{
+          flex: 1,
+          flexDirection: 'column',
+        }}>
+ 
         <MapContainer
           currentLatitude={this.state.currentLatitude}
           currentLongitude={this.state.currentLongitude}
@@ -165,33 +208,9 @@ class TripContainer extends Component {
           routeCoords={this.state.routeCoords}
           x={this.state.x}
         />
-    
-        <View style={styles.tripSelectionContainer}>
-          <TouchableOpacity
-            style={styles.buttonSearch}
-            onPress={() => this.props.navigation.navigate('Search', {
-              currentLatitude: this.state.currentLatitude,
-              currentLongitude: this.state.currentLongitude,
-              setDestinationLocation: this.setDestinationLocation,
-            })}>
-            {/* need to add search icon */}
-            <Text style={styles.searchButtonText}>Where are you going?</Text>
-          </TouchableOpacity>
-          
-          <View style={styles.tripSelectionCard}>
-            <TouchableOpacity  style={styles.buttonSecondary} onPress={() => this.acceptSelection()}>
-              <Text style={styles.buttonText}>Start Nap</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonSecondary} onPress={() => this.dropBoundary(this.props.destName)}>
-              <Text style={styles.buttonText}>End Nap</Text>
-            </TouchableOpacity>
-          </View>
-
-        </View>
-          
-
+        {this.setSelectorState()}
       </View>
-    </>
+
     )      
     }
 }
@@ -200,25 +219,3 @@ export default TripContainer
 
 AppRegistry.registerComponent('CityNapper', () => TripContainer);
 
-
-// DisplayView = 
-// <View style={styles.tripSelectionContainer}>
-// <View style={{ marginBottom: 30 }}>
-// <Text style={{fontSize: 28}}>{this.state.destName !== "-" ? this.state.destName : ""}</Text>
-// </View>
-// <TouchableOpacity
-//   style={styles.buttonSearch}
-//   onPress={() => this.props.navigation.navigate('Search', {
-//     currentLatitude: this.state.currentLatitude,
-//     currentLongitude: this.state.currentLongitude,
-//     setDestinationLocation: this.setDestinationLocation,
-//   })}>
-//   <Text style={styles.searchButtonText}>Search</Text>
-// </TouchableOpacity>
-// <TouchableOpacity  style={styles.buttonSecondary} onPress={() => this.acceptSelection()}>
-//   <Text style={styles.buttonText}>Start Nap</Text>
-// </TouchableOpacity>
-// <TouchableOpacity style={styles.buttonSecondary} onPress={() => this.dropBoundary(this.props.destName)}>
-//   <Text style={styles.buttonText}>End Nap</Text>
-// </TouchableOpacity>
-// </View>
