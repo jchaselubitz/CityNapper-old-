@@ -10,11 +10,10 @@ const styles = StyleSheet.create({
     zIndex: 3,
     marginBottom: 16,
     height: 48,
-
     padding: 8,
     borderColor: '#5C6174',
     backgroundColor: 'white',
-    borderWidth: 3,
+    borderWidth: 0,
     borderRadius: 8,
     flexDirection:'column',
     alignItems: 'flex-start',
@@ -26,6 +25,10 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 6
     }
+  },
+  searchButtonText: {
+    fontSize: 14,
+    color: '#5C6174',
   },
   buttonSecondary: {
     // position: 'relative',
@@ -45,12 +48,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'stretch',
   },
-  searchButtonText: {
-    fontSize: 16,
-    color: '#5C6174',
-  },
   buttonText: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#fcf6ec',
   },
   map: {
@@ -62,6 +61,8 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0
   },
+
+  //================SEARCH=================
   flatList: {
     flex: 6
   },
@@ -72,22 +73,20 @@ const styles = StyleSheet.create({
     borderBottomColor: '#bbb',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  //================CONTAINERS AND SPACERS=================
   tripSelectionContainer: {
     paddingTop: 32,
+    paddingBottom: 0,
     position: 'absolute',
       left: 0,
       right: 0,
-      bottom: 16,
+      bottom: 0,
     flex: 3, 
-
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignContent: 'space-between',
-    margin: 16,
+    margin: 0,
     borderRadius: 12,
-    shadowColor: "darkgrey",
-    shadowRadius: 16,
-    shadowOpacity: 0.7
   },
   tripSelectionCard: {
     zIndex: 1,
@@ -104,10 +103,23 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'stretch',
     justifyContent: 'flex-end',
-    paddingTop: 32,
-    paddingBottom: 8,
+    paddingTop: 40,
+    paddingBottom: 40,
     borderRadius: 12,
-    
+  },
+  notchKiller: {
+    zIndex: 1,
+    position: 'absolute',
+      top: 0,
+    backgroundColor: 'white',
+    width: '100%',
+    height: 44,
+    shadowColor: "darkgrey",
+    shadowRadius: 8,
+    shadowOpacity: 0.7,
+    shadowOffset: {
+      height: 2
+    }
   }
 })
 

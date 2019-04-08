@@ -10,7 +10,7 @@ const styles = StyleHelper.styles
 const PATTERN = [ 100, 50]
 
 class TripContainer extends Component {
-  // static navigationOptions = { title: 'Your Trip' }
+  static navigationOptions = { header: null }
 
   state = {
     error: null,
@@ -150,21 +150,22 @@ class TripContainer extends Component {
   render() {
     return (
     <>
+    
     <View style={{
         flex: 1,
         flexDirection: 'column',
       }}>
-
-      
-          <MapContainer
-            currentLatitude={this.state.currentLatitude}
-            currentLongitude={this.state.currentLongitude}
-            destLatitude={this.state.destLatitude}
-            destLongitude={this.state.destLongitude}
-            routeCoords={this.state.routeCoords}
-            x={this.state.x}
-          />
-      
+        <View style={styles.notchKiller}/>
+        
+        <MapContainer
+          currentLatitude={this.state.currentLatitude}
+          currentLongitude={this.state.currentLongitude}
+          destLatitude={this.state.destLatitude}
+          destLongitude={this.state.destLongitude}
+          routeCoords={this.state.routeCoords}
+          x={this.state.x}
+        />
+    
         <View style={styles.tripSelectionContainer}>
           <TouchableOpacity
             style={styles.buttonSearch}
