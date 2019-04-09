@@ -1,6 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
+const NapColors = {
+  primaryBlue: "#5c6174",
+  subtleBlue: '#626a7f',
+  shadowBlue: '#3f4354',
+  actionOrange: '#f58b44',  
+}
+
 const styles = StyleSheet.create({
   
   //================ MAP =================
@@ -29,7 +36,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
     height: 48,
     padding: 8,
-    backgroundColor: '#626a7f',
+    backgroundColor: NapColors.subtleBlue,
     borderRadius: 8,
     flexDirection:'column',
     alignItems: 'flex-start',
@@ -52,7 +59,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
     height: 60,
     padding: 16,
-    backgroundColor: '#626a7f',
+    backgroundColor: NapColors.subtleBlue,
     borderRadius: 8,
     flexDirection:'column',
     alignItems: 'center',
@@ -80,7 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     height: 54,
     padding: 8,
-    backgroundColor: '#f58b44',
+    backgroundColor: NapColors.actionOrange,
     borderColor: 'blue',
     borderWidth: 0,
     borderRadius: 8,
@@ -106,14 +113,14 @@ const styles = StyleSheet.create({
     // flex: 1,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#5C6174',
+    color: NapColors.primaryBlue,
     marginTop: 4,
     marginBottom: 4,
     alignSelf: 'stretch',
   },
   destinationSubtitleText: {
     fontSize: 14,
-    color: '#5C6174',
+    color: NapColors.primaryBlue,
     alignSelf: 'stretch',
   },
 
@@ -158,14 +165,14 @@ const styles = StyleSheet.create({
   searchButtonText: {
     flex: 9,
     fontSize: 18,
-    color: '#5C6174',
+    color: NapColors.primaryBlue,
     alignSelf: 'center'
   },
 
   modalHeader: {
     position: 'absolute',
       top: 0,
-    backgroundColor: '#5C6174',
+    backgroundColor: NapColors.primaryBlue,
     width: '100%',
     height: 124,
     alignSelf: 'stretch',
@@ -177,7 +184,7 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 16,
     marginTop: 48,
-    borderColor: '#5C6174',
+    borderColor: NapColors.primaryBlue,
     backgroundColor: 'white',
     borderWidth: 0,
     borderRadius: 8,
@@ -185,11 +192,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     alignSelf: 'stretch',
-    shadowColor: "black",
-    shadowRadius: 6,
-    shadowOpacity: 0.6,
+    shadowColor: NapColors.shadowBlue,
+    shadowRadius: 8,
+    shadowOpacity: 0.7,
     shadowOffset: {
-      height: 1
+      height: 3
     },
     fontSize: 18
   },
@@ -242,7 +249,7 @@ const styles = StyleSheet.create({
 
   tripSelectionCard: {
     zIndex: 1,
-    backgroundColor: '#5C6174',
+    backgroundColor: NapColors.primaryBlue,
     shadowColor: "darkgrey",
     shadowRadius: 16,
     shadowOpacity: 0.9,
@@ -302,5 +309,6 @@ const styles = StyleSheet.create({
 })
 
 export default {
-  styles
+  styles,
+  NapColors,
 }

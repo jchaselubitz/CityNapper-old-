@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
 import StyleHelper from '../helpers/StyleHelper'
 const styles = StyleHelper.styles
+const NapColors = StyleHelper.NapColors
 
 export default class NapContainer extends Component {
-  // static navigationOptions = { header: null }
+  static navigationOptions = { header: null }
 
   state = {
     

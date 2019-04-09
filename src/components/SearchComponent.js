@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import StylesHelper from '../helpers/StyleHelper'
+import StyleHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
-import { Icon, ListItem} from 'react-native-elements';
+import { Icon, ListItem, colors} from 'react-native-elements';
 import {AppRegistry, View, FlatList, TextInput} from 'react-native';
 import { Divider } from 'react-native-elements';
 
-const styles = StylesHelper.styles
+const styles = StyleHelper.styles
+const NapColors = StyleHelper.NapColors
 
 class SearchComponent extends Component {
   static navigationOptions = { header: null }
@@ -64,7 +65,7 @@ class SearchComponent extends Component {
           <TextInput
             style={styles.searchBar}
             placeholder="Where are you going?"
-            placeholderTextColor="#5C6174"
+            placeholderTextColor={NapColors.primaryBlue}
             onChangeText={text => setSearchText(text)}
             autoCorrect={false}    
           />
@@ -84,7 +85,7 @@ class SearchComponent extends Component {
               <Icon
                   name='marker'
                   type='foundation'
-                  color='#5C6174'
+                  color={NapColors.primaryBlue}
                 />
               </View>
             <View style={{

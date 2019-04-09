@@ -8,6 +8,8 @@ import Boundary, {Events} from 'react-native-boundary';
 import StyleHelper from '../helpers/StyleHelper'
 
 const styles = StyleHelper.styles
+const NapColors = StyleHelper.NapColors
+
 const PATTERN = [ 100, 50]
 
 class TripContainer extends Component {
@@ -98,7 +100,7 @@ class TripContainer extends Component {
     this.dropBoundary()
 
   }
-  
+
   //========== BOUNDARY FUNCTIONS ===============
  
 
@@ -190,7 +192,7 @@ class TripContainer extends Component {
               <Icon
                   name='search'
                   type='material'
-                  color='#5C6174'
+                  color={NapColors.primaryBlue}
                 />
               </View>
         <Text style={styles.searchButtonText}>Where are you going?</Text>
@@ -261,7 +263,7 @@ class TripContainer extends Component {
                     size={18}
                     name='close'
                     type='material'
-                    color='#626a7f'
+                    color={NapColors.subtleBlue}
                     onPress={() => this.rejectSelection()}/>
               </View>
               
