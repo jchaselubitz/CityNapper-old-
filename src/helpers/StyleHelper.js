@@ -15,6 +15,13 @@ const styles = StyleSheet.create({
   },
   
   //================ BUTTONS =================
+  buttonContainer: {
+    flex: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignContent: 'center'
+  },
+
   buttonFavorite: {
     zIndex: 3,
     marginBottom: 8,
@@ -30,8 +37,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   buttonFavoriteText: {
+    flex: 9,
     fontSize: 18,
     color: 'white',
+    alignSelf: 'center'
   },
   buttonStartNap: {
     position: 'absolute',

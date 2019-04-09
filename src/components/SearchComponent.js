@@ -84,7 +84,7 @@ class SearchComponent extends Component {
               <Icon
                   name='marker'
                   type='foundation'
-                  color='#333333'
+                  color='#5C6174'
                 />
               </View>
             <View style={{

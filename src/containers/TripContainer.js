@@ -179,10 +179,28 @@ class TripContainer extends Component {
      
       <View style={styles.tripSelectionCard}>
         <TouchableOpacity  style={styles.buttonFavorite} >
+        <View style={styles.buttonContainer}>
+            <View style={styles.listIcon}>
+              <Icon
+                  name='home'
+                  type='material'
+                  color='white'
+                />
+              </View>
           <Text style={styles.buttonFavoriteText}>Home stop</Text>
+          </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonFavorite} >
+        <View style={styles.buttonContainer}>
+            <View style={styles.listIcon}>
+              <Icon
+                  name='work'
+                  type='material'
+                  color='white'
+                />
+              </View>
           <Text style={styles.buttonFavoriteText}>Work stop</Text>
+          </View>
         </TouchableOpacity>
       </View>
 
