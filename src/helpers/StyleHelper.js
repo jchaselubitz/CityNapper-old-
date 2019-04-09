@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginLeft: 16,
     marginRight: 16,
-    height: 56,
-    padding: 8,
+    height: 60,
+    padding: 16,
     backgroundColor: '#626a7f',
     borderRadius: 8,
     flexDirection:'column',
@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
 
   cancelNapButton: {
     position: 'absolute',
-      top: 0,
-      right: 140,
+      // top: 0,
+      right: 180,
     zIndex: 3,
-    marginTop: 8,
+    marginTop: 16,
     marginBottom: 16,
     height: 40,
     padding: 8,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    alignSelf: 'stretch',
+    alignSelf: 'center',
     shadowColor: "black",
     shadowRadius: 16,
     shadowOpacity: 0.7,
@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
 
   //================CONTAINERS AND SPACERS=================
 
+  //This is the transparent container that CONTAINS the selection card (which is blue)
   tripSelectionContainer: {
     paddingTop: 32,
     paddingBottom: 0,
@@ -246,7 +247,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'stretch',
     justifyContent: 'flex-end',
-    paddingTop: 40,
+    paddingTop: 48,
     paddingBottom: 40,
     borderRadius: 12,
     borderBottomLeftRadius: 0,
@@ -267,6 +268,7 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
     alignItems: 'stretch',
     justifyContent: 'flex-end',
+    marginTop: 16,
     padding: 16,
     paddingTop: 24,
     paddingBottom: 40,
@@ -274,20 +276,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
-  // notchKiller: {
-  //   zIndex: 1,
-  //   position: 'absolute',
-  //     top: 0,
-  //   backgroundColor: 'white',
-  //   width: '100%',
-  //   height: 44,
-  //   shadowColor: "darkgrey",
-  //   shadowRadius: 8,
-  //   shadowOpacity: 0.7,
-  //   shadowOffset: {
-  //     height: 2
-  //   }
-  // },
  
 })
 
