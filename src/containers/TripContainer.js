@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
-import { Icon} from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import {AppRegistry, Vibration, View, Text, TouchableOpacity} from 'react-native';
 import Boundary, {Events} from 'react-native-boundary';
 import StyleHelper from '../helpers/StyleHelper'
@@ -53,15 +53,23 @@ class TripContainer extends Component {
   acceptSelection = () => {
     this.setNap()
   }
-  
-  rejectSelection = () => {
+
+  clearSelection = (link) => {
     this.setState({ 
       destLatitude: null,
       destLongitude: null,
       destName: "-",
       destAddress: '',
       routeCoords: [],
-     });
+     }, link )
+  }
+  
+  rejectSelection = () => {
+    this.clearSelection(() => this.props.navigation.navigate('Search', {
+      currentLatitude: this.state.currentLatitude,
+      currentLongitude: this.state.currentLongitude,
+      setDestinationLocation: this.setDestinationLocation,
+    }))
   }
 
   setNap = () => {
@@ -96,12 +104,12 @@ class TripContainer extends Component {
   }
 
   endNapAndDropBoundary = () => {
-    alert("Location Removed")
     this.stopVibrationFunction()
-    this.rejectSelection()
+    this.clearSelection()
     Boundary.removeAll()
     .then(() => console.log('Location Dropped'))
     .catch(e => console.log('failed to drop location', e))
+    
   }
 
   //===========ALERT==================
@@ -211,27 +219,38 @@ class TripContainer extends Component {
   DisplayView = () => {
     return (
       <View style={styles.tripSelectionContainer}>
-          <TouchableOpacity
-            style={styles.cancelNapButton}
-            onPress={() => this.rejectSelection()}>
-            <Text style={styles.cancelNapText}>cancel</Text>
-          </TouchableOpacity>
+            
           <TouchableOpacity
             style={styles.buttonStartNap}
             onPress={() => this.acceptSelection()}>
             <Text style={styles.buttonNapText}>Start Nap</Text>
         </TouchableOpacity>
-        <View style={styles.tripDisplayCard}>
+          <View style={styles.tripDisplayCard}>
           {this.state.destName === "-" ? 
             "The name for this destination is missing!" 
             : 
             <>
-           <View>
-            <Text style={styles.destinationTitleText}>{this.state.destName}</Text>
-            <Text style={styles.destinationSubtitleText}>{this.state.destAddress}</Text>
+            <View style={{
+               flexDirection: 'row',
+               justifyContent: 'flex-start',
+               alignItems: 'center',
+               }}>
+              <Text style={styles.destinationTitleText}>{this.state.destName}</Text>
+              <View style={styles.cancelIcon}>
+                <Icon
+                    size={18}
+                    name='close'
+                    type='material'
+                    color='#626a7f'
+                    onPress={() => this.rejectSelection()}/>
+              </View>
+              
             </View>
+            <View>
+              <Text style={styles.destinationSubtitleText}>{this.state.destAddress}</Text>
+            </View>
+              
             </> }
-    
         </View>
 
     </View>
@@ -250,7 +269,6 @@ class TripContainer extends Component {
           flex: 1,
           flexDirection: 'column',
         }}>
- 
         <MapContainer
           currentLatitude={this.state.currentLatitude}
           currentLongitude={this.state.currentLongitude}

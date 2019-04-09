@@ -102,9 +102,11 @@ const styles = StyleSheet.create({
   },
 
   destinationTitleText: {
+    // flex: 1,
     fontSize: 18,
     fontWeight: 'bold',
     color: '#5C6174',
+    marginTop: 4,
     marginBottom: 4,
     alignSelf: 'stretch',
   },
@@ -113,6 +115,12 @@ const styles = StyleSheet.create({
     color: '#5C6174',
     alignSelf: 'stretch',
   },
+
+  cancelIcon: {
+    marginLeft: 4,
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start',
+},
 
   //================ SEARCH =================
 
