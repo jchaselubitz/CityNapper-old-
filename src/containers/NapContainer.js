@@ -4,6 +4,8 @@ import StyleHelper from '../helpers/StyleHelper'
 const styles = StyleHelper.styles
 
 export default class NapContainer extends Component {
+  // static navigationOptions = { header: null }
+
   state = {
     
   }
@@ -12,6 +14,7 @@ export default class NapContainer extends Component {
 
     const { navigation } = this.props;
     const destName = navigation.getParam('destName');
+    const destAddress = navigation.getParam('destAddress')
     const endNap = navigation.getParam('endNap');
 
     handleClick = () => {
@@ -20,14 +23,17 @@ export default class NapContainer extends Component {
 
     }
      return (
-       <View>
-         <Text>{destName}</Text>
+      <View style={styles.napContainer}>
         <TouchableOpacity
-          style={styles.buttonFavorite} 
+          style={styles.endNapButton} 
           onPress={() => handleClick()}
           >
-          <Text style={styles.buttonFavoriteText}>End Nap</Text>
+          <Text style={styles.endNapText}>End Nap</Text>
         </TouchableOpacity>
+        <View style={styles.tripDisplayCard}>
+          <Text style={styles.destinationTitleText}>{destName}</Text>
+          <Text style={styles.destinationSubtitleText}>{destAddress}</Text>
+        </View>
        </View>
      )
    }
@@ -35,3 +41,4 @@ export default class NapContainer extends Component {
 }
 
 AppRegistry.registerComponent('CityNapper', () => NapContainer);
+

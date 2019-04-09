@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#626a7f',
     borderRadius: 8,
     flexDirection:'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'stretch',
     shadowColor: "black",
@@ -71,22 +71,23 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 
-  cancelNapButton: {
+  endNapButton: {
     position: 'absolute',
-      right: 180,
+      top: 0,
+      left: 24,
+      right: 24,
     zIndex: 3,
-    marginTop: 16,
     marginBottom: 16,
-    height: 40,
+    height: 54,
     padding: 8,
-    backgroundColor: 'white',
-    borderColor: '#626a7f',
+    backgroundColor: '#f58b44',
+    borderColor: 'blue',
     borderWidth: 0,
     borderRadius: 8,
     flexDirection:'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'center',
+    alignSelf: 'stretch',
     shadowColor: "black",
     shadowRadius: 16,
     shadowOpacity: 0.7,
@@ -95,10 +96,10 @@ const styles = StyleSheet.create({
     }
   },
 
-  cancelNapText: {
-    fontSize: 16,
-    // fontWeight: 'bold',
-    color: '#626a7f',
+  endNapText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
   },
 
   destinationTitleText: {
@@ -283,7 +284,21 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
- 
+  napContainer: {
+    paddingTop: 32,
+    paddingBottom: 0,
+    position: 'absolute',
+      // top: 180,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    flex: 5, 
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
+    margin: 0,
+    borderRadius: 12,
+  },
 })
 
 export default {

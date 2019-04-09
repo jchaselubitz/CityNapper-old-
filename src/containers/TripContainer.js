@@ -23,6 +23,7 @@ class TripContainer extends Component {
     destAddress: '',
     routeCoords: [],
     x: 'true',
+    napping: false,
   }
 
   componentDidMount () {
@@ -41,6 +42,31 @@ class TripContainer extends Component {
     )
   } 
 
+//============= NAP FUNCTIONS ======================
+
+  startNap = () => {
+    this.setBoundary()
+    this.setState({ napping: true  });
+    this.goToNap()
+  } 
+     
+  goToNap = () => {
+    this.props.navigation.navigate('Nap', {
+      destName: this.state.destName,
+      destAddress: this.state.destAddress,
+      endNap: this.endNap
+    })
+  }
+
+  endNap = () => {
+    this.dropBoundary()
+    this.stopVibrationFunction()
+    this.clearDestinationSelection()
+  }
+
+
+//============= SETTER FUNCTIONS ======================
+
   setDestinationLocation = (destination) => {
     this.setState({ 
       destLatitude: destination.location.latitude,
@@ -50,40 +76,31 @@ class TripContainer extends Component {
     }, () => this.setRoute());
   }
 
-  acceptSelection = () => {
-    this.setNap()
-  }
 
-  clearSelection = (link) => {
+  clearDestinationSelection = (link) => {
     this.setState({ 
       destLatitude: null,
       destLongitude: null,
       destName: "-",
       destAddress: '',
       routeCoords: [],
+      napping: false,
      }, link )
   }
   
   rejectSelection = () => {
-    this.clearSelection(() => this.props.navigation.navigate('Search', {
+    this.clearDestinationSelection(
+      () => this.props.navigation.navigate('Search', {
       currentLatitude: this.state.currentLatitude,
       currentLongitude: this.state.currentLongitude,
       setDestinationLocation: this.setDestinationLocation,
     }))
+    this.dropBoundary()
+
   }
-
-  setNap = () => {
-    this.setBoundary()
-    this.props.navigation.navigate('Nap', {
-      destName: this.state.destName,
-      endNap: this.endNapAndDropBoundary
-    })
-  } 
-     
-
-
-  //==========BOUNDARY MAPPING FUNCTIONS===============
-  //FEATURE: Saved Boundaries that are always on
+  
+  //========== BOUNDARY FUNCTIONS ===============
+ 
 
   setBoundary = () =>  {
     if (this.state.destName !== "-")
@@ -103,16 +120,14 @@ class TripContainer extends Component {
     });
   }
 
-  endNapAndDropBoundary = () => {
-    this.stopVibrationFunction()
-    this.clearSelection()
+  dropBoundary = () => {
     Boundary.removeAll()
     .then(() => console.log('Location Dropped'))
     .catch(e => console.log('failed to drop location', e))
     
   }
 
-  //===========ALERT==================
+  //=========== ALERT ==================
 
 
   startVibrationFunction = () => {
@@ -123,11 +138,8 @@ class TripContainer extends Component {
     Vibration.cancel()
   }
 
-  //=========== Selection ==================
 
-
-
-  //==========ROUTE MAPPING FUNCTIONS===============
+  //========== ROUTE MAPPING FUNCTIONS ===============
 
   setRoute = () => {
     // alert(this.state.destLatitude)
@@ -219,12 +231,20 @@ class TripContainer extends Component {
   DisplayView = () => {
     return (
       <View style={styles.tripSelectionContainer}>
-            
+          {this.state.napping === false
+        ?   
           <TouchableOpacity
             style={styles.buttonStartNap}
-            onPress={() => this.acceptSelection()}>
+            onPress={() => this.startNap()}>
             <Text style={styles.buttonNapText}>Start Nap</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        :
+          <TouchableOpacity
+            style={styles.buttonStartNap}
+            onPress={() => this.goToNap()}>
+            <Text style={styles.buttonNapText}>Resume Nap</Text>
+          </TouchableOpacity>
+        }
           <View style={styles.tripDisplayCard}>
           {this.state.destName === "-" ? 
             "The name for this destination is missing!" 
