@@ -3,6 +3,7 @@ import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
 import { Icon } from 'react-native-elements';
+import pushNotification from '../services/pushNotification'
 import {AppRegistry, Vibration, View, Text, TouchableOpacity} from 'react-native';
 import Boundary, {Events} from 'react-native-boundary';
 import StyleHelper from '../helpers/StyleHelper'
@@ -11,6 +12,9 @@ const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
 const PATTERN = [ 100, 50]
+
+//============= PUSH NOTIFICATIONS ======================
+
 
 class TripContainer extends Component {
   static navigationOptions = { header: null }
@@ -26,9 +30,11 @@ class TripContainer extends Component {
     routeCoords: [],
     x: 'true',
     napping: false,
+    alertDidRun: false,
   }
 
   componentDidMount () {
+    // configurePushNotifications()
     navigator.geolocation.requestAuthorization()
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -43,6 +49,8 @@ class TripContainer extends Component {
       { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
     )
   } 
+
+
 
 //============= NAP FUNCTIONS ======================
 
@@ -64,6 +72,7 @@ class TripContainer extends Component {
     this.dropBoundary()
     this.stopVibrationFunction()
     this.clearDestinationSelection()
+    pushNotification.cancelAllLocalNotifications()
   }
 
 
@@ -109,15 +118,18 @@ class TripContainer extends Component {
     Boundary.add({
       lat: this.state.destLatitude,
       lng: this.state.destLongitude,
-      radius: 500, // in meters
+      radius: 200, // in meters
       id: this.state.destName,
     })
       .then(() => console.log("boundary set"))
       .catch(e => console.error("error :(", e));
    
     Boundary.on(Events.ENTER, id => {
+      this.alertNotification()
       this.startVibrationFunction()
-      alert(`Wake up! you are at ${id}!!`)
+      this.setState({ alertDidRun: true });
+      alert("wire tripped")
+      
       
     });
   }
@@ -140,6 +152,10 @@ class TripContainer extends Component {
     Vibration.cancel()
   }
 
+  alertNotification = () => {
+    pushNotification.localNotification()
+  }
+  
 
   //========== ROUTE MAPPING FUNCTIONS ===============
 
@@ -212,7 +228,10 @@ class TripContainer extends Component {
           <Text style={styles.buttonFavoriteText}>Home stop</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonFavorite} >
+        <TouchableOpacity 
+          onPress={() => this.alertNotification()}
+          style={styles.buttonFavorite} >
+
         <View style={styles.buttonContainer}>
             <View style={styles.listIcon}>
               <Icon

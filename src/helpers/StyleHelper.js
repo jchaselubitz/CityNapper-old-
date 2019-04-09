@@ -1,15 +1,16 @@
 import {StyleSheet} from 'react-native';
-import {Button} from 'react-native-elements';
 
 const NapColors = {
   primaryBlue: "#5c6174",
   subtleBlue: '#626a7f',
   shadowBlue: '#3f4354',
-  actionOrange: '#f58b44',  
+  actionOrange: '#f58b44', 
+  calmBlue: '#818dab', 
 }
 
+//add fonts here
+
 const styles = StyleSheet.create({
-  
   //================ MAP =================
   map: {
     zIndex: 0,
