@@ -64,7 +64,7 @@ class SearchComponent extends Component {
           <TextInput
             style={styles.searchBar}
             placeholder="Where are you going?"
-            placeholderTextColor="#626a7f"
+            placeholderTextColor="#5C6174"
             onChangeText={text => setSearchText(text)}
             autoCorrect={false}    
           />

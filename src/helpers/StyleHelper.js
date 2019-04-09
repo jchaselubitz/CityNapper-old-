@@ -3,7 +3,7 @@ import {Button} from 'react-native-elements';
 
 const styles = StyleSheet.create({
   
-  //================SEARCH=================
+  //================ MAP =================
   map: {
     zIndex: 0,
     backgroundColor: 'gray',
@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   
-  //================SEARCH=================
+  //================ BUTTONS =================
   buttonFavorite: {
     zIndex: 3,
     marginBottom: 8,
     marginLeft: 16,
     marginRight: 16,
-    height: 40,
+    height: 48,
     padding: 8,
     backgroundColor: '#626a7f',
     borderRadius: 8,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   buttonFavoriteText: {
-    fontSize: 14,
+    fontSize: 18,
     color: 'white',
   },
   buttonStartNap: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginLeft: 16,
     marginRight: 16,
-    height: 48,
+    height: 56,
     padding: 8,
     backgroundColor: '#626a7f',
     borderRadius: 8,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     }
   },
   buttonNapText: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
   },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: 'white',
     borderColor: '#626a7f',
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 8,
     flexDirection:'column',
     alignItems: 'flex-start',
@@ -106,7 +106,15 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
 
-  //================SEARCH=================
+  //================ SEARCH =================
+
+  searchButtonContainer: {
+    flex: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignContent: 'center'
+  },
+
   buttonSearch: {
     position: 'absolute',
       top: 0,
@@ -114,7 +122,7 @@ const styles = StyleSheet.create({
       right: 24,
     zIndex: 3,
     marginBottom: 16,
-    height: 48,
+    height: 54,
     padding: 8,
     backgroundColor: 'white',
     borderWidth: 0,
@@ -131,9 +139,12 @@ const styles = StyleSheet.create({
     }
   },
   searchButtonText: {
-    fontSize: 14,
+    flex: 9,
+    fontSize: 18,
     color: '#5C6174',
+    alignSelf: 'center'
   },
+
   modalHeader: {
     position: 'absolute',
       top: 0,
@@ -144,10 +155,11 @@ const styles = StyleSheet.create({
   },
 
   searchBar: {
-    height: 48,
+    height: 56,
+    paddingLeft: 16,
     padding: 8,
     margin: 16,
-    marginTop: 56,
+    marginTop: 48,
     borderColor: '#5C6174',
     backgroundColor: 'white',
     borderWidth: 0,
@@ -157,15 +169,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'stretch',
     shadowColor: "black",
-    shadowRadius: 8,
+    shadowRadius: 6,
     shadowOpacity: 0.6,
     shadowOffset: {
-      height: 6
+      height: 1
     },
+    fontSize: 18
   },
 
   searchInput: {
-    color: "black"
+    color: "black",
   },
 
   //================ RESULTS LIST =================

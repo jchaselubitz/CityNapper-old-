@@ -21,7 +21,7 @@ export default class NapContainer extends Component {
     const endNap = navigation.getParam('endNap');
 
     handleClick = () => {
-      endNap(destName)
+      endNap()
       navigation.goBack()
 
     }

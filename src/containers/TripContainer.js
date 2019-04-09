@@ -95,11 +95,11 @@ class TripContainer extends Component {
     });
   }
 
-  endNapAndDropBoundary = (id) => {
+  endNapAndDropBoundary = () => {
     if (id !== "-")
     alert("Location Removed")
     this.stopVibrationFunction()
-    Boundary.remove(id)
+    Boundary.remove()
     .then(() => console.log('Location Dropped'))
     .catch(e => console.log('failed to drop location', e))
   }
@@ -157,6 +157,7 @@ class TripContainer extends Component {
   CreateView = () => {
     return (
       <View style={styles.tripSelectionContainer}>
+       
         <TouchableOpacity
         style={styles.buttonSearch}
         onPress={() => this.props.navigation.navigate('Search', {
@@ -164,10 +165,18 @@ class TripContainer extends Component {
           currentLongitude: this.state.currentLongitude,
           setDestinationLocation: this.setDestinationLocation,
         })}>
-        {/* need to add search icon */}
+        <View style={styles.searchButtonContainer}>
+        <View style={styles.listIcon}>
+              <Icon
+                  name='search'
+                  type='material'
+                  color='#5C6174'
+                />
+              </View>
         <Text style={styles.searchButtonText}>Where are you going?</Text>
+        </View>
       </TouchableOpacity>
-      
+     
       <View style={styles.tripSelectionCard}>
         <TouchableOpacity  style={styles.buttonFavorite} >
           <Text style={styles.buttonFavoriteText}>Home stop</Text>
@@ -184,7 +193,6 @@ class TripContainer extends Component {
   DisplayView = () => {
     return (
       <View style={styles.tripSelectionContainer}>
-        {/* <View style={styles.tripDisplayCard}></View> */}
           <TouchableOpacity
             style={styles.cancelNapButton}
             onPress={() => this.rejectSelection()}>
