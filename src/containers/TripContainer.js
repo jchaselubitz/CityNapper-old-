@@ -96,10 +96,10 @@ class TripContainer extends Component {
   }
 
   endNapAndDropBoundary = () => {
-    if (id !== "-")
     alert("Location Removed")
     this.stopVibrationFunction()
-    Boundary.remove()
+    this.rejectSelection()
+    Boundary.removeAll()
     .then(() => console.log('Location Dropped'))
     .catch(e => console.log('failed to drop location', e))
   }

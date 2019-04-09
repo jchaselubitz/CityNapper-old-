@@ -3,12 +3,6 @@ import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
 import StyleHelper from '../helpers/StyleHelper'
 const styles = StyleHelper.styles
 
-// This shows the running nap
-    // needs ability to cancel boundary 
-// End Nap
-    // Needs ability to stop alarm
-
-
 export default class NapContainer extends Component {
   state = {
     

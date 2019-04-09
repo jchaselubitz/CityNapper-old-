@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
 
   cancelNapButton: {
     position: 'absolute',
-      // top: 0,
       right: 180,
     zIndex: 3,
     marginTop: 16,
