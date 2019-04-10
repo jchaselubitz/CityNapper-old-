@@ -16,6 +16,7 @@ class SearchComponent extends Component {
     searchResults: [],
     error: null
   }
+   
   
    render () {
 
@@ -23,6 +24,9 @@ class SearchComponent extends Component {
     const currentLatitude = navigation.getParam('currentLatitude');
     const currentLongitude = navigation.getParam('currentLongitude');
     const setDestinationLocation = navigation.getParam('setDestinationLocation')
+    const updateCurrentLocation = navigation.getParam('updateCurrentLocation')
+
+    updateCurrentLocation()
 
     searchRegion = () => ({
       latitude: !!currentLatitude ? currentLatitude : 0,

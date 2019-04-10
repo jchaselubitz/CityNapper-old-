@@ -29,29 +29,30 @@ class TripContainer extends Component {
   }
 
   componentDidMount () {
-    this.getCurrentLocation()
+    this.watchLocation()
   } 
 
-  getCurrentLocation = () => {
+  watchLocation = () => {
     navigator.geolocation.requestAuthorization()
-    navigator.geolocation.getCurrentPosition(
-      (position) => {this.setCurrentLocation(position)},
-      (error) => {this.setCurrentLocationError(error)},
-      { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
+    navigator.geolocation.watchPosition(
+      (position) => {
+        this.setState({
+          currentLatitude: position.coords.latitude,
+          currentLongitude: position.coords.longitude,
+          error: null,
+          // selectedViewContainer: this.lastSelectedViewContainer()
+        })
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: false,
+        timeout: 200000,
+        maximumAge: 1000,
+        useSignificantChanges: true
+      },
     )
-  }
-
-  setCurrentLocation = (position) => {
-    this.setState({
-      currentLatitude: position.coords.latitude,
-      currentLongitude: position.coords.longitude,
-      error: null,
-    })
-  }
+} 
   
-  setCurrentLocationError = (error) => {
-    this.setState({ error: error.message })
-  }
+
 
 //============= NAP FUNCTIONS ======================
 
@@ -95,7 +96,6 @@ alertNotification = () => {
 }
 
 
-
 //============= SETTER FUNCTIONS ======================
 
   setDestinationLocation = (destination) => {
@@ -121,13 +121,8 @@ alertNotification = () => {
   
   rejectSelection = () => {
     this.clearDestinationSelection(
-      () => this.props.navigation.navigate('Search', {
-      currentLatitude: this.state.currentLatitude,
-      currentLongitude: this.state.currentLongitude,
-      setDestinationLocation: this.setDestinationLocation,
-    }))
+      () => this.navigateToSearch())
     this.dropBoundary()
-
   }
 
   //========== BOUNDARY FUNCTIONS ===============
@@ -195,17 +190,21 @@ alertNotification = () => {
 
   //======================================= VIEWS =================================
   
+  navigateToSearch = () => {
+    this.props.navigation.navigate('Search', {
+      currentLatitude: this.state.currentLatitude,
+      currentLongitude: this.state.currentLongitude,
+      setDestinationLocation: this.setDestinationLocation,
+    })
+  }
+
   CreateView = () => {
     return (
       <View style={styles.tripSelectionContainer}>
        
         <TouchableOpacity
         style={styles.buttonSearch}
-        onPress={() => this.props.navigation.navigate('Search', {
-          currentLatitude: this.state.currentLatitude,
-          currentLongitude: this.state.currentLongitude,
-          setDestinationLocation: this.setDestinationLocation,
-        })}>
+        onPress={() => this.navigateToSearch()}>
         <View style={styles.searchButtonContainer}>
         <View style={styles.listIcon}>
               <Icon
