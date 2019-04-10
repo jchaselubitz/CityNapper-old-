@@ -34,6 +34,8 @@ export default class NapContainer extends Component {
         <View style={styles.tripDisplayCard}>
           <Text style={styles.destinationTitleText}>{destName}</Text>
           <Text style={styles.destinationSubtitleText}>{destAddress}</Text>
+          <Text style={styles.destinationTitleText}>Blah Blah Blah</Text>
+          <Text style={styles.destinationSubtitleText}>Some super cool features</Text>
         </View>
        </View>
      )

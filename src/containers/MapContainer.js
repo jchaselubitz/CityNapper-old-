@@ -19,8 +19,8 @@ export default class MapContainer extends Component {
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
         longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,
-        latitudeDelta: 1,
-        longitudeDelta: 1,
+        latitudeDelta: .2,
+        longitudeDelta: .2 ,
       }}
       >
         {!!this.props.currentLatitude && !!this.props.currentLongitude && <MapView.Marker

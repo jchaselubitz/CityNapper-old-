@@ -1,7 +1,6 @@
 
 import PushNotification from 'react-native-push-notification'
 import { PushNotificationIOS } from 'react-native';
-import {AppRegistry} from 'react-native';
 
 const configure = () => {
   PushNotification.configure({
@@ -28,17 +27,18 @@ const configure = () => {
 }
 
 const localNotification = () => {
+  setTimeout(function(){ 
   PushNotification.localNotification({
     title: "Wake up!!", // (optional)
     message: `You are about to arrive at your destination!.`, // (required)
     playSound: true, // (optional) default: true
     soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
   })  
-  alert("wire tripped")
+  }, 1000);
 }
 
 const cancelAllLocalNotifications = () => {
-  PushNotification.cancelAllLocalNotifications()()
+  PushNotificationIOS.cancelAllLocalNotifications()
 }
 
 export default {
@@ -46,5 +46,3 @@ export default {
   localNotification,
   cancelAllLocalNotifications
  };
-
-//  AppRegistry.registerComponent('CityNapper', () => pushNotification);

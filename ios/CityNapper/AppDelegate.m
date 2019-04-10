@@ -39,7 +39,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   [RCTPushNotificationManager didReceiveLocalNotification:notification];
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];

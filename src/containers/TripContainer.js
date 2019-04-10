@@ -11,9 +11,7 @@ import StyleHelper from '../helpers/StyleHelper'
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
-const PATTERN = [ 100, 50]
-
-//============= PUSH NOTIFICATIONS ======================
+const PATTERN = [ 50, 50]
 
 
 class TripContainer extends Component {
@@ -30,7 +28,6 @@ class TripContainer extends Component {
     routeCoords: [],
     x: 'true',
     napping: false,
-    alertDidRun: false,
   }
 
   componentDidMount () {
@@ -42,7 +39,6 @@ class TripContainer extends Component {
           currentLatitude: position.coords.latitude,
           currentLongitude: position.coords.longitude,
           error: null,
-          // selectedViewContainer: this.lastSelectedViewContainer()
         })
       },
       (error) => this.setState({ error: error.message }),
@@ -75,6 +71,20 @@ class TripContainer extends Component {
     pushNotification.cancelAllLocalNotifications()
   }
 
+//=========== ALERT ==================
+
+
+startVibrationFunction = () => {
+  Vibration.vibrate(PATTERN, true)
+}
+
+stopVibrationFunction = () => {
+  Vibration.cancel()
+}
+
+alertNotification = () => {
+  pushNotification.localNotification()
+}
 
 //============= SETTER FUNCTIONS ======================
 
@@ -127,10 +137,6 @@ class TripContainer extends Component {
     Boundary.on(Events.ENTER, id => {
       this.alertNotification()
       this.startVibrationFunction()
-      this.setState({ alertDidRun: true });
-      alert("wire tripped")
-      
-      
     });
   }
 
@@ -141,20 +147,6 @@ class TripContainer extends Component {
     
   }
 
-  //=========== ALERT ==================
-
-
-  startVibrationFunction = () => {
-    Vibration.vibrate(PATTERN, true)
-  }
-
-  stopVibrationFunction = () => {
-    Vibration.cancel()
-  }
-
-  alertNotification = () => {
-    pushNotification.localNotification()
-  }
   
 
   //========== ROUTE MAPPING FUNCTIONS ===============
