@@ -8,7 +8,7 @@ import pushNotification from './src/services/pushNotification';
 import {AppRegistry} from 'react-native';
 import { createAppContainer } from 'react-navigation';
 
-pushNotification.configure();
+// pushNotification.configure();
 
 export default class App extends Component  {
   

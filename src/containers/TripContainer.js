@@ -51,6 +51,7 @@ class TripContainer extends Component {
 //============= NAP FUNCTIONS ======================
 
   startNap = () => {
+    pushNotification.requestPermissions()
     this.setBoundary()
     this.setState({ napping: true  });
     this.goToNap()
@@ -221,7 +222,7 @@ alertNotification = () => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity 
-          onPress={() => this.alertNotification()}
+          onPress={() => pushNotification.localNotification()}
           style={styles.buttonFavorite} >
 
         <View style={styles.buttonContainer}>

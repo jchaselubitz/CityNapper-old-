@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
+import pushNotification from '../services/pushNotification'
 import StyleHelper from '../helpers/StyleHelper'
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
@@ -20,6 +21,7 @@ export default class NapContainer extends Component {
 
     handleClick = () => {
       endNap()
+      
       navigation.goBack()
 
     }
