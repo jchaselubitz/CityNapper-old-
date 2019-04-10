@@ -31,7 +31,6 @@ class TripContainer extends Component {
   }
 
   componentDidMount () {
-    // configurePushNotifications()
     navigator.geolocation.requestAuthorization()
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -55,6 +54,7 @@ class TripContainer extends Component {
     this.setBoundary()
     this.setState({ napping: true  });
     this.goToNap()
+    // pushNotification.endNapOnOpen("1", this.endNap)
   } 
      
   goToNap = () => {
@@ -127,9 +127,11 @@ alertNotification = () => {
   setBoundary = () =>  {
     if (this.state.destName !== "-")
     Boundary.add({
-      lat: 51.50998, //this.state.destLatitude
-      lng: -0.1337, //this.state.destLongitude,
-      radius: 200, // in meters
+      // lat: 51.50998,
+      // lng: -0.1337,
+      lat: this.state.destLatitude, 
+      lng: this.state.destLongitude,
+      radius: 50, // in meters
       id: this.state.destName,
     })
       .then(() => console.log("boundary set"))
@@ -222,7 +224,7 @@ alertNotification = () => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity 
-          onPress={() => pushNotification.localNotification()}
+          // onPress={() => pushNotification.localNotification()}
           style={styles.buttonFavorite} >
 
         <View style={styles.buttonContainer}>
