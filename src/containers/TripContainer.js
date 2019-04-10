@@ -232,7 +232,7 @@ alertNotification = () => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity 
-          // onPress={() => pushNotification.localNotification()}
+          onPress={() => this.startVibrationFunction()}
           style={styles.buttonFavorite} >
 
         <View style={styles.buttonContainer}>
@@ -308,7 +308,7 @@ alertNotification = () => {
   }
 
   render() {
-    this.getCurrentLocation()
+ 
     return (
       <View style={{
           flex: 1,
