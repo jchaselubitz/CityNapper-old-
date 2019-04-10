@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
+// import MapEngine from '../services/MapEngine'
 import { Icon } from 'react-native-elements';
 import pushNotification from '../services/pushNotification'
 import {AppRegistry, Vibration, View, Text, TouchableOpacity} from 'react-native';
@@ -10,9 +11,6 @@ import StyleHelper from '../helpers/StyleHelper'
 
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
-
-const PATTERN = [ 50, 50]
-
 
 class TripContainer extends Component {
   static navigationOptions = { header: null }
@@ -31,21 +29,29 @@ class TripContainer extends Component {
   }
 
   componentDidMount () {
-    navigator.geolocation.requestAuthorization()
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          currentLatitude: position.coords.latitude,
-          currentLongitude: position.coords.longitude,
-          error: null,
-        })
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
-    )
+    this.getCurrentLocation()
   } 
 
+  getCurrentLocation = () => {
+    navigator.geolocation.requestAuthorization()
+    navigator.geolocation.getCurrentPosition(
+      (position) => {this.setCurrentLocation(position)},
+      (error) => {this.setCurrentLocationError(error)},
+      { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
+    )
+  }
 
+  setCurrentLocation = (position) => {
+    this.setState({
+      currentLatitude: position.coords.latitude,
+      currentLongitude: position.coords.longitude,
+      error: null,
+    })
+  }
+  
+  setCurrentLocationError = (error) => {
+    this.setState({ error: error.message })
+  }
 
 //============= NAP FUNCTIONS ======================
 
@@ -74,9 +80,10 @@ class TripContainer extends Component {
 
 //=========== ALERT ==================
 
+PATTERN = [ 50, 50]
 
 startVibrationFunction = () => {
-  Vibration.vibrate(PATTERN, true)
+  Vibration.vibrate(this.PATTERN, true)
 }
 
 stopVibrationFunction = () => {
@@ -86,6 +93,8 @@ stopVibrationFunction = () => {
 alertNotification = () => {
   pushNotification.localNotification()
 }
+
+
 
 //============= SETTER FUNCTIONS ======================
 
@@ -131,7 +140,7 @@ alertNotification = () => {
       // lng: -0.1337,
       lat: this.state.destLatitude, 
       lng: this.state.destLongitude,
-      radius: 50, // in meters
+      radius: 500, // in meters
       id: this.state.destName,
     })
       .then(() => console.log("boundary set"))
@@ -150,7 +159,6 @@ alertNotification = () => {
     
   }
 
-  
 
   //========== ROUTE MAPPING FUNCTIONS ===============
 
@@ -300,6 +308,7 @@ alertNotification = () => {
   }
 
   render() {
+    this.getCurrentLocation()
     return (
       <View style={{
           flex: 1,
