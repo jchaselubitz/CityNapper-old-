@@ -127,8 +127,8 @@ alertNotification = () => {
   setBoundary = () =>  {
     if (this.state.destName !== "-")
     Boundary.add({
-      lat: this.state.destLatitude,
-      lng: this.state.destLongitude,
+      lat: 51.50998, //this.state.destLatitude
+      lng: -0.1337, //this.state.destLongitude,
       radius: 200, // in meters
       id: this.state.destName,
     })
