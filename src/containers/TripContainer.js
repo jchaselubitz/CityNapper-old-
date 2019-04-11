@@ -70,6 +70,7 @@ class TripContainer extends Component {
                 name='close'
                 type='material'
                 color='lightgrey'
+                size={18}
               />
             </View>
             </TouchableOpacity>
