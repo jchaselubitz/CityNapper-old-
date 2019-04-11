@@ -201,7 +201,6 @@ async getDirections(tripOrigin, tripDestination) {
       napping: this.state.napping,
       startNap: this.startNap,
       endNap: this.endNap,
-      destName: this.destName,
       rejectSelection: this.rejectSelection,
       addRemoveFavorite: this.addRemoveFavorite,
       setDestinationLocation: this.setDestinationLocation,

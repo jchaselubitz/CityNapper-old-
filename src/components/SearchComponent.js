@@ -30,7 +30,7 @@ class SearchComponent extends Component {
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude
     const setDestinationLocation = this.props.screenProps.setDestinationLocation
-    const userFavorites = this.props.screenProps.userFavorites
+    // const userFavorites = this.props.screenProps.userFavorites
     const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
     
 

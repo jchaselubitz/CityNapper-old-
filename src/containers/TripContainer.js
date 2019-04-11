@@ -21,13 +21,13 @@ class TripContainer extends Component {
     const destAddress = this.props.screenProps.destAddress
     const startVibrationFunction = this.props.screenProps.startVibrationFunction
     const startNap = this.props.screenProps.startNap
-    const endNap = this.props.screenProps.endNap
+    const userFavorites = this.props.screenProps.userFavorites
     const napping = this.props.screenProps.napping
     const routeCoords = this.props.screenProps.routeCoords
     const x = this.props.screenProps.x
     const dropBoundary = this.props.screenProps.dropBoundary
     const clearDestinationSelection = this.props.screenProps.clearDestinationSelection
-
+    const setDestinationLocation = this.props.screenProps.setDestinationLocation
 
     //============================= Nap Manager =============================
 
@@ -44,6 +44,24 @@ class TripContainer extends Component {
       dropBoundary()
       clearDestinationSelection(() => this.props.navigation.navigate('Search'))
 
+    }
+
+    createFavoriteButtons = () => {
+      return userFavorites.map(favorite => 
+      <TouchableOpacity 
+        onPress={() => setDestinationLocation(favorite.item)} //NEEDS TO CHANGE
+        style={styles.buttonFavorite} >
+      <View style={styles.buttonContainer}>
+          <View style={styles.listIcon}>
+            <Icon
+                name='favorite'
+                type='material'
+                color='white'
+              />
+            </View>
+        <Text style={styles.buttonFavoriteText}>{favorite.item.name}</Text>
+        </View>
+      </TouchableOpacity>)
     }
 
 //============================= View Controller =============================
@@ -82,7 +100,6 @@ class TripContainer extends Component {
           <TouchableOpacity 
             onPress={() => startVibrationFunction()}
             style={styles.buttonFavorite} >
-  
           <View style={styles.buttonContainer}>
               <View style={styles.listIcon}>
                 <Icon
@@ -94,6 +111,7 @@ class TripContainer extends Component {
             <Text style={styles.buttonFavoriteText}>Work stop</Text>
             </View>
           </TouchableOpacity>
+          {createFavoriteButtons()}
         </View>
   
       </View>
