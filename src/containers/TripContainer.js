@@ -46,10 +46,10 @@ class TripContainer extends Component {
 
     }
 
-    createFavoriteButtons = () => {
+    createRemoveFavoriteButtons = () => {
       return userFavorites.map(favorite => 
       <TouchableOpacity 
-        onPress={() => setDestinationLocation(favorite.item)} //NEEDS TO CHANGE
+        onPress={() => setDestinationLocation(favorite.item)} 
         style={styles.buttonFavorite} >
       <View style={styles.buttonContainer}>
           <View style={styles.listIcon}>
@@ -59,7 +59,20 @@ class TripContainer extends Component {
                 color='white'
               />
             </View>
-        <Text style={styles.buttonFavoriteText}>{favorite.item.name}</Text>
+
+        <Text style={styles.buttonFavoriteText}>
+        {favorite.item.name}
+        </Text>
+    
+          <TouchableOpacity onPress={() => alert("worked!")} >
+          <View style={styles.listIcon}>
+            <Icon
+                name='close'
+                type='material'
+                color='lightgrey'
+              />
+            </View>
+            </TouchableOpacity>
         </View>
       </TouchableOpacity>)
     }
@@ -111,7 +124,7 @@ class TripContainer extends Component {
             <Text style={styles.buttonFavoriteText}>Work stop</Text>
             </View>
           </TouchableOpacity>
-          {createFavoriteButtons()}
+          {createRemoveFavoriteButtons()}
         </View>
   
       </View>
