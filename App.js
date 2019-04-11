@@ -24,7 +24,8 @@ export default class App extends Component  {
     routeCoords: [],
     x: 'true',
     napping: false,
-    // searchResults: []
+    homeButton: null,
+    workButton: null
   }
 
   componentDidMount () {
@@ -57,7 +58,6 @@ startNap = () => {
   pushNotification.requestPermissions()
   this.setBoundary()
   this.setState({ napping: true  });
-  // pushNotification.endNapOnOpen("1", this.endNap)
 } 
    
 
@@ -86,6 +86,14 @@ pushNotification.localNotification()
 
 
 //============= SETTER FUNCTIONS ======================
+
+setAsHomeWorkButton = (item, label) => {
+  label === "home" 
+  ?
+  this.setState({ homeButton: item })
+  :
+  this.setState({ workButton: item  });
+}
 
 addRemoveFavorite = (locationObject) => {
   if (this.state.userFavorites.map( l => l.id).includes(locationObject.id))
@@ -124,6 +132,7 @@ clearDestinationSelection = (link) => {
 
 
 setBoundary = () =>  {
+  navigator.geolocation.requestAuthorization()
   if (this.state.destName !== "-")
   Boundary.add({
     // lat: 51.50998,
@@ -205,7 +214,10 @@ async getDirections(tripOrigin, tripDestination) {
       addRemoveFavorite: this.addRemoveFavorite,
       setDestinationLocation: this.setDestinationLocation,
       dropBoundary: this.dropBoundary,
-      clearDestinationSelection: this.clearDestinationSelection
+      clearDestinationSelection: this.clearDestinationSelection,
+      setAsHomeWorkButton: this.setAsHomeWorkButton,
+      homeButton: this.state.homeButton,
+      workButton: this.state.workButton
     }}/>;
   }
 }

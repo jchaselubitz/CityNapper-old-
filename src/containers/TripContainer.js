@@ -28,6 +28,10 @@ class TripContainer extends Component {
     const dropBoundary = this.props.screenProps.dropBoundary
     const clearDestinationSelection = this.props.screenProps.clearDestinationSelection
     const setDestinationLocation = this.props.screenProps.setDestinationLocation
+    const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
+    const home = this.props.screenProps.homeButton
+    const work = this.props.screenProps.workButton
+
 
     //============================= Nap Manager =============================
 
@@ -46,7 +50,16 @@ class TripContainer extends Component {
 
     }
 
-    createRemoveFavoriteButtons = () => {
+    handleWorkHomeSave = (targetButton, label) => {
+      if (targetButton !== null) {
+        setDestinationLocation(targetButton)
+      } else {
+        this.props.navigation.navigate('Saved', {label})
+      }
+      
+    }
+  
+    presentFavoriteButtons = () => {
       return userFavorites.map(favorite => 
       <TouchableOpacity 
         onPress={() => setDestinationLocation(favorite.item)} 
@@ -64,7 +77,7 @@ class TripContainer extends Component {
         {favorite.item.name}
         </Text>
     
-          <TouchableOpacity onPress={() => alert("worked!")} >
+          <TouchableOpacity onPress={() => addRemoveFavorite(favorite)} >
           <View style={styles.listIcon}>
             <Icon
                 name='close'
@@ -97,9 +110,11 @@ class TripContainer extends Component {
           <Text style={styles.searchButtonText}>Where are you going?</Text>
           </View>
         </TouchableOpacity>
-       
+    {/* +++++++++++++++++++++HOME+++++++++++++++++++++++++ */}
         <View style={styles.tripSelectionCard}>
-          <TouchableOpacity  style={styles.buttonFavorite} >
+          <TouchableOpacity 
+            onPress={() => handleWorkHomeSave(home, "home")} 
+            style={styles.buttonFavorite} >
           <View style={styles.buttonContainer}>
               <View style={styles.listIcon}>
                 <Icon
@@ -109,10 +124,21 @@ class TripContainer extends Component {
                   />
                 </View>
             <Text style={styles.buttonFavoriteText}>Home stop</Text>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Saved', {label: 'home'})} >
+          <View style={styles.listIcon}>
+            <Icon
+                name='edit'
+                type='material'
+                color='lightgrey'
+                size={18}
+              />
+            </View>
+            </TouchableOpacity>
             </View>
           </TouchableOpacity>
+    {/* +++++++++++++++++++++WORK+++++++++++++++++++++++++ */}
           <TouchableOpacity 
-            onPress={() => startVibrationFunction()}
+            onPress={() => handleWorkHomeSave(work, "work")} 
             style={styles.buttonFavorite} >
           <View style={styles.buttonContainer}>
               <View style={styles.listIcon}>
@@ -123,9 +149,19 @@ class TripContainer extends Component {
                   />
                 </View>
             <Text style={styles.buttonFavoriteText}>Work stop</Text>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Saved', {label: 'work'})} >
+          <View style={styles.listIcon}>
+            <Icon
+                name='edit'
+                type='material'
+                color='lightgrey'
+                size={18}
+              />
+            </View>
+            </TouchableOpacity>
             </View>
           </TouchableOpacity>
-          {createRemoveFavoriteButtons()}
+          {presentFavoriteButtons()}
         </View>
   
       </View>

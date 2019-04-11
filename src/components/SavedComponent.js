@@ -19,16 +19,18 @@ class SearchComponent extends Component {
   }
 
   
-
-
    render () {
      
+    //================ GENERIC SEARCH SHIT =================
     const { navigation } = this.props;
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude
     const setDestinationLocation = this.props.screenProps.setDestinationLocation
     const userFavorites = this.props.screenProps.userFavorites
     const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
+
+    const setAsHomeWorkButton = this.props.screenProps.setAsHomeWorkButton
+    const label = this.props.navigation.getParam('label')
     
 
     const sendToAddRemoveFavorites = (item) => {
@@ -68,16 +70,13 @@ class SearchComponent extends Component {
       );
     }
 
-
+ //================ DIFFERENT SEARCH SHIT =================
+    
     const handleSelection = (item) => {
-      setDestinationLocation(item)
+      setAsHomeWorkButton(item, label)
       navigation.navigate('Trip')
     }
 
-    favoriteIcon = (item) => {
-      return userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
-    }
-    
      return (
        
       <View>
@@ -85,7 +84,7 @@ class SearchComponent extends Component {
        <View style={styles.modalHeader}/>
           <TextInput
             style={styles.searchBar}
-            placeholder="Where are you going?"
+            placeholder="Search for a location to save."
             placeholderTextColor={NapColors.primaryBlue}
             onChangeText={text => setSearchText(text)}
             autoCorrect={false}    
@@ -116,21 +115,12 @@ class SearchComponent extends Component {
               />
             </View>
               <View style={styles.listIcon}>
-              {favoriteIcon(item) ? 
               <Icon
-                  name={'favorite'}
+                  name={'add'}
                   type='material'
                   color={NapColors.primaryBlue}
-                  onPress={() => sendToAddRemoveFavorites(item)}
+                  onPress={() => handleSelection(item)}
                 />
-                : 
-              <Icon
-                  name={'favorite-border'}
-                  type='material'
-                  color={NapColors.primaryBlue}
-                  onPress={() => sendToAddRemoveFavorites(item)}
-                />
-              }
               </View>
           </View>
             <Divider style={styles.listDivider} />

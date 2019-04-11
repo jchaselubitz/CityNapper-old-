@@ -1,5 +1,6 @@
 import { createStackNavigator } from 'react-navigation'
 import SearchComponent from './components/SearchComponent'
+import SavedComponent from './components/SavedComponent'
 import NapContainer from './containers/NapContainer'
 import TripContainer from './containers/TripContainer'
 import {AppRegistry} from 'react-native';
@@ -11,6 +12,9 @@ const TripStack = createStackNavigator(
     },
     Search: {
       screen: SearchComponent
+    },
+    Saved: {
+      screen: SavedComponent
     },
     Nap: {
       screen: NapContainer
