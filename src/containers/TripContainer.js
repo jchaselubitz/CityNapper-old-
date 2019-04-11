@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import Keys from '../helpers/Keys'
-import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
 import { Icon } from 'react-native-elements';
-import pushNotification from '../services/pushNotification'
-import {AppRegistry, Vibration, View, Text, TouchableOpacity} from 'react-native';
-import Boundary, {Events} from 'react-native-boundary';
+import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
 import StyleHelper from '../helpers/StyleHelper'
 
 const styles = StyleHelper.styles
@@ -14,328 +10,164 @@ const NapColors = StyleHelper.NapColors
 class TripContainer extends Component {
   static navigationOptions = { header: null }
 
-  state = {
-    error: null,
-    userFavorites : [],
-    currentLatitude: null,
-    currentLongitude: null,
-    destLatitude: null,
-    destLongitude: null,
-    destName: "-",
-    destAddress: '',
-    routeCoords: [],
-    x: 'true',
-    napping: false,
-  }
-
-  componentDidMount () {
-    this.watchLocation()
-  } 
-
-  watchLocation = () => {
-    navigator.geolocation.requestAuthorization()
-    navigator.geolocation.watchPosition(
-      (position) => {
-        this.setState({
-          currentLatitude: position.coords.latitude,
-          currentLongitude: position.coords.longitude,
-          error: null,
-          // selectedViewContainer: this.lastSelectedViewContainer()
-        })
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: false,
-        timeout: 200000,
-        maximumAge: 1000,
-        useSignificantChanges: false
-      },
-    )
-} 
-  
-
-
-//============= NAP FUNCTIONS ======================
-
-  startNap = () => {
-    pushNotification.requestPermissions()
-    this.setBoundary()
-    this.setState({ napping: true  });
-    this.goToNap()
-    // pushNotification.endNapOnOpen("1", this.endNap)
-  } 
-     
-  goToNap = () => {
-    this.props.navigation.navigate('Nap', {
-      destName: this.state.destName,
-      destAddress: this.state.destAddress,
-      endNap: this.endNap
-    })
-  }
-
-  endNap = () => {
-    this.dropBoundary()
-    this.stopVibrationFunction()
-    this.clearDestinationSelection()
-    pushNotification.cancelAllLocalNotifications()
-  }
-
-//=========== ALERT ==================
-
-PATTERN = [ 50, 50]
-
-startVibrationFunction = () => {
-  Vibration.vibrate(this.PATTERN, true)
-}
-
-stopVibrationFunction = () => {
-  Vibration.cancel()
-}
-
-alertNotification = () => {
-  pushNotification.localNotification()
-}
-
-
-//============= SETTER FUNCTIONS ======================
-
-  addRemoveFavorite = (locationObject) => {
-    if (this.state.userFavorites.includes(locationObject))
-    this.setState({ 
-      userFavorites: this.state.userFavorites.filter((favorite) => favorite.id !== locationObject.id)
-    })
-    else {
-      this.setState({ 
-        userFavorites: [...this.state.userFavorites, locationObject]
-      })
-    }
-  }
-
-  setDestinationLocation = (destination) => {
-    this.setState({ 
-      destLatitude: destination.location.latitude,
-      destLongitude: destination.location.longitude,
-      destName: destination.name,
-      destAddress: destination.address 
-    }, () => this.setRoute());
-  }
-
-
-  clearDestinationSelection = (link) => {
-    this.setState({ 
-      destLatitude: null,
-      destLongitude: null,
-      destName: "-",
-      destAddress: '',
-      routeCoords: [],
-      napping: false,
-     }, link )
-  }
-  
-  rejectSelection = () => {
-    this.clearDestinationSelection(
-      () => this.navigateToSearch())
-    this.dropBoundary()
-  }
-
-  //========== BOUNDARY FUNCTIONS ===============
- 
-
-  setBoundary = () =>  {
-    if (this.state.destName !== "-")
-    Boundary.add({
-      // lat: 51.50998,
-      // lng: -0.1337,
-      lat: this.state.destLatitude, 
-      lng: this.state.destLongitude,
-      radius: 500, // in meters
-      id: this.state.destName,
-    })
-      .then(() => console.log("boundary set"))
-      .catch(e => console.error("error :(", e));
-   
-    Boundary.on(Events.ENTER, id => {
-      this.alertNotification()
-      this.startVibrationFunction()
-    });
-  }
-
-  dropBoundary = () => {
-    Boundary.removeAll()
-    .then(() => console.log('Location Dropped'))
-    .catch(e => console.log('failed to drop location', e))
-    
-  }
-
-
-  //========== ROUTE MAPPING FUNCTIONS ===============
-
-  setRoute = () => {
-    // alert(this.state.destLatitude)
-    if (this.state.currentLatitude != null && this.state.destLatitude!=null)
-     {
-       let concatStart = this.state.currentLatitude +","+this.state.currentLongitude
-       let concatDestination = this.state.destLatitude+","+this.state.destLongitude
-       this.getDirections(concatStart, concatDestination)
-     } else {
-       alert("insufficient data")
-     }
-  }
-
-  async getDirections(tripOrigin, tripDestination) {
-    try {
-        let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${tripOrigin}&destination=${tripDestination}&key=${Keys.GoogleKey}`)
-        let respJson = await resp.json();
-        let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
-        let coords = points.map((point, index) => {
-            return  {
-                latitude : point[0],
-                longitude : point[1]
-            }
-        })
-        this.setState({routeCoords: coords})
-        return coords
-    } catch(error) {
-        alert(error)
-        return error
-    }
-  }
-
-  //======================================= VIEWS =================================
-  
-  navigateToSearch = () => {
-    this.props.navigation.navigate('Search', {
-      currentLatitude: this.state.currentLatitude,
-      currentLongitude: this.state.currentLongitude,
-      setDestinationLocation: this.setDestinationLocation,
-      userFavorites: this.state.userFavorites,
-      addRemoveFavorite: this.addRemoveFavorite
-    })
-  }
-
-  CreateView = () => {
-    return (
-      <View style={styles.tripSelectionContainer}>
-       
-        <TouchableOpacity
-        style={styles.buttonSearch}
-        onPress={() => this.navigateToSearch()}>
-        <View style={styles.searchButtonContainer}>
-        <View style={styles.listIcon}>
-              <Icon
-                  name='search'
-                  type='material'
-                  color={NapColors.primaryBlue}
-                />
-              </View>
-        <Text style={styles.searchButtonText}>Where are you going?</Text>
-        </View>
-      </TouchableOpacity>
-     
-      <View style={styles.tripSelectionCard}>
-        <TouchableOpacity  style={styles.buttonFavorite} >
-        <View style={styles.buttonContainer}>
-            <View style={styles.listIcon}>
-              <Icon
-                  name='home'
-                  type='material'
-                  color='white'
-                />
-              </View>
-          <Text style={styles.buttonFavoriteText}>Home stop</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          onPress={() => this.startVibrationFunction()}
-          style={styles.buttonFavorite} >
-
-        <View style={styles.buttonContainer}>
-            <View style={styles.listIcon}>
-              <Icon
-                  name='work'
-                  type='material'
-                  color='white'
-                />
-              </View>
-          <Text style={styles.buttonFavoriteText}>Work stop</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-
-    </View>
-    )
-  }
-
-  DisplayView = () => {
-    return (
-      <View style={styles.tripSelectionContainer}>
-          {this.state.napping === false
-        ?   
-          <TouchableOpacity
-            style={styles.buttonStartNap}
-            onPress={() => this.startNap()}>
-            <Text style={styles.buttonNapText}>Start Nap</Text>
-          </TouchableOpacity>
-        :
-          <TouchableOpacity
-            style={styles.buttonStartNap}
-            onPress={() => this.goToNap()}>
-            <Text style={styles.buttonNapText}>Resume Nap</Text>
-          </TouchableOpacity>
-        }
-          <View style={styles.tripDisplayCard}>
-          {this.state.destName === "-" ? 
-            "The name for this destination is missing!" 
-            : 
-            <>
-            <View style={{
-               flexDirection: 'row',
-               justifyContent: 'flex-start',
-               alignItems: 'center',
-               }}>
-              <Text style={styles.destinationTitleText}>{this.state.destName}</Text>
-              <View style={styles.cancelIcon}>
-                <Icon
-                    size={18}
-                    name='close'
-                    type='material'
-                    color={NapColors.subtleBlue}
-                    onPress={() => this.rejectSelection()}/>
-              </View>
-              
-            </View>
-            <View>
-              <Text style={styles.destinationSubtitleText}>{this.state.destAddress}</Text>
-            </View>
-              
-            </> }
-        </View>
-
-    </View>
-    )
-  }
-
-  //======================================= RENDER =================================
-
-  setSelectorState = () => {
-    return this.state.destLatitude !== null ? this.DisplayView() : this.CreateView()
-  }
 
   render() {
- 
+    
+    const currentLatitude = this.props.screenProps.currentLatitude
+    const currentLongitude = this.props.screenProps.currentLongitude
+    const destLatitude = this.props.screenProps.destLatitude
+    const destLongitude = this.props.screenProps.destLongitude
+    const destName = this.props.screenProps.destName
+    const destAddress = this.props.screenProps.destAddress
+    const startVibrationFunction = this.props.screenProps.startVibrationFunction
+    const startNap = this.props.screenProps.startNap
+    const endNap = this.props.screenProps.endNap
+    const napping = this.props.screenProps.napping
+    const routeCoords = this.props.screenProps.routeCoords
+    const x = this.props.screenProps.x
+    const dropBoundary = this.props.screenProps.dropBoundary
+    const clearDestinationSelection = this.props.screenProps.clearDestinationSelection
+
+
+    //============================= Nap Manager =============================
+
+    napStarter = () => {
+      startNap()
+      goToNap()
+    }
+
+    goToNap = () => {
+      this.props.navigation.navigate('Nap')
+    }
+
+    rejectSelection = () => {
+      dropBoundary()
+      clearDestinationSelection(() => this.props.navigation.navigate('Search'))
+
+    }
+
+//============================= View Controller =============================
+    CreateView = () => {
+      return (
+        <View style={styles.tripSelectionContainer}>
+         
+          <TouchableOpacity
+          style={styles.buttonSearch}
+          onPress={() => this.props.navigation.navigate('Search')}>
+          <View style={styles.searchButtonContainer}>
+          <View style={styles.listIcon}>
+                <Icon
+                    name='search'
+                    type='material'
+                    color={NapColors.primaryBlue}
+                  />
+                </View>
+          <Text style={styles.searchButtonText}>Where are you going?</Text>
+          </View>
+        </TouchableOpacity>
+       
+        <View style={styles.tripSelectionCard}>
+          <TouchableOpacity  style={styles.buttonFavorite} >
+          <View style={styles.buttonContainer}>
+              <View style={styles.listIcon}>
+                <Icon
+                    name='home'
+                    type='material'
+                    color='white'
+                  />
+                </View>
+            <Text style={styles.buttonFavoriteText}>Home stop</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => startVibrationFunction()}
+            style={styles.buttonFavorite} >
+  
+          <View style={styles.buttonContainer}>
+              <View style={styles.listIcon}>
+                <Icon
+                    name='work'
+                    type='material'
+                    color='white'
+                  />
+                </View>
+            <Text style={styles.buttonFavoriteText}>Work stop</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+  
+      </View>
+      )
+    }
+  
+    DisplayView = () => {
+      return (
+        <View style={styles.tripSelectionContainer}>
+            {napping === false
+          ?   
+            <TouchableOpacity
+              style={styles.buttonStartNap}
+              onPress={() => napStarter()}>
+              <Text style={styles.buttonNapText}>Start Nap</Text>
+            </TouchableOpacity>
+          :
+            <TouchableOpacity
+              style={styles.buttonStartNap}
+              onPress={() => goToNap()}>
+              <Text style={styles.buttonNapText}>Resume Nap</Text>
+            </TouchableOpacity>
+          }
+            <View style={styles.tripDisplayCard}>
+            {destName === "-" ? 
+              "The name for this destination is missing!" 
+              : 
+              <>
+              <View style={{
+                 flexDirection: 'row',
+                 justifyContent: 'flex-start',
+                 alignItems: 'center',
+                 }}>
+                <Text style={styles.destinationTitleText}>{destName}</Text>
+                <View style={styles.cancelIcon}>
+                  <Icon
+                      size={18}
+                      name='close'
+                      type='material'
+                      color={NapColors.subtleBlue}
+                      onPress={() => rejectSelection()}/>
+                </View>
+                
+              </View>
+              <View>
+                <Text style={styles.destinationSubtitleText}>{destAddress}</Text>
+              </View>
+                
+              </> }
+          </View>
+  
+      </View>
+      )
+    }
+  
+    //======================================= RENDER =================================
+  
+    setSelectorState = () => {
+      return destLatitude !== null ? DisplayView() : CreateView()
+    }
     return (
       <View style={{
           flex: 1,
           flexDirection: 'column',
         }}>
         <MapContainer
-          currentLatitude={this.state.currentLatitude}
-          currentLongitude={this.state.currentLongitude}
-          destLatitude={this.state.destLatitude}
-          destLongitude={this.state.destLongitude}
-          routeCoords={this.state.routeCoords}
-          x={this.state.x}
+          currentLatitude={currentLatitude}
+          currentLongitude={currentLongitude}
+          destLatitude={destLatitude}
+          destLongitude={destLongitude}
+          routeCoords={routeCoords}
+          x={x}
         />
-        {this.setSelectorState()}
+        {setSelectorState()}
       </View>
 
     )      

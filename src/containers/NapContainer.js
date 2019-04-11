@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
-import pushNotification from '../services/pushNotification'
 import StyleHelper from '../helpers/StyleHelper'
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
@@ -15,9 +14,9 @@ export default class NapContainer extends Component {
    render () {
 
     const { navigation } = this.props;
-    const destName = navigation.getParam('destName');
-    const destAddress = navigation.getParam('destAddress')
-    const endNap = navigation.getParam('endNap');
+    const destName = this.props.screenProps.destName
+    const destAddress = this.props.screenProps.destAddress
+    const endNap = this.props.screenProps.endNap
 
     handleClick = () => {
       endNap()

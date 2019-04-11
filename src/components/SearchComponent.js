@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import StyleHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
 import { Icon, ListItem, colors} from 'react-native-elements';
-import {AppRegistry, View, FlatList, TextInput} from 'react-native';
+import {AppRegistry, View, FlatList, TextInput, Text} from 'react-native';
 import { Divider } from 'react-native-elements';
 
 
@@ -18,50 +18,48 @@ class SearchComponent extends Component {
     error: null,
   }
 
-  
-   render () {
+  // favoriteIcon = (item) => {
+  //   console.log('cute coughing')
+  //   return this.props.screenProps.userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
+  // }
 
+
+   render () {
+     
     const { navigation } = this.props;
-    const currentLatitude = navigation.getParam('currentLatitude');
-    const currentLongitude = navigation.getParam('currentLongitude');
-    const setDestinationLocation = navigation.getParam('setDestinationLocation')
-    const userFavorites = navigation.getParam('userFavorites')
-    const addRemoveFavorite = navigation.getParam('addRemoveFavorite')
+    const currentLatitude = this.props.screenProps.currentLatitude
+    const currentLongitude = this.props.screenProps.currentLongitude
+    const setDestinationLocation = this.props.screenProps.setDestinationLocation
+    const userFavorites = this.props.screenProps.userFavorites
+    const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
     
 
-    sendToAddRemoveFavorites = (item) => {
+    const sendToAddRemoveFavorites = (item) => {
       locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
       addRemoveFavorite(locationObject)
     }
 
-    favoriteIcon = (item) => {
-      locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
-      return userFavorites.includes(locationObject) 
-      // return userFavorites.find((favorite) => favorite.id === locationObject.id) 
-      ?
-      'favorite'
-      :
-      'favorite-border'
-    }
 
-    searchRegion = () => ({
+    const searchRegion = () => ({
       latitude: !!currentLatitude ? currentLatitude : 0,
       longitude: !!currentLongitude ? currentLongitude : 0,
       latitudeDelta: 0.01,
       longitudeDelta: 0.01
     });
 
-    searchFilter = () => {
+    const searchFilter = () => {
       //limit search based on custom geofence
     }
 
-    setSearchText = (text) => {
+    
+
+    const setSearchText = (text) => {
       this.setState({
         searchText: text
       }, () => placeSearch(this.state.searchText))
     }
     
-    placeSearch = (searchText) => {
+    const placeSearch = (searchText) => {
       RNReverseGeocode.searchForLocations(
         searchText,
         searchRegion(),
@@ -74,14 +72,14 @@ class SearchComponent extends Component {
       );
     }
 
-    handleSelection = (item) => {
+
+    const handleSelection = (item) => {
       setDestinationLocation(item)
       navigation.navigate('Trip')
     }
-
+    
      return (
        
-        
       <View>
        <View>
        <View style={styles.modalHeader}/>
@@ -93,9 +91,12 @@ class SearchComponent extends Component {
             autoCorrect={false}    
           />
         </View>
+           
         <View style={styles.flatList}>
+        
         <FlatList 
           data={this.state.searchResults} 
+          extraData={this.props.screenProps.userFavorites}
           keyboardShouldPersistTaps="always"
           renderItem={({item}) => 
           <>
@@ -115,13 +116,21 @@ class SearchComponent extends Component {
               />
             </View>
               <View style={styles.listIcon}>
-              
+              {this.props.screenProps.userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`) ? 
               <Icon
-                  name={favoriteIcon(item)}
+                  name={'favorite'}
                   type='material'
                   color={NapColors.primaryBlue}
                   onPress={() => sendToAddRemoveFavorites(item)}
                 />
+                : 
+              <Icon
+                  name={'favorite-border'}
+                  type='material'
+                  color={NapColors.primaryBlue}
+                  onPress={() => sendToAddRemoveFavorites(item)}
+                />
+              }
               </View>
           </View>
             <Divider style={styles.listDivider} />
@@ -130,6 +139,9 @@ class SearchComponent extends Component {
           keyExtractor={item => item.address} 
           
           />
+          </View>
+          <View>
+            {/* <Text>{userFavorites[0].id}</Text> */}
           </View>
         </View>
         

@@ -2,7 +2,6 @@ import { createStackNavigator } from 'react-navigation'
 import SearchComponent from './components/SearchComponent'
 import NapContainer from './containers/NapContainer'
 import TripContainer from './containers/TripContainer'
-import Icon from 'react-native-elements'
 import {AppRegistry} from 'react-native';
 
 const TripStack = createStackNavigator(
