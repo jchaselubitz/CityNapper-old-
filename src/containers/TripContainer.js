@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Keys from '../helpers/Keys'
 import * as Polyline from '@mapbox/polyline'
 import MapContainer from './MapContainer'
-// import MapEngine from '../services/MapEngine'
 import { Icon } from 'react-native-elements';
 import pushNotification from '../services/pushNotification'
 import {AppRegistry, Vibration, View, Text, TouchableOpacity} from 'react-native';
@@ -17,6 +16,7 @@ class TripContainer extends Component {
 
   state = {
     error: null,
+    userFavorites : [],
     currentLatitude: null,
     currentLongitude: null,
     destLatitude: null,
@@ -47,7 +47,7 @@ class TripContainer extends Component {
       { enableHighAccuracy: false,
         timeout: 200000,
         maximumAge: 1000,
-        useSignificantChanges: true
+        useSignificantChanges: false
       },
     )
 } 
@@ -97,6 +97,18 @@ alertNotification = () => {
 
 
 //============= SETTER FUNCTIONS ======================
+
+  addRemoveFavorite = (location) => {
+    if (this.state.userFavorites.includes(location.name))
+    this.setState({ 
+      userFavorites: this.state.userFavorites.filter((favorite) => favorite.name !== location.name)
+    })
+    else {
+      this.setState({ 
+        userFavorites: [...this.state.userFavorites, location]
+      })
+    }
+  }
 
   setDestinationLocation = (destination) => {
     this.setState({ 
@@ -195,6 +207,8 @@ alertNotification = () => {
       currentLatitude: this.state.currentLatitude,
       currentLongitude: this.state.currentLongitude,
       setDestinationLocation: this.setDestinationLocation,
+      userFavorites: this.state.userFavorites,
+      addRemoveFavorite: this.addRemoveFavorite
     })
   }
 

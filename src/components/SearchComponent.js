@@ -16,7 +16,6 @@ class SearchComponent extends Component {
     searchResults: [],
     error: null
   }
-   
   
    render () {
 
@@ -24,9 +23,13 @@ class SearchComponent extends Component {
     const currentLatitude = navigation.getParam('currentLatitude');
     const currentLongitude = navigation.getParam('currentLongitude');
     const setDestinationLocation = navigation.getParam('setDestinationLocation')
-    const updateCurrentLocation = navigation.getParam('updateCurrentLocation')
+    const userFavorites = navigation.getParam('userFavorites')
+    const addRemoveFavorite = navigation.getParam('addRemoveFavorite')
 
-    updateCurrentLocation()
+    sendToAddRemoveFavorites = (label, name, lat, long) => {
+      location = {name, label, lat, long}
+      addRemoveFavorite(locationObject)
+    }
 
     searchRegion = () => ({
       latitude: !!currentLatitude ? currentLatitude : 0,
@@ -34,6 +37,10 @@ class SearchComponent extends Component {
       latitudeDelta: 0.01,
       longitudeDelta: 0.01
     });
+
+    searchFilter = () => {
+      //limit search based on custom geofence
+    }
 
     setSearchText = (text) => {
       this.setState({
@@ -57,7 +64,6 @@ class SearchComponent extends Component {
     handleSelection = (item) => {
       setDestinationLocation(item)
       navigation.navigate('Trip')
-
     }
 
      return (
@@ -83,15 +89,9 @@ class SearchComponent extends Component {
           <View style={{
             flex: 10,
             flexDirection: 'row',
-            marginLeft: 8
+            // marginLeft: 8
           }}>
-            <View style={styles.listIcon}>
-              <Icon
-                  name='marker'
-                  type='foundation'
-                  color={NapColors.primaryBlue}
-                />
-              </View>
+            
             <View style={{
               flex: 9
             }}>
@@ -100,12 +100,16 @@ class SearchComponent extends Component {
                 subtitle={item.address}
                 onPress={() => handleSelection(item)}
               />
-              <Divider
-              style={styles.listDivider} />
+            </View>
+              <View style={styles.listIcon}>
+              <Icon
+                  name='favorite-border'
+                  type='material'
+                  color={NapColors.primaryBlue}
+                />
               </View>
-
           </View>
-            
+            <Divider style={styles.listDivider} />
             </>
           } 
           keyExtractor={item => item.address} 

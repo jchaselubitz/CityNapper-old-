@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 
   buttonFavorite: {
     zIndex: 3,
-    marginBottom: 8,
+    marginBottom: 16,
     marginLeft: 16,
     marginRight: 16,
     height: 48,
@@ -209,7 +209,8 @@ const styles = StyleSheet.create({
   //================ RESULTS LIST =================
 
   flatList: {
-    marginTop: 4
+    marginTop: 4,
+    marginLeft: 8,
   },
 
   listIcon: {
@@ -217,6 +218,7 @@ const styles = StyleSheet.create({
       flexDirection: "column",
       justifyContent: 'center',
       alignSelf: 'center',
+      marginRight: 8
   },
 
   listDivider: {
