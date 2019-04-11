@@ -5,6 +5,7 @@ import { Icon, ListItem, colors} from 'react-native-elements';
 import {AppRegistry, View, FlatList, TextInput} from 'react-native';
 import { Divider } from 'react-native-elements';
 
+
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
@@ -14,8 +15,9 @@ class SearchComponent extends Component {
   state = {
     searchText: '',
     searchResults: [],
-    error: null
+    error: null,
   }
+
   
    render () {
 
@@ -25,10 +27,21 @@ class SearchComponent extends Component {
     const setDestinationLocation = navigation.getParam('setDestinationLocation')
     const userFavorites = navigation.getParam('userFavorites')
     const addRemoveFavorite = navigation.getParam('addRemoveFavorite')
+    
 
-    sendToAddRemoveFavorites = (label, name, lat, long) => {
-      location = {name, label, lat, long}
+    sendToAddRemoveFavorites = (item) => {
+      locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
       addRemoveFavorite(locationObject)
+    }
+
+    favoriteIcon = (item) => {
+      locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
+      return userFavorites.includes(locationObject) 
+      // return userFavorites.find((favorite) => favorite.id === locationObject.id) 
+      ?
+      'favorite'
+      :
+      'favorite-border'
     }
 
     searchRegion = () => ({
@@ -102,10 +115,12 @@ class SearchComponent extends Component {
               />
             </View>
               <View style={styles.listIcon}>
+              
               <Icon
-                  name='favorite-border'
+                  name={favoriteIcon(item)}
                   type='material'
                   color={NapColors.primaryBlue}
+                  onPress={() => sendToAddRemoveFavorites(item)}
                 />
               </View>
           </View>

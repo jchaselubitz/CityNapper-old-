@@ -98,14 +98,14 @@ alertNotification = () => {
 
 //============= SETTER FUNCTIONS ======================
 
-  addRemoveFavorite = (location) => {
-    if (this.state.userFavorites.includes(location.name))
+  addRemoveFavorite = (locationObject) => {
+    if (this.state.userFavorites.includes(locationObject))
     this.setState({ 
-      userFavorites: this.state.userFavorites.filter((favorite) => favorite.name !== location.name)
+      userFavorites: this.state.userFavorites.filter((favorite) => favorite.id !== locationObject.id)
     })
     else {
       this.setState({ 
-        userFavorites: [...this.state.userFavorites, location]
+        userFavorites: [...this.state.userFavorites, locationObject]
       })
     }
   }
