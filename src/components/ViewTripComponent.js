@@ -24,6 +24,12 @@ class ViewTripComponent extends Component {
             <Text style={styles.buttonNapText}>Resume Nap</Text>
           </TouchableOpacity>
         }
+          <TouchableOpacity
+            style={styles.cancelButton}
+            onPress={() => this.props.rejectSelection()}>
+            <Text style={styles.cancelText}>cancel</Text>
+          </TouchableOpacity>
+        
           <View style={styles.tripDisplayCard}>
           {this.props.destName === "-" ? 
             "The name for this destination is missing!" 
@@ -35,14 +41,14 @@ class ViewTripComponent extends Component {
                alignItems: 'center',
                }}>
               <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
-              <View style={styles.cancelIcon}>
+              {/* <View style={styles.cancelIcon}>
                 <Icon
                     size={18}
                     name='close'
                     type='material'
                     color={NapColors.subtleBlue}
                     onPress={() => this.props.rejectSelection()}/>
-              </View>
+              </View> */}
               
             </View>
             <View>

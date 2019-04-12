@@ -6,6 +6,7 @@ const NapColors = {
   shadowBlue: '#3f4354',
   actionOrange: '#f58b44', 
   calmBlue: '#818dab', 
+  cancelRed: '#c63131'
 }
 
 //add fonts here
@@ -125,10 +126,40 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
 
-  cancelIcon: {
-    marginLeft: 4,
-    justifyContent: 'flex-start',
-    alignSelf: 'flex-start',
+//   cancelIcon: {
+//     marginLeft: 4,
+//     justifyContent: 'flex-start',
+//     alignSelf: 'flex-start',
+// },
+
+cancelButton: {
+  position: 'absolute',
+    top: 24,
+    right: 180,
+  zIndex: 3,
+  marginBottom: 16,
+  height: 32,
+  padding: 8,
+  backgroundColor: 'white',
+  borderColor: NapColors.cancelRed,
+  borderWidth: 1,
+  borderRadius: 16,
+  flexDirection:'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignSelf: 'stretch',
+  shadowColor: "black",
+  shadowRadius: 16,
+  shadowOpacity: 0.7,
+  shadowOffset: {
+    height: 6
+  }
+},
+
+cancelText: {
+  fontSize: 13,
+  fontWeight: 'bold',
+  color: NapColors.cancelRed,
 },
 
   //================ SEARCH =================
