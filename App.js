@@ -81,7 +81,7 @@ Vibration.cancel()
 }
 
 alertNotification = () => {
-pushNotification.localNotification()
+pushNotification.localNotification(this.state.destName)
 }
 
 
@@ -129,26 +129,32 @@ clearDestinationSelection = (link) => {
 }
 
 //========== BOUNDARY FUNCTIONS ===============
+checkPermission = () => {
+  navigator.geolocation
+  .getCurrentPosition(
+    () => this.setState({permission: 'GRANTED'}),
+    () => this.setState({permission: 'DENIED'})
+  );
+}
 
 
-setBoundary = () =>  {
-  navigator.geolocation.requestAuthorization()
-  if (this.state.destName !== "-")
-  Boundary.add({
-    // lat: 51.50998,
-    // lng: -0.1337,
-    lat: this.state.destLatitude, 
-    lng: this.state.destLongitude,
-    radius: 500, // in meters
-    id: this.state.destName,
-  })
-    .then(() => console.log("boundary set"))
-    .catch(e => console.error("error :(", e));
- 
-  Boundary.on(Events.ENTER, id => {
-    this.alertNotification()
-    this.startVibrationFunction()
-  });
+setBoundary() {
+    if (this.state.destName !== "-")
+    Boundary.add({
+      // lat: 51.50998,
+      // lng: -0.1337,
+      lat: this.state.destLatitude, 
+      lng: this.state.destLongitude,
+      radius: 500, // in meters
+      id: this.state.destName,
+    })
+      .then(() => console.log("boundary set"))
+      .catch(e => console.error("error :(", e));
+   
+    Boundary.on(Events.ENTER, id => {
+      this.alertNotification()
+      this.startVibrationFunction()
+    });
 }
 
 dropBoundary = () => {
@@ -169,7 +175,7 @@ setRoute = () => {
      let concatDestination = this.state.destLatitude+","+this.state.destLongitude
      this.getDirections(concatStart, concatDestination)
    } else {
-     alert("insufficient data")
+     alert("insufficient data to compose route")
    }
 }
 

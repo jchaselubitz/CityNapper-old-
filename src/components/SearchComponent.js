@@ -18,8 +18,6 @@ class SearchComponent extends Component {
     error: null,
   }
 
-  
-
 
    render () {
      
