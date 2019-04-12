@@ -54,7 +54,7 @@ export default class App extends Component  {
         })
       },
       (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: false,
+      { enableHighAccuracy: true,
         timeout: 200000,
         maximumAge: 1000,
         useSignificantChanges: false
@@ -146,8 +146,6 @@ clearDestinationSelection = (link) => {
 setBoundary = () => {
     if (this.state.destName !== "-")
     Boundary.add({
-      // lat: 51.50998,
-      // lng: -0.1337,
       lat: this.state.destLatitude, 
       lng: this.state.destLongitude,
       radius: 200, // in meters

@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import StyleHelper from '../helpers/StyleHelper'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
 import { Icon, ListItem, colors} from 'react-native-elements';
-import {AppRegistry, View, FlatList, TextInput} from 'react-native';
+import {AppRegistry, View, FlatList, TextInput, Text} from 'react-native';
 import { Divider } from 'react-native-elements';
+
 
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
-class SearchComponent extends Component {
+class SearchContainer extends Component {
   static navigationOptions = { header: null }
 
   state = {
@@ -17,10 +18,8 @@ class SearchComponent extends Component {
     error: null,
   }
 
-  
    render () {
      
-    //================ GENERIC SEARCH SHIT =================
     const { navigation } = this.props;
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude
@@ -30,7 +29,6 @@ class SearchComponent extends Component {
 
     const setAsHomeWorkButton = this.props.screenProps.setAsHomeWorkButton
     const label = this.props.navigation.getParam('label')
-    
 
     const sendToAddRemoveFavorites = (item) => {
       locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
@@ -69,75 +67,30 @@ class SearchComponent extends Component {
       );
     }
 
- //================ DIFFERENT SEARCH SHIT =================
-    
+
     const handleSelection = (item) => {
-      setAsHomeWorkButton(item, label)
+      setDestinationLocation(item)
       navigation.navigate('Trip')
     }
 
-     return (
+    const favoriteIcon = (item) => {
+      return userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
+    }
+
+    const setSearchType = () => {
+      searchType === 'search'
+      ?
+      <SearchComponent />
+      :
+      <SavedComponent />
+    }
+    
+    
+     return setSearchType()
        
-      <View>
-       <View>
-       <View style={styles.modalHeader}/>
-          <TextInput
-            style={styles.searchBar}
-            placeholder="Search for a location to save."
-            placeholderTextColor={NapColors.primaryBlue}
-            onChangeText={text => setSearchText(text)}
-            autoCorrect={false}    
-          />
-        </View>
-           
-        <View style={styles.flatList}>
-        
-        <FlatList 
-          data={this.state.searchResults} 
-          extraData={this.props.screenProps.userFavorites}
-          keyboardShouldPersistTaps="always"
-          renderItem={({item}) => 
-          <>
-          <View style={{
-            flex: 10,
-            flexDirection: 'row',
-            // marginLeft: 8
-          }}>
-            
-            <View style={{
-              flex: 9
-            }}>
-              <ListItem
-                title={item.name}
-                subtitle={item.address}
-                onPress={() => handleSelection(item)}
-              />
-            </View>
-              <View style={styles.listIcon}>
-              <Icon
-                  name={'add'}
-                  type='material'
-                  color={NapColors.primaryBlue}
-                  onPress={() => handleSelection(item)}
-                />
-              </View>
-          </View>
-            <Divider style={styles.listDivider} />
-            </>
-          } 
-          keyExtractor={item => item.address} 
-          
-          />
-          </View>
-          <View>
-            {/* <Text>{userFavorites[0].id}</Text> */}
-          </View>
-        </View>
-        
-     )
    }
 }
 
-export default SearchComponent
+export default SearchContainer
 
-AppRegistry.registerComponent('CityNapper', () => SearchComponent);
+AppRegistry.registerComponent('CityNapper', () => SearchContainer);

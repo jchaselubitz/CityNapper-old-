@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import MapContainer from './MapContainer'
-import { Icon } from 'react-native-elements';
-import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
-import StyleHelper from '../helpers/StyleHelper'
-
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
+import MapComponent from '../components/MapComponent'
+import CreateTripComponent from '../components/CreateTripComponent'
+import ViewTripComponent from '../components/ViewTripComponent'
+import {AppRegistry, View } from 'react-native';
 
 class TripContainer extends Component {
   static navigationOptions = { header: null }
@@ -33,8 +30,6 @@ class TripContainer extends Component {
     const work = this.props.screenProps.workButton
 
 
-    //============================= Nap Manager =============================
-
     napStarter = () => {
       startNap()
       goToNap()
@@ -49,185 +44,38 @@ class TripContainer extends Component {
       clearDestinationSelection(() => this.props.navigation.navigate('Search'))
 
     }
-
-    handleWorkHomeSave = (targetButton, label) => {
-      if (targetButton !== null) {
-        setDestinationLocation(targetButton)
-      } else {
-        this.props.navigation.navigate('Saved', {label})
-      }
-      
-    }
   
-    presentFavoriteButtons = () => {
-      return userFavorites.map(favorite => 
-      <TouchableOpacity 
-        onPress={() => setDestinationLocation(favorite.item)} 
-        style={styles.buttonFavorite} >
-      <View style={styles.buttonContainer}>
-          <View style={styles.listIcon}>
-            <Icon
-                name='favorite'
-                type='material'
-                color='white'
-              />
-            </View>
-
-        <Text style={styles.buttonFavoriteText}>
-        {favorite.item.name}
-        </Text>
-    
-          <TouchableOpacity onPress={() => addRemoveFavorite(favorite)} >
-          <View style={styles.listIcon}>
-            <Icon
-                name='close'
-                type='material'
-                color='lightgrey'
-                size={18}
-              />
-            </View>
-            </TouchableOpacity>
-        </View>
-      </TouchableOpacity>)
-    }
-
-//============================= View Controller =============================
-    CreateView = () => {
-      return (
-        <View style={styles.tripSelectionContainer}>
-         
-          <TouchableOpacity
-          style={styles.buttonSearch}
-          onPress={() => this.props.navigation.navigate('Search')}>
-          <View style={styles.searchButtonContainer}>
-          <View style={styles.listIcon}>
-                <Icon
-                    name='search'
-                    type='material'
-                    color={NapColors.primaryBlue}
-                  />
-                </View>
-          <Text style={styles.searchButtonText}>Where are you going?</Text>
-          </View>
-        </TouchableOpacity>
-    {/* +++++++++++++++++++++HOME+++++++++++++++++++++++++ */}
-        <View style={styles.tripSelectionCard}>
-          <TouchableOpacity 
-            onPress={() => handleWorkHomeSave(home, "home")} 
-            style={styles.buttonFavorite} >
-          <View style={styles.buttonContainer}>
-              <View style={styles.listIcon}>
-                <Icon
-                    name='home'
-                    type='material'
-                    color='white'
-                  />
-                </View>
-            <Text style={styles.buttonFavoriteText}>Home stop</Text>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Saved', {label: 'home'})} >
-          <View style={styles.listIcon}>
-            <Icon
-                name='edit'
-                type='material'
-                color='lightgrey'
-                size={18}
-              />
-            </View>
-            </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-    {/* +++++++++++++++++++++WORK+++++++++++++++++++++++++ */}
-          <TouchableOpacity 
-            onPress={() => handleWorkHomeSave(work, "work")} 
-            style={styles.buttonFavorite} >
-          <View style={styles.buttonContainer}>
-              <View style={styles.listIcon}>
-                <Icon
-                    name='work'
-                    type='material'
-                    color='white'
-                  />
-                </View>
-            <Text style={styles.buttonFavoriteText}>Work stop</Text>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Saved', {label: 'work'})} >
-          <View style={styles.listIcon}>
-            <Icon
-                name='edit'
-                type='material'
-                color='lightgrey'
-                size={18}
-              />
-            </View>
-            </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-          {presentFavoriteButtons()}
-        </View>
-  
-      </View>
-      )
-    }
-  
-    DisplayView = () => {
-      return (
-        <View style={styles.tripSelectionContainer}>
-            {napping === false
-          ?   
-            <TouchableOpacity
-              style={styles.buttonStartNap}
-              onPress={() => napStarter()}>
-              <Text style={styles.buttonNapText}>Start Nap</Text>
-            </TouchableOpacity>
-          :
-            <TouchableOpacity
-              style={styles.buttonStartNap}
-              onPress={() => goToNap()}>
-              <Text style={styles.buttonNapText}>Resume Nap</Text>
-            </TouchableOpacity>
-          }
-            <View style={styles.tripDisplayCard}>
-            {destName === "-" ? 
-              "The name for this destination is missing!" 
-              : 
-              <>
-              <View style={{
-                 flexDirection: 'row',
-                 justifyContent: 'flex-start',
-                 alignItems: 'center',
-                 }}>
-                <Text style={styles.destinationTitleText}>{destName}</Text>
-                <View style={styles.cancelIcon}>
-                  <Icon
-                      size={18}
-                      name='close'
-                      type='material'
-                      color={NapColors.subtleBlue}
-                      onPress={() => rejectSelection()}/>
-                </View>
-                
-              </View>
-              <View>
-                <Text style={styles.destinationSubtitleText}>{destAddress}</Text>
-              </View>
-                
-              </> }
-          </View>
-  
-      </View>
-      )
-    }
-  
-    //======================================= RENDER =================================
+//======================================= RENDER =================================
   
     setSelectorState = () => {
-      return destLatitude !== null ? DisplayView() : CreateView()
+      return destLatitude !== null 
+      ? 
+      <ViewTripComponent 
+        napping={napping}
+        napStarter={napStarter}
+        goToNap={goToNap}
+        destName={destName}
+        destAddress={destAddress}
+        rejectSelection={rejectSelection}
+      /> 
+      : 
+      <CreateTripComponent 
+        setDestinationLocation={setDestinationLocation}
+        navigation={this.props.navigation}
+        userFavorites={userFavorites}
+        addRemoveFavorite={addRemoveFavorite}
+        home={home}
+        work={work}
+      /> 
     }
+
+    
     return (
       <View style={{
           flex: 1,
           flexDirection: 'column',
         }}>
-        <MapContainer
+        <MapComponent
           currentLatitude={currentLatitude}
           currentLongitude={currentLongitude}
           destLatitude={destLatitude}

@@ -76,6 +76,7 @@ class SearchComponent extends Component {
       return userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
     }
     
+    
      return (
        
       <View>

@@ -4,7 +4,6 @@ import { Alert } from 'react-native'
 
 
 const permissionsCheckpoint = (response, callback) => {
-  console.log('#############RESPONSE##################', response)
   if (response === 'denied' || response === 'restricted') {
     Alert.alert(
       'CityNapper does not have "always" location access!',
@@ -50,5 +49,3 @@ const requestLocationPermissions = (callback) => {
     permissionsCheckpoint,
   }
 
-
-  // checkPermissions(CurrentPermissions, () => this.watchLocation())

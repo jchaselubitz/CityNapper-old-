@@ -6,10 +6,7 @@ import {AppRegistry} from 'react-native';
 const styles = StylesHelper.styles
 const selectedMapType = "standard"
 
-export default class MapContainer extends Component {
-  state = {
-   
-  }
+export default class MapComponent extends Component {
 
    render () {
      return (
@@ -58,4 +55,4 @@ export default class MapContainer extends Component {
 
 }
 
-AppRegistry.registerComponent('CityNapper', () => MapContainer);
+AppRegistry.registerComponent('CityNapper', () => MapComponent);
