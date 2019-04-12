@@ -29,18 +29,18 @@ class ViewTripComponent extends Component {
             onPress={() => this.props.rejectSelection()}>
             <Text style={styles.cancelText}>cancel</Text>
           </TouchableOpacity>
-        
           <View style={styles.tripDisplayCard}>
           {this.props.destName === "-" ? 
             "The name for this destination is missing!" 
             : 
             <>
+            
             <View style={{
                flexDirection: 'row',
                justifyContent: 'flex-start',
                alignItems: 'center',
                }}>
-              <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
+
               <View style={styles.viewPageIcon}>
               {this.props.isFavorite(this.props.destLocation)
               ?
@@ -59,7 +59,8 @@ class ViewTripComponent extends Component {
                       onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}/>
               }
               </View>
-              
+
+              <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
             </View>
             <View>
               <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>

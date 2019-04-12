@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
 
   viewPageIcon: {
-    marginLeft: 4,
+    marginRight: 4,
     justifyContent: 'flex-start',
     alignSelf: 'center',
 },
