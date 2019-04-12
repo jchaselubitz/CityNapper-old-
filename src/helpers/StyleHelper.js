@@ -6,7 +6,8 @@ const NapColors = {
   shadowBlue: '#3f4354',
   actionOrange: '#f58b44', 
   calmBlue: '#818dab', 
-  cancelRed: '#c63131'
+  cancelRed: '#c63131',
+  pulldownLine: '#c4c8d1'
 }
 
 //add fonts here
@@ -236,6 +237,38 @@ cancelText: {
   searchInput: {
     color: "black",
   },
+
+  pulldownEr: {
+    flexDirection: "column",
+    backgroundColor: NapColors.primaryBlue,
+    height: 20,
+    width: 260,
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignSelf: "center",
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    paddingBottom: 5
+  },
+
+  pulldownErLine1: {
+    height: 1,
+    backgroundColor: NapColors.pulldownLine,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 2
+   
+  },
+
+  pulldownErLine2: {
+    height: 1,
+    backgroundColor: NapColors.pulldownLine,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 3
+  },
+
+  
 
   //================ RESULTS LIST =================
 

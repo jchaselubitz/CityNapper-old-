@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {AppRegistry } from 'react-native';
-import {Button, LinearGradient} from 'react-native-elements';
-import SearchComponent from '../components/SearchComponent'
-import StylesHelper from '../helpers/StyleHelper'
+import {Button} from 'react-native-elements';
 import MapContainer from './MapContainer'
 import { withNavigation } from 'react-navigation'
 

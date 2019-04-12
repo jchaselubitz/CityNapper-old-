@@ -25,7 +25,10 @@ class SearchComponent extends Component {
             autoCorrect={false}    
           />
         </View>
-           
+        <View style={styles.pulldownEr} >
+          <View style={styles.pulldownErLine1}/>
+          <View style={styles.pulldownErLine2}/>
+        </View>
         <View style={styles.flatList}>
         
         <FlatList 

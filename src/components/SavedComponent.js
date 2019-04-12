@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StyleHelper from '../helpers/StyleHelper'
-import { Icon, ListItem, colors} from 'react-native-elements';
-import {AppRegistry, View, FlatList, TextInput} from 'react-native';
+import { Icon, ListItem } from 'react-native-elements';
+import { AppRegistry, View, FlatList, TextInput } from 'react-native';
 import { Divider } from 'react-native-elements';
 
 const styles = StyleHelper.styles
@@ -24,9 +24,13 @@ class SavedComponent extends Component {
             autoCorrect={false}    
           />
         </View>
-           
+
+        <View style={styles.pulldownEr} >
+          <View style={styles.pulldownErLine1}/>
+          <View style={styles.pulldownErLine2}/>
+        </View>
+
         <View style={styles.flatList}>
-        
         <FlatList 
           data={this.props.searchResults} 
           keyboardShouldPersistTaps="always"
