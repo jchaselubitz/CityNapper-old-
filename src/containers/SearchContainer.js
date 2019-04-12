@@ -27,10 +27,7 @@ class SearchContainer extends Component {
     const label = this.props.navigation.getParam('label')
     const searchType = this.props.navigation.getParam('searchType')
 
-    const sendToAddRemoveFavorites = (item) => {
-      locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
-      addRemoveFavorite(locationObject)
-    }
+
 
 
     const searchRegion = () => ({
@@ -86,8 +83,8 @@ class SearchContainer extends Component {
         setSearchText={setSearchText}
         userFavorites={userFavorites}
         handleSelection={handleSelection}
-        favoriteIcon={favoriteIcon}
-        sendToAddRemoveFavorites={sendToAddRemoveFavorites}
+        isFavorite={isFavorite}
+        addRemoveFavorite={addRemoveFavorite}
       />
       :
        <SavedComponent 

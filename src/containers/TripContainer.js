@@ -46,10 +46,16 @@ class TripContainer extends Component {
 
     }
 
-
-    const favoriteIcon = (destAddress) => {
-      return userFavorites.map( l => l.item.address).includes(destAddress)
+    //Same function in SearchContainer
+    const sendToAddRemoveFavorites = (item) => {
+      locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
+      addRemoveFavorite(locationObject)
     }
+
+
+    // const favoriteIcon = (destAddress) => {
+    //   return userFavorites.map( l => l.item.address).includes(destAddress)
+    // }
   
 //======================================= RENDER =================================
   
@@ -64,9 +70,9 @@ class TripContainer extends Component {
         destName={destName}
         destAddress={destAddress}
         rejectSelection={rejectSelection}
-        favoriteIcon={favoriteIcon}
         addRemoveFavorite={addRemoveFavorite}
         isFavorite={isFavorite}
+        userFavorites={userFavorites}
       /> 
       : 
       <CreateTripComponent 

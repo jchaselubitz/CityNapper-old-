@@ -50,19 +50,19 @@ class SearchComponent extends Component {
               />
             </View>
               <View style={styles.listIcon}>
-              {this.props.favoriteIcon(item) ? 
+              {this.props.isFavorite(item) ? 
               <Icon
                   name={'favorite'}
                   type='material'
                   color={NapColors.primaryBlue}
-                  onPress={() => this.props.sendToAddRemoveFavorites(item)}
+                  onPress={() => this.props.addRemoveFavorite(item)}
                 />
                 : 
               <Icon
                   name={'favorite-border'}
                   type='material'
                   color={NapColors.primaryBlue}
-                  onPress={() => this.props.sendToAddRemoveFavorites(item)}
+                  onPress={() => this.props.addRemoveFavorite(item)}
                 />
               }
               </View>

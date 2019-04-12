@@ -110,7 +110,8 @@ setAsHomeWorkButton = (item, label) => {
 
 
 ///NEED TO ADD THESE ELEMENTS TO VIEW CONTAINER
-addRemoveFavorite = (locationObject) => {
+addRemoveFavorite = (item) => {
+  locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
   if (this.state.userFavorites.map( l => l.id).includes(locationObject.id))
   this.setState({ 
     userFavorites: this.state.userFavorites.filter((favorite) => favorite.id !== locationObject.id)
@@ -136,7 +137,8 @@ setDestinationLocation = (destination) => {
 }
 
 isFavorite = (item) => {
-  return userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
+  // console.log('### ITEM ', item)
+  return this.state.userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
 }
 
 clearDestinationSelection = (link) => {
