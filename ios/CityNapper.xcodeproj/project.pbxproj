@@ -45,6 +45,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* CityNapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CityNapperTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		3CE91499A69F408DAB6CB645 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE7FC828B44F2E84D40224 /* Feather.ttf */; };
+		409EB79DD8FB49AF8330D3BE /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F771F9E2FBF4B6EAAD4F808 /* libReactNativePermissions.a */; };
 		43BB630DD7334B30BE39D794 /* libRNBoundary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0854ED7A104B1F8107D766 /* libRNBoundary.a */; };
 		52424FFDD5A74C5AA3649F8B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C38B15E37994D148BCC8E0A /* Entypo.ttf */; };
 		61FB7BCAF6914E0680944992 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 599D1C9845C7404DAEEAE32D /* Octicons.ttf */; };
@@ -131,6 +132,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		232FC9602260950E002E1B44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 779B3578A8B44C91A0D4C3A7 /* ReactNativePermissions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
+			remoteInfo = ReactNativePermissions;
 		};
 		233EF503225CCBED00205FCB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -450,7 +458,9 @@
 		563C44D523B54B63ACC6395F /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		599D1C9845C7404DAEEAE32D /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		5F771F9E2FBF4B6EAAD4F808 /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = "<group>"; };
 		69E76938505C45409717EDC7 /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
+		779B3578A8B44C91A0D4C3A7 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		824B9B48E6544ABC90231CE5 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -502,6 +512,7 @@
 				43BB630DD7334B30BE39D794 /* libRNBoundary.a in Frameworks */,
 				0746240BA51B4DC7BF16A6E6 /* libAirMaps.a in Frameworks */,
 				7334598615314B698A2C9DC3 /* libRNGestureHandler.a in Frameworks */,
+				409EB79DD8FB49AF8330D3BE /* libReactNativePermissions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +662,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		232FC95D2260950D002E1B44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				232FC9612260950E002E1B44 /* libReactNativePermissions.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		233EF4F2225CCBED00205FCB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,6 +689,7 @@
 				B991DB0FCB9F45178BCDFAE3 /* libAirMaps.a */,
 				1654A4AB7AEC4CC99D9FCCF0 /* libRNGestureHandler.a */,
 				21A31A42BF0B496F9F67B1C5 /* libRNGestureHandler-tvOS.a */,
+				5F771F9E2FBF4B6EAAD4F808 /* libReactNativePermissions.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -766,6 +786,7 @@
 				1305962B60D842EA9C1525C5 /* RNBoundary.xcodeproj */,
 				9B4CABA6BF5F4570A3895694 /* AirMaps.xcodeproj */,
 				D106CB90B19443F4B864803A /* RNGestureHandler.xcodeproj */,
+				779B3578A8B44C91A0D4C3A7 /* ReactNativePermissions.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1025,6 +1046,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 232FC95D2260950D002E1B44 /* Products */;
+					ProjectRef = 779B3578A8B44C91A0D4C3A7 /* ReactNativePermissions.xcodeproj */;
+				},
+				{
 					ProductGroup = 23A163E52256730B00FF3C34 /* Products */;
 					ProjectRef = 1305962B60D842EA9C1525C5 /* RNBoundary.xcodeproj */;
 				},
@@ -1106,6 +1131,13 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		232FC9612260950E002E1B44 /* libReactNativePermissions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativePermissions.a;
+			remoteRef = 232FC9602260950E002E1B44 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		233EF504225CCBED00205FCB /* libRCTPushNotification.a */ = {
@@ -1537,6 +1569,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = CityNapperTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1547,6 +1580,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1578,6 +1612,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = CityNapperTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1588,6 +1623,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1622,6 +1658,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = CityNapper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1657,6 +1694,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = CityNapper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1697,6 +1735,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "CityNapper-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1705,6 +1744,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1744,6 +1784,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "CityNapper-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1752,6 +1793,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1790,6 +1832,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "CityNapper-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1799,6 +1842,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1837,6 +1881,7 @@
 					"$(SRCROOT)/../node_modules/react-native-boundary/ios",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "CityNapper-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1846,6 +1891,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

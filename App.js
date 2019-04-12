@@ -2,18 +2,21 @@
 import React, {Component} from 'react';
 import Boundary, {Events} from 'react-native-boundary';
 import Keys from './src/helpers/Keys'
+import permissionsService from './src/services/permissionsService'
 import * as Polyline from '@mapbox/polyline'
 import TripStack from './src/NavigationStacks'
 import pushNotification from './src/services/pushNotification';
-import { AppRegistry, Vibration } from 'react-native';
+import { AppRegistry, Vibration, Alert } from 'react-native';
 import { createAppContainer } from 'react-navigation';
-
+import Permissions from 'react-native-permissions'
 
 
 export default class App extends Component  {
 
   state = {
     error: null,
+    mapLocationPermission: "undetermined",
+    boundaryLocationPermission: 'undetermined',
     userFavorites : [],
     currentLatitude: null,
     currentLongitude: null,
@@ -29,11 +32,46 @@ export default class App extends Component  {
   }
 
   componentDidMount () {
-    this.watchLocation()
+    permissionsService.primaryPermissionsCheck() 
+
+    //START HERE 
+
+    Permissions.check('location').then(response => { console.log('################### mapLocationPermission',response)
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      this.setState({ mapLocationPermission: response }, () => this.permissionsCheckpoint())
+    })
   } 
 
+  permissionsCheckpoint = () => {
+    if (this.state.mapLocationPermission === 'undetermined') {
+      Alert.alert(
+        'Can we access your location?',
+        'CityNapper needs permission to track your "always" in order to wake you up when you are close to your stop',
+        [
+          {
+            text: 'No way',
+            onPress: () => console.log('Permission denied'), // should send to a failure screen
+            style: 'cancel',
+          },
+          this.state.mapLocationPermission === 'undetermined'
+            ? { text: 'OK', onPress: this.requestLocationPermissions }
+            : { text: 'Open Settings', onPress: Permissions.openSettings },
+        ],
+      )
+    } else {
+      this.watchLocation()
+    }
+  }
+
+  requestLocationPermissions = () => {
+    Permissions.request('location', { type: 'always' }).then(response => {
+      // Returns once the user has chosen to 'allow' or to 'not allow' access
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      this.setState({ mapLocationPermission: response })
+    })
+  }
+
   watchLocation = () => {
-    navigator.geolocation.requestAuthorization()
     navigator.geolocation.watchPosition(
       (position) => {
         this.setState({
@@ -106,7 +144,12 @@ addRemoveFavorite = (locationObject) => {
     })
   }
 }
-
+recieveDestinationSelection = (destination) => {
+  Permissions.check('location', {type: 'always'}).then(response => { console.log('################### boundaryLocationPermission',response)
+  // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+  this.setState({ boundaryLocationPermission: response }, () => this.setDestinationLocation(destination))
+})
+}
 setDestinationLocation = (destination) => {
   this.setState({ 
     destLatitude: destination.location.latitude,
