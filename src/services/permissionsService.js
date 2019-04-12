@@ -3,29 +3,51 @@ import Permissions from 'react-native-permissions'
 import { Alert } from 'react-native'
 
 
-permissionsCheckpoint = () => {
-  if (this.state.mapLocationPermission === 'undetermined') {
+const permissionsCheckpoint = (response, callback) => {
+  console.log('#############RESPONSE##################', response)
+  if (response === 'denied' || response === 'restricted') {
+    Alert.alert(
+      'CityNapper does not have "always" location access!',
+      'Please go to Settings and change the location permissions for this app to "Always".',
+      [
+      {
+        text: 'No way',
+        onPress: () => console.log('Permission denied'), // should send to a failure screen
+        style: 'cancel',
+      },
+      { text: 'Open Settings', 
+        onPress: Permissions.openSettings
+      },
+    ],
+    )
+  }
+  if (response === 'undetermined') {
     Alert.alert(
       'Can we access your location?',
-      'CityNapper needs permission to track your "always" in order to wake you up when you are close to your stop',
+      'CityNapper needs permission to track your "always" in order to wake you up when you are close to your stop.',
       [
         {
           text: 'No way',
           onPress: () => console.log('Permission denied'), // should send to a failure screen
           style: 'cancel',
         },
-        this.state.mapLocationPermission === 'undetermined'
-          ? { text: 'OK', onPress: this.requestLocationPermissions }
-          : { text: 'Open Settings', onPress: Permissions.openSettings },
+        { text: 'OK', 
+        onPress: () => requestLocationPermissions(callback),
+        }
       ],
     )
   } else {
-      locationFunction()
-    }
+    callback()
   }
+}
+
+const requestLocationPermissions = (callback) => {
+  Permissions.request('location', { type: 'whenInUse'})
+  .then(response => permissionsCheckpoint(response, callback))
+}
 
   export default {
-    permissionsCheckpoint
+    permissionsCheckpoint,
   }
 
 

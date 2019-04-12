@@ -15,8 +15,6 @@ export default class App extends Component  {
 
   state = {
     error: null,
-    mapLocationPermission: "undetermined",
-    boundaryLocationPermission: 'undetermined',
     userFavorites : [],
     currentLatitude: null,
     currentLongitude: null,
@@ -32,45 +30,20 @@ export default class App extends Component  {
   }
 
   componentDidMount () {
-    permissionsService.primaryPermissionsCheck() 
-
-    //START HERE 
-
-    Permissions.check('location').then(response => { console.log('################### mapLocationPermission',response)
-      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-      this.setState({ mapLocationPermission: response }, () => this.permissionsCheckpoint())
-    })
+    this.checkMapLocationPermissions()
   } 
 
-  permissionsCheckpoint = () => {
-    if (this.state.mapLocationPermission === 'undetermined') {
-      Alert.alert(
-        'Can we access your location?',
-        'CityNapper needs permission to track your "always" in order to wake you up when you are close to your stop',
-        [
-          {
-            text: 'No way',
-            onPress: () => console.log('Permission denied'), // should send to a failure screen
-            style: 'cancel',
-          },
-          this.state.mapLocationPermission === 'undetermined'
-            ? { text: 'OK', onPress: this.requestLocationPermissions }
-            : { text: 'Open Settings', onPress: Permissions.openSettings },
-        ],
-      )
-    } else {
-      this.watchLocation()
-    }
+  checkMapLocationPermissions = () => {
+    Permissions.check('location').then(response => 
+      permissionsService.permissionsCheckpoint(response, () => this.watchLocation()))
   }
 
-  requestLocationPermissions = () => {
-    Permissions.request('location', { type: 'always' }).then(response => {
-      // Returns once the user has chosen to 'allow' or to 'not allow' access
-      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-      this.setState({ mapLocationPermission: response })
-    })
+  checkBoundaryLocationPermissions = () => {
+    Permissions.check('location', { type: 'always' }).then(response => 
+      permissionsService.permissionsCheckpoint(response))
   }
 
+  
   watchLocation = () => {
     navigator.geolocation.watchPosition(
       (position) => {
@@ -87,7 +60,7 @@ export default class App extends Component  {
         useSignificantChanges: false
       },
     )
-} 
+  } 
   
 
 //============= NAP FUNCTIONS ======================
@@ -144,18 +117,15 @@ addRemoveFavorite = (locationObject) => {
     })
   }
 }
-recieveDestinationSelection = (destination) => {
-  Permissions.check('location', {type: 'always'}).then(response => { console.log('################### boundaryLocationPermission',response)
-  // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-  this.setState({ boundaryLocationPermission: response }, () => this.setDestinationLocation(destination))
-})
-}
+
+
 setDestinationLocation = (destination) => {
+  this.checkBoundaryLocationPermissions()
   this.setState({ 
     destLatitude: destination.location.latitude,
     destLongitude: destination.location.longitude,
     destName: destination.name,
-    destAddress: destination.address 
+    destAddress: destination.address
   }, () => this.setRoute());
 }
 
@@ -172,23 +142,15 @@ clearDestinationSelection = (link) => {
 }
 
 //========== BOUNDARY FUNCTIONS ===============
-checkPermission = () => {
-  navigator.geolocation
-  .getCurrentPosition(
-    () => this.setState({permission: 'GRANTED'}),
-    () => this.setState({permission: 'DENIED'})
-  );
-}
 
-
-setBoundary() {
+setBoundary = () => {
     if (this.state.destName !== "-")
     Boundary.add({
       // lat: 51.50998,
       // lng: -0.1337,
       lat: this.state.destLatitude, 
       lng: this.state.destLongitude,
-      radius: 500, // in meters
+      radius: 200, // in meters
       id: this.state.destName,
     })
       .then(() => console.log("boundary set"))
@@ -204,7 +166,6 @@ dropBoundary = () => {
   Boundary.removeAll()
   .then(() => console.log('Location Dropped'))
   .catch(e => console.log('failed to drop location', e))
-  
 }
 
 
