@@ -45,14 +45,14 @@ class ViewTripComponent extends Component {
               {this.props.isFavorite(this.props.destLocation)
               ?
                 <Icon
-                    size={18}
+                    size={24}
                     name='favorite'
                     type='material'
                     color={NapColors.subtleBlue}
                     onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}/>
               :
                 <Icon
-                      size={18}
+                      size={24}
                       name='favorite-border'
                       type='material'
                       color={NapColors.subtleBlue}
