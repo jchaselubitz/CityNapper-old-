@@ -35,7 +35,7 @@ class CreateTripComponent extends Component {
       {favorite.item.name}
       </Text>
   
-        <TouchableOpacity onPress={() => this.props.addRemoveFavorite(favorite)} >
+        <TouchableOpacity onPress={() => this.props.addRemoveFavorite(favorite.item)} >
         <View style={styles.listIcon}>
           <Icon
               name='close'
