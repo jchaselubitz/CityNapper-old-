@@ -25,14 +25,5 @@ const TripStack = createStackNavigator(
 );
 
 export default TripStack
-// const UserStack = createStackNavigator(
-//   {
-//     profile: UserProfile,
-//     settings: UserSettings,
-//   },
-//   {
-//     initialRouteName: 'profile',
-//   }
-// );
 
 AppRegistry.registerComponent('CityNapper', () => TripStack);

@@ -13,7 +13,7 @@ class CreateTripComponent extends Component {
     if (targetButton !== null) {
       this.props.setDestinationLocation(targetButton)
     } else {
-      this.props.navigation.navigate('Saved', {label})
+      this.props.navigation.navigate('Search', {searchType: 'saved', label: label})
     }
   }
 
@@ -54,7 +54,7 @@ class CreateTripComponent extends Component {
       <View style={styles.tripSelectionContainer}>
         <TouchableOpacity
         style={styles.buttonSearch}
-        onPress={() => this.props.navigation.navigate('Search')}>
+        onPress={() => this.props.navigation.navigate('Search', {searchType: 'search'})}>
         <View style={styles.searchButtonContainer}>
         <View style={styles.listIcon}>
               <Icon
@@ -80,7 +80,7 @@ class CreateTripComponent extends Component {
                 />
               </View>
           <Text style={styles.buttonFavoriteText}>Home stop</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Saved', {label: 'home'})} >
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'home'})} >
         <View style={styles.listIcon}>
           <Icon
               name='edit'
@@ -105,7 +105,7 @@ class CreateTripComponent extends Component {
                 />
               </View>
           <Text style={styles.buttonFavoriteText}>Work stop</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Saved', {label: 'work'})} >
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'work'})} >
         <View style={styles.listIcon}>
           <Icon
               name='edit'

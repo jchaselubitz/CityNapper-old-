@@ -16,7 +16,6 @@ class TripContainer extends Component {
     const destLongitude = this.props.screenProps.destLongitude
     const destName = this.props.screenProps.destName
     const destAddress = this.props.screenProps.destAddress
-    const startVibrationFunction = this.props.screenProps.startVibrationFunction
     const startNap = this.props.screenProps.startNap
     const userFavorites = this.props.screenProps.userFavorites
     const napping = this.props.screenProps.napping
@@ -41,7 +40,7 @@ class TripContainer extends Component {
 
     rejectSelection = () => {
       dropBoundary()
-      clearDestinationSelection(() => this.props.navigation.navigate('Search'))
+      clearDestinationSelection(() => this.props.navigation.navigate('Search', {searchType: 'search'}))
 
     }
   

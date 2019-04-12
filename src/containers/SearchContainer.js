@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import StyleHelper from '../helpers/StyleHelper'
+import SearchComponent from '../components/SearchComponent'
+import SavedComponent from '../components/SavedComponent'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
-import { Icon, ListItem, colors} from 'react-native-elements';
-import {AppRegistry, View, FlatList, TextInput, Text} from 'react-native';
-import { Divider } from 'react-native-elements';
+import {AppRegistry} from 'react-native';
 
-
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
 
 class SearchContainer extends Component {
   static navigationOptions = { header: null }
@@ -29,6 +25,7 @@ class SearchContainer extends Component {
 
     const setAsHomeWorkButton = this.props.screenProps.setAsHomeWorkButton
     const label = this.props.navigation.getParam('label')
+    const searchType = this.props.navigation.getParam('searchType')
 
     const sendToAddRemoveFavorites = (item) => {
       locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
@@ -67,9 +64,13 @@ class SearchContainer extends Component {
       );
     }
 
-
     const handleSelection = (item) => {
       setDestinationLocation(item)
+      navigation.navigate('Trip')
+    }
+
+    const handleFavoriteSelection = (item) => {
+      setAsHomeWorkButton(item, label)
       navigation.navigate('Trip')
     }
 
@@ -78,16 +79,30 @@ class SearchContainer extends Component {
     }
 
     const setSearchType = () => {
-      searchType === 'search'
+      return searchType === 'search'
       ?
-      <SearchComponent />
+      <SearchComponent 
+        searchResults={this.state.searchResults}
+        setSearchText={setSearchText}
+        userFavorites={userFavorites}
+        handleSelection={handleSelection}
+        favoriteIcon={favoriteIcon}
+        sendToAddRemoveFavorites={sendToAddRemoveFavorites}
+      />
       :
-      <SavedComponent />
+       <SavedComponent 
+        setAsHomeWorkButton={setAsHomeWorkButton}
+        label={label}
+        handleFavoriteSelection={handleFavoriteSelection}
+        searchResults={this.state.searchResults}
+        setSearchText={setSearchText}
+          
+      />
     }
     
-    
      return setSearchType()
-       
+    
+
    }
 }
 
