@@ -41,14 +41,24 @@ class ViewTripComponent extends Component {
                alignItems: 'center',
                }}>
               <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
-              {/* <View style={styles.cancelIcon}>
+              <View style={styles.viewPageIcon}>
+              {this.props.isFavorite(this.props.destLocation)
+              ?
                 <Icon
                     size={18}
-                    name='close'
+                    name='favorite'
                     type='material'
                     color={NapColors.subtleBlue}
-                    onPress={() => this.props.rejectSelection()}/>
-              </View> */}
+                    onPress={() => this.props.sendToAddRemoveFavorites(this.props.destLocation)}/>
+              :
+                <Icon
+                      size={18}
+                      name='favorite-border'
+                      type='material'
+                      color={NapColors.subtleBlue}
+                      onPress={() => this.props.sendToAddRemoveFavorites(this.props.destLocation)}/>
+              }
+              </View>
               
             </View>
             <View>

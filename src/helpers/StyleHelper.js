@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
     height: 60,
     padding: 16,
-    backgroundColor: NapColors.subtleBlue,
+    backgroundColor: NapColors.primaryBlue,
     borderRadius: 8,
     flexDirection:'column',
     alignItems: 'center',
@@ -126,11 +126,11 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
 
-//   cancelIcon: {
-//     marginLeft: 4,
-//     justifyContent: 'flex-start',
-//     alignSelf: 'flex-start',
-// },
+  viewPageIcon: {
+    marginLeft: 4,
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
+},
 
 cancelButton: {
   position: 'absolute',
@@ -148,11 +148,11 @@ cancelButton: {
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'stretch',
-  shadowColor: "black",
-  shadowRadius: 16,
-  shadowOpacity: 0.7,
+  shadowColor: "darkgrey",
+  shadowRadius: 8,
+  shadowOpacity: 0.8,
   shadowOffset: {
-    height: 6
+    height: 4
   }
 },
 

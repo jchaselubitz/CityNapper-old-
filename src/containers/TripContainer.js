@@ -12,12 +12,14 @@ class TripContainer extends Component {
     
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude
+    const destLocation = this.props.screenProps.destLocation
     const destLatitude = this.props.screenProps.destLatitude
     const destLongitude = this.props.screenProps.destLongitude
     const destName = this.props.screenProps.destName
     const destAddress = this.props.screenProps.destAddress
     const startNap = this.props.screenProps.startNap
     const userFavorites = this.props.screenProps.userFavorites
+    const isFavorite = this.props.screenProps.isFavorite
     const napping = this.props.screenProps.napping
     const routeCoords = this.props.screenProps.routeCoords
     const x = this.props.screenProps.x
@@ -43,6 +45,11 @@ class TripContainer extends Component {
       clearDestinationSelection(() => this.props.navigation.navigate('Search', {searchType: 'search'}))
 
     }
+
+
+    const favoriteIcon = (destAddress) => {
+      return userFavorites.map( l => l.item.address).includes(destAddress)
+    }
   
 //======================================= RENDER =================================
   
@@ -53,9 +60,13 @@ class TripContainer extends Component {
         napping={napping}
         napStarter={napStarter}
         goToNap={goToNap}
+        destLocation={destLocation}
         destName={destName}
         destAddress={destAddress}
         rejectSelection={rejectSelection}
+        favoriteIcon={favoriteIcon}
+        addRemoveFavorite={addRemoveFavorite}
+        isFavorite={isFavorite}
       /> 
       : 
       <CreateTripComponent 

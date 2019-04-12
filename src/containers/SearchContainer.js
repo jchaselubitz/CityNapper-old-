@@ -22,7 +22,7 @@ class SearchContainer extends Component {
     const setDestinationLocation = this.props.screenProps.setDestinationLocation
     const userFavorites = this.props.screenProps.userFavorites
     const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
-
+    const isFavorite = this.props.screenProps.isFavorite
     const setAsHomeWorkButton = this.props.screenProps.setAsHomeWorkButton
     const label = this.props.navigation.getParam('label')
     const searchType = this.props.navigation.getParam('searchType')

@@ -18,6 +18,7 @@ export default class App extends Component  {
     userFavorites : [],
     currentLatitude: null,
     currentLongitude: null,
+    destLocation: null,
     destLatitude: null,
     destLongitude: null,
     destName: "-",
@@ -106,6 +107,9 @@ setAsHomeWorkButton = (item, label) => {
   this.setState({ workButton: item  });
 }
 
+
+
+///NEED TO ADD THESE ELEMENTS TO VIEW CONTAINER
 addRemoveFavorite = (locationObject) => {
   if (this.state.userFavorites.map( l => l.id).includes(locationObject.id))
   this.setState({ 
@@ -117,11 +121,13 @@ addRemoveFavorite = (locationObject) => {
     })
   }
 }
+///NEED TO ADD THESE ELEMENTS TO VIEW CONTAINER
 
 
 setDestinationLocation = (destination) => {
   this.checkBoundaryLocationPermissions()
   this.setState({ 
+    destLocation: destination,
     destLatitude: destination.location.latitude,
     destLongitude: destination.location.longitude,
     destName: destination.name,
@@ -129,6 +135,9 @@ setDestinationLocation = (destination) => {
   }, () => this.setRoute());
 }
 
+isFavorite = (item) => {
+  return userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
+}
 
 clearDestinationSelection = (link) => {
   this.setState({ 
@@ -209,10 +218,12 @@ async getDirections(tripOrigin, tripDestination) {
       userFavorites: this.state.userFavorites,
       currentLatitude: this.state.currentLatitude,
       currentLongitude: this.state.currentLongitude,
+      destLocation: this.state.destLocation,
       destLatitude: this.state.destLatitude,
       destLongitude: this.state.destLongitude,
       destName: this.state.destName,
       destAddress: this.state.destAddress,
+      isFavorite: this.isFavorite,
       routeCoords: this.state.routeCoords,
       x: this.state.x,
       napping: this.state.napping,
