@@ -385,6 +385,7 @@ cancelText: {
     margin: 0,
     borderRadius: 12,
   },
+  
 })
 
 export default {

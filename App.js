@@ -37,13 +37,15 @@ export default class App extends Component  {
   checkForExistingUser = async () => {
     try {
       savedData = await AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton'])
-      if (savedData !== null) {
+      console.log('####', savedData)
+      if (savedData !== null) { 
         savedData.map((result, i, store) => {
-          this.setUserData(store[i][0], store[i][1])
-        })
-      }
+          this.setUserData( store[i][0], store[i][1])
+      })
+      } 
     } catch (error) {
       console.log("#### runWakeUp error", error)
+    
     }
   }
 
@@ -51,7 +53,9 @@ export default class App extends Component  {
   setUserData = (key, value) => {
     switch (key) {
       case 'userFavorites':
-        this.setState({ userFavorites: JSON.parse(value)})
+        console.log('#### user incoming', key, value )
+        if (value !== null)
+        this.setState({ userFavorites: JSON.parse(value)}, console.log('####', this.state.userFavorites))
       case 'homeButton':
         this.setState({ homeButton: JSON.parse(value)});
       case 'workButton':

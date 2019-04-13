@@ -1,15 +1,40 @@
 import React, { Component } from 'react';
-import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
+import { AppRegistry } from 'react-native';
 import MapComponent from '../components/MapComponent'
-import StyleHelper from '../helpers/StyleHelper'
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
+import NapComponent from '../components/NapComponent'
+import Video from 'react-native-video'
 
 export default class NapContainer extends Component {
   static navigationOptions = { header: null }
 
   state = {
-    
+    paused: true,
+    soundFile: null
+  }
+
+  playPause = () => {
+    this.setState({ paused: !this.state.paused });
+  }
+
+  toggleVideo = (soundFile) => {
+    this.playPause()
+    this.setState({ soundFile: soundFile },)
+}
+
+  sleepSound = () => {
+    if (this.state.paused === false) {
+      return <Video source= {this.state.soundFile}
+      ref={(ref) => {
+        this.player = ref
+      }}                    
+      audioOnly={true}
+      repeat={true}
+      playInBackground={true}
+      ignoreSilentSwitch={'ignore'}
+      playWhenInactive={true}
+
+    />
+    }
   }
 
    render () {
@@ -26,10 +51,9 @@ export default class NapContainer extends Component {
 
     handleClick = () => {
       endNap()
-      
       navigation.goBack()
-
     }
+
      return (
        <>
         <MapComponent
@@ -40,20 +64,14 @@ export default class NapContainer extends Component {
           routeCoords={routeCoords}
           x={x}
         />
-      <View style={styles.napContainer}>
-        <TouchableOpacity
-          style={styles.endNapButton} 
-          onPress={() => handleClick()}
-          >
-          <Text style={styles.endNapText}>End Nap</Text>
-        </TouchableOpacity>
-        <View style={styles.tripDisplayCard}>
-          <Text style={styles.destinationTitleText}>{destName}</Text>
-          <Text style={styles.destinationSubtitleText}>{destAddress}</Text>
-          <Text style={styles.destinationTitleText}>Blah Blah Blah</Text>
-          <Text style={styles.destinationSubtitleText}>Some super cool features</Text>
-        </View>
-      </View>
+        <NapComponent 
+          destName={destName}
+          destAddress={destAddress}
+          handleClick={handleClick}
+          sleepSound={this.sleepSound}
+          toggleVideo={this.toggleVideo}
+          playPause={this.playPause}
+        />
       </>
      )
    }
