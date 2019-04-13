@@ -1,20 +1,18 @@
 //HomeScreen
 import React, {Component} from 'react';
-import Boundary, {Events} from 'react-native-boundary';
-import Keys from './src/helpers/Keys'
-import permissionsService from './src/services/permissionsService'
+import { AppRegistry, Vibration, AsyncStorage } from 'react-native';
 import * as Polyline from '@mapbox/polyline'
-import TripStack from './src/NavigationStacks'
-import pushNotification from './src/services/pushNotification';
-import { AppRegistry, Vibration } from 'react-native';
+import Boundary, {Events} from 'react-native-boundary';
 import { createAppContainer } from 'react-navigation';
 import Permissions from 'react-native-permissions'
-
+import Keys from './src/helpers/Keys'
+import permissionsService from './src/services/permissionsService'
+import TripStack from './src/NavigationStacks'
+import pushNotification from './src/services/pushNotification';
 
 export default class App extends Component  {
 
   state = {
-    existingUser: null,
     error: null,
     userFavorites : [],
     currentLatitude: null,
@@ -32,8 +30,35 @@ export default class App extends Component  {
   }
 
   componentDidMount () {
+    this.checkForExistingUser()
     this.checkMapLocationPermissions()
   } 
+
+  checkForExistingUser = async () => {
+    try {
+      savedData = await AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton'])
+      if (savedData !== null) {
+        savedData.map((result, i, store) => {
+          this.setUserData(store[i][0], store[i][1])
+        })
+      }
+    } catch (error) {
+      console.log("#### runWakeUp error", error)
+    }
+  }
+
+
+  setUserData = (key, value) => {
+    switch (key) {
+      case 'userFavorites':
+        this.setState({ userFavorites: JSON.parse(value)})
+      case 'homeButton':
+        this.setState({ homeButton: JSON.parse(value)});
+      case 'workButton':
+        this.setState({ workButton: JSON.parse(value)});
+    }
+  }
+
 
   checkMapLocationPermissions = () => {
     Permissions.check('location').then(response => 
@@ -103,27 +128,34 @@ pushNotification.localNotification(this.state.destName)
 setAsHomeWorkButton = (item, label) => {
   label === "home" 
   ?
-  this.setState({ homeButton: item })
+  this.setState({ homeButton: item }, () => this.sendToLocalStorage('homeButton', item))
   :
-  this.setState({ workButton: item  });
+  this.setState({ workButton: item }, () => this.sendToLocalStorage('workButton', item));
+}
+
+sendToLocalStorage = async (key, item) => {
+  try {
+    await AsyncStorage.setItem(key, JSON.stringify(item));
+  } catch (error) {
+    console.log('#### sendToLocalStorage', error)
+  }
 }
 
 
 
-///NEED TO ADD THESE ELEMENTS TO VIEW CONTAINER
 addRemoveFavorite = (item) => {
   locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
   if (this.state.userFavorites.map( l => l.id).includes(locationObject.id))
   this.setState({ 
     userFavorites: this.state.userFavorites.filter((favorite) => favorite.id !== locationObject.id)
-  })
+  }, () => this.sendToLocalStorage('userFavorites', this.state.userFavorites))
   else {
     this.setState({ 
       userFavorites: [...this.state.userFavorites, locationObject]
-    })
+    }, () => this.sendToLocalStorage('userFavorites', this.state.userFavorites))
   }
 }
-///NEED TO ADD THESE ELEMENTS TO VIEW CONTAINER
+
 
 
 setDestinationLocation = (destination) => {
@@ -138,7 +170,6 @@ setDestinationLocation = (destination) => {
 }
 
 isFavorite = (item) => {
-  // console.log('### ITEM ', item)
   return this.state.userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
 }
 
@@ -182,14 +213,13 @@ dropBoundary = () => {
 //========== ROUTE MAPPING FUNCTIONS ===============
 
 setRoute = () => {
-  // alert(this.state.destLatitude)
   if (this.state.currentLatitude != null && this.state.destLatitude!=null)
    {
      let concatStart = this.state.currentLatitude +","+this.state.currentLongitude
      let concatDestination = this.state.destLatitude+","+this.state.destLongitude
      this.getDirections(concatStart, concatDestination)
    } else {
-     alert("insufficient data to compose route")
+     alert('It seems you have chosen a destination that is too far away. Try one that is a little closer.')
    }
 }
 
