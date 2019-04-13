@@ -13,6 +13,8 @@ import Permissions from 'react-native-permissions'
 
 export default class App extends Component  {
 
+//add async storage
+
   state = {
     existingUser: null,
     error: null,
