@@ -1,6 +1,7 @@
 
-// import PushNotification from 'react-native-push-notification'
 import { PushNotificationIOS } from 'react-native';
+import fire_truck_air_horn from '../media/fire_truck_air_horn.wav'
+import church_chime from '../media/church_chime.wav'
 
 const requestPermissions = () => {
   PushNotificationIOS.requestPermissions({

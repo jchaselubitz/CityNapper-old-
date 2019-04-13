@@ -16,8 +16,8 @@ export default class NapContainer extends Component {
     this.setState({ paused: !this.state.paused });
   }
 
-  toggleVideo = (soundFile) => {
-    this.playPause()
+  clickVideo = (soundFile) => {
+    this.setState({ paused: false })
     this.setState({ soundFile: soundFile },)
 }
 
@@ -69,7 +69,7 @@ export default class NapContainer extends Component {
           destAddress={destAddress}
           handleClick={handleClick}
           sleepSound={this.sleepSound}
-          toggleVideo={this.toggleVideo}
+          clickVideo={this.clickVideo}
           playPause={this.playPause}
         />
       </>

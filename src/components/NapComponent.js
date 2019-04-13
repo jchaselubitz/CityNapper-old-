@@ -26,10 +26,10 @@ export default class NapContainer extends Component {
           <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
           <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
           <Text style={styles.destinationTitleText}>Play some sweet jamz</Text>
-          <Button onPress={() => this.props.toggleVideo(air_conditioner)} title='Air conditioner'/>
-          <Button onPress={() => this.props.toggleVideo(crackling_fireplace)} title='Fireplace'/>
-          <Button onPress={() => this.props.toggleVideo(heavy_rain)} title='Heavy rain'/>
-          <Button onPress={() => this.props.toggleVideo(rainforest)} title='Rainforest'/>
+          <Button onPress={() => this.props.clickVideo(air_conditioner)} title='Air conditioner'/>
+          <Button onPress={() => this.props.clickVideo(crackling_fireplace)} title='Fireplace'/>
+          <Button onPress={() => this.props.clickVideo(heavy_rain)} title='Heavy rain'/>
+          <Button onPress={() => this.props.clickVideo(rainforest)} title='Rainforest'/>
           <Button onPress={() => this.props.playPause()} title='Play/Pause'/>
            
            {this.props.sleepSound()}
