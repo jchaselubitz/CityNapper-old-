@@ -13,9 +13,6 @@ export default class NapContainer extends Component {
   }
 
    render () {
-
-
-
     const { navigation } = this.props;
     const destName = this.props.screenProps.destName
     const destAddress = this.props.screenProps.destAddress

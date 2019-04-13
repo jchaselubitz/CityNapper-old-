@@ -2,19 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleName</key>
-	<string>CityNapper</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>location</string>
-	</array>
+	<key>CFBundleDisplayName</key>
+	<string>CityNapper</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -26,12 +17,39 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>CityNapper</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array>
+		<string>MKDirectionsModeBus</string>
+		<string>MKDirectionsModeCar</string>
+		<string>MKDirectionsModeFerry</string>
+		<string>MKDirectionsModeRideShare</string>
+		<string>MKDirectionsModeStreetCar</string>
+		<string>MKDirectionsModeSubway</string>
+		<string>MKDirectionsModeTaxi</string>
+		<string>MKDirectionsModeTrain</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -40,21 +58,13 @@
 				<true/>
 			</dict>
 		</dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 	</dict>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app requires ALWAYS access to your location in order to wake you up when you arrive at your destination.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app requires access to your location in order to wake you up when you arrive at your destination.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app requires access to your location in order to wake you up when you arrive at your destination.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -73,34 +83,25 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>CFBundleDisplayName</key>
-	<string>CityNapper</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app requires ALWAYS access to your location in order to wake you up when you arrive at your destination.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app requires access to your location in order to wake you up when you arrive at your destination.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app requires access to your location in order to wake you up when you arrive at your destination.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string></string>
+		<string>location</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MKDirectionsApplicationSupportedModes</key>
-	<array>
-		<string>MKDirectionsModeBus</string>
-		<string>MKDirectionsModeCar</string>
-		<string>MKDirectionsModeFerry</string>
-		<string>MKDirectionsModeRideShare</string>
-		<string>MKDirectionsModeStreetCar</string>
-		<string>MKDirectionsModeSubway</string>
-		<string>MKDirectionsModeTaxi</string>
-		<string>MKDirectionsModeTrain</string>
-	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
