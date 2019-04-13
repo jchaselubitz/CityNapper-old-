@@ -6,7 +6,7 @@ import permissionsService from './src/services/permissionsService'
 import * as Polyline from '@mapbox/polyline'
 import TripStack from './src/NavigationStacks'
 import pushNotification from './src/services/pushNotification';
-import { AppRegistry, Vibration, Alert } from 'react-native';
+import { AppRegistry, Vibration } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import Permissions from 'react-native-permissions'
 
