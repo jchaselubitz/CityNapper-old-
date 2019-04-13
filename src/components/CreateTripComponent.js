@@ -36,7 +36,7 @@ class CreateTripComponent extends Component {
       </Text>
   
         <TouchableOpacity onPress={() => this.props.addRemoveFavorite(favorite.item)} >
-        <View style={styles.listIcon}>
+        <View style={styles.tripButtonIcon}>
           <Icon
               name='close'
               type='material'
@@ -81,7 +81,7 @@ class CreateTripComponent extends Component {
               </View>
           <Text style={styles.buttonFavoriteText}>Home stop</Text>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'home'})} >
-        <View style={styles.listIcon}>
+        <View style={styles.tripButtonIcon}>
           <Icon
               name='edit'
               type='material'
@@ -106,7 +106,7 @@ class CreateTripComponent extends Component {
               </View>
           <Text style={styles.buttonFavoriteText}>Work stop</Text>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'work'})} >
-        <View style={styles.listIcon}>
+        <View style={styles.tripButtonIcon}>
           <Icon
               name='edit'
               type='material'

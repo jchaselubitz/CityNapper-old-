@@ -25,6 +25,18 @@ const styles = StyleSheet.create({
   },
   
   //================ BUTTONS =================
+
+
+  tripButtonIcon: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginLeft: 16,
+    width: 30
+
+},
+
   buttonContainer: {
     flex: 10,
     flexDirection: 'row',

@@ -42,7 +42,7 @@ class TripContainer extends Component {
 
     rejectSelection = () => {
       dropBoundary()
-      clearDestinationSelection(() => this.props.navigation.navigate('Search', {searchType: 'search'}))
+      clearDestinationSelection(() => this.props.navigation.navigate('Trip'))
 
     }
 
