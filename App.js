@@ -14,6 +14,7 @@ import Permissions from 'react-native-permissions'
 export default class App extends Component  {
 
   state = {
+    existingUser: null,
     error: null,
     userFavorites : [],
     currentLatitude: null,
