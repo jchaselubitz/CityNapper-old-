@@ -25,6 +25,8 @@ export default class App extends Component  {
     destAddress: '',
     routeCoords: [],
     x: 'true',
+    timeToDest: null,
+    eta: null,
     napping: false,
     mode: 'transit',
     homeButton: null,
@@ -54,7 +56,6 @@ export default class App extends Component  {
   setUserData = (key, value) => {
     switch (key) {
       case 'userFavorites':
-        // console.log('#### user incoming', key, value )
         if (value !== null)
         this.setState({ userFavorites: JSON.parse(value)}, console.log('####', this.state.userFavorites))
       case 'homeButton':
@@ -62,9 +63,7 @@ export default class App extends Component  {
       case 'workButton':
         this.setState({ workButton: JSON.parse(value)});
       case 'mode':
-      console.log('#### mode incoming', key, value )
       if (JSON.parse(value) === "transit" || JSON.parse(value) === "driving")
-      console.log('#### mode after if', value )
         this.setState({ mode: JSON.parse(value)});
     }
   }
@@ -177,6 +176,7 @@ setRoute = () => {
      let concatStart = this.state.currentLatitude +","+this.state.currentLongitude
      let concatDestination = this.state.destLatitude+","+this.state.destLongitude
      this.getDirections(concatStart, concatDestination)
+     this.getTimeToDest(concatStart, concatDestination)
    } else {
      alert('It seems you have chosen a destination that is too far away. Try one that is a little closer.')
    }
@@ -200,6 +200,20 @@ async getDirections(tripOrigin, tripDestination) {
       return error
   }
 }
+
+async getTimeToDest(tripOrigin, tripDestination) {
+  try {
+      let resp = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${tripOrigin}&destinations=${tripDestination}&mode=${this.state.mode}&key=${Keys.GoogleKey}`)
+      let respJson = await resp.json();
+      let timeToDest = respJson.rows[0].elements[0].duration.text
+      this.setState({timeToDest})
+  } catch(error) {
+      alert("Looks like we couldn't calculate the length of your trip")
+      console.log('#### getTimeToDest error', error)
+      return error
+  }
+}
+
 
 
 //========== BOUNDARY FUNCTIONS ===============
@@ -280,6 +294,7 @@ alertNotification = () => {
       isFavorite: this.isFavorite,
       routeCoords: this.state.routeCoords,
       x: this.state.x,
+      timeToDest: this.state.timeToDest,
       napping: this.state.napping,
       startNap: this.startNap,
       endNap: this.endNap,

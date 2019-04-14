@@ -34,11 +34,12 @@ tripSelectionContainer: {
 },
 
 destinationTitleText: {
-  fontSize: 18,
+  fontSize: 20,
   fontWeight: 'bold',
   color: NapColors.primaryBlue,
   marginTop: 4,
   marginBottom: 4,
+  marginRight: 6,
   alignSelf: 'stretch',
 },
 destinationSubtitleText: {
@@ -47,7 +48,13 @@ destinationSubtitleText: {
   alignSelf: 'stretch',
 },
 
-
+detailText: {
+  fontSize: 12,
+  fontStyle: 'italic',
+  color: NapColors.subtleBlue,
+  alignSelf: 'center',
+  marginTop: 6,
+},
 
 //================ Map =================
 
@@ -166,8 +173,8 @@ tripDisplayCard: {
   justifyContent: 'flex-end',
   marginTop: 16,
   padding: 16,
-  paddingTop: 24,
-  paddingBottom: 40,
+  paddingTop: 32,
+  paddingBottom: 60,
   borderRadius: 12,
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
@@ -277,9 +284,9 @@ largeToggleContainer: {
 
 
 actionToggle: {
-  margin: 3,
+  marginTop: 16,
   height: 48,
-  width: '50%',
+
   backgroundColor: NapColors.actionBlue,
   borderColor: NapColors.actionBlue,
   borderWidth: 0,

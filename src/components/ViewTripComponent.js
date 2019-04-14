@@ -7,6 +7,11 @@ const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
 class ViewTripComponent extends Component {
+  
+  transitTypeName = () => {
+    return `${this.props.currentMode[0].toUpperCase()}${this.props.currentMode.slice(1)}`
+  }
+
   render() { 
     return (
       <View style={styles.tripSelectionContainer}>
@@ -65,21 +70,23 @@ class ViewTripComponent extends Component {
                flexDirection: 'row',
                justifyContent: 'flex-start',
                alignItems: 'center',
+         
                }}>
               <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
+              <Text style={styles.detailText}>~{this.props.timeToDest}</Text>
             </View>
             <View>
               <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
             </View>
             </> }
 
-          <View style={styles.largeToggleContainer}>
-            <TouchableOpacity onPress={() => this.props.toggleTransitMode()}>
+          {/* <View style={styles.largeToggleContainer}> */}
+          <TouchableOpacity onPress={() => this.props.toggleTransitMode()}>
             <View style={styles.actionToggle} >
-            <Text style={styles.actionToggleText}>Transit</Text>
+            <Text style={styles.actionToggleText}>{this.transitTypeName()}</Text>
             </View>
           </TouchableOpacity>
-          </View>
+          {/* </View> */}
         
           
         </View>
