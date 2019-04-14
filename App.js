@@ -32,7 +32,7 @@ export default class App extends Component  {
 
   componentDidMount () {
     this.checkForExistingUser()
-    this.checkMapLocationPermissions()
+    this.checkMapLocationPermissions(() => this.watchLocation())
   } 
 
   checkForExistingUser = async () => {
@@ -65,9 +65,9 @@ export default class App extends Component  {
   }
 
 
-  checkMapLocationPermissions = () => {
+  checkMapLocationPermissions = (nextFunction) => {
     Permissions.check('location').then(response => 
-      permissionsService.permissionsCheckpoint(response, () => this.watchLocation()))
+      permissionsService.permissionsCheckpoint(response, nextFunction))
   }
 
   checkBoundaryLocationPermissions = () => {
@@ -99,7 +99,7 @@ export default class App extends Component  {
 
 startNap = () => {
   pushNotification.requestPermissions()
-  this.setBoundary()
+  this.checkMapLocationPermissions(this.setBoundary())
   this.setState({ napping: true  });
 } 
    

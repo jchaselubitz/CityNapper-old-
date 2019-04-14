@@ -30,12 +30,12 @@ const permissionsCheckpoint = (response, callback) => {
       'Can we access your location?',
       'CityNapper needs permission to track your "always" in order to wake you up when you are close to your stop.',
       [
-        {
-          text: 'No way',
-          onPress: () => locationAccessDenied(),
-          style: 'cancel',
-        },
-        { text: 'OK', 
+        // {
+        //   text: 'No way',
+        //   onPress: () => locationAccessDenied(),
+        //   style: 'cancel',
+        // },
+        { text: 'Next', 
         onPress: () => requestLocationPermissions(callback),
         }
       ],
