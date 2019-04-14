@@ -5,7 +5,7 @@ import ViewTripComponent from '../components/ViewTripComponent'
 import {AppRegistry, View } from 'react-native';
 
 class TripContainer extends Component {
-  // static navigationOptions = { header: null }
+  static navigationOptions = { header: null }
 
 
   render() {

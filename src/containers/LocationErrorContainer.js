@@ -8,6 +8,8 @@ const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
 class LocationErrorContainer extends Component {
+  static navigationOptions = { header: null }
+
 
   getPermissionStatus = () => {
     Permissions.check('location')
@@ -50,7 +52,20 @@ class LocationErrorContainer extends Component {
           <Text style={styles.warningText}>
           Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app.
           </Text>
-          {this.tryAgainButton()}
+          {/* {this.tryAgainButton()} */}
+          
+        <TouchableOpacity onPress={Permissions.openSettings}>
+          <View style={styles.warningActionButton} >
+            <Text style={styles.warningActionButtonText}> Go to Settings </Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Trip')}>
+          <View style={styles.warningActionButtonOutLine} >
+            <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
+          </View>
+        </TouchableOpacity>
+
         </View>
       </View>
     );

@@ -423,6 +423,7 @@ endNapText: {
 //================ Warning =================
 
 warningScreenContainer: {
+  backgroundColor: 'transparent',
   position: 'absolute',
     top: 0,
     bottom: 0,
@@ -450,15 +451,16 @@ warningContainer: {
 },
 
 warningTitleText: {
-  fontSize: 24,
+  fontSize: 26,
   fontWeight: 'bold',
   color: NapColors.primaryBlue,
-  marginBottom: 6,
+  marginBottom: 8,
 
 },
 warningText: {
-  fontSize: 14,
+  fontSize: 16,
   color: NapColors.primaryBlue,
+  marginBottom: 8
 },
 
 warningActionButton: {
@@ -480,7 +482,7 @@ warningActionButtonText: {
 },
 
 warningActionButtonOutLine: {
-  marginTop: 16,
+  marginTop: 8,
   height: 54,
   backgroundColor: "white",
   borderColor: NapColors.systemBlue,
@@ -495,6 +497,7 @@ warningActionButtonOutLine: {
 warningActionButtonOutlineText: {
   fontSize: 24,
   color: NapColors.systemBlue,
+  alignSelf: 'center',
 },
 
 

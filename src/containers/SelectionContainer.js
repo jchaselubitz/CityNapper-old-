@@ -5,7 +5,7 @@ import MapContainer from './MapContainer'
 import { withNavigation } from 'react-navigation'
 
 class SelectionContainer extends Component {
-
+  static navigationOptions = { header: null }
   render() { 
     return (
       <>

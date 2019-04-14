@@ -18,12 +18,16 @@ const TripStack = createStackNavigator(
     },
     LocationWarning: {
       screen: LocationErrorContainer,
-     
+      transparentCard: true,
+      navigationOptions: {
+        gesturesEnabled: false,
+        
+    },
     },
   },
   {
     mode: 'modal',
-    headerMode: 'none',
+    header: null
   },
 );
 

@@ -7,6 +7,7 @@ const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
 class CreateTripComponent extends Component {
+
   render() { 
 
   handleWorkHomeSave = (targetButton, label) => {

@@ -8,6 +8,7 @@ import Video from 'react-native-video'
 const styles = StyleHelper.styles
 
 export default class NapContainer extends Component {
+  static navigationOptions = { header: null }
       
   state = {
     paused: true,
