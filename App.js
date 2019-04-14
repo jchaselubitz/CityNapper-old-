@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import { AppRegistry, Vibration, AsyncStorage } from 'react-native';
 import * as Polyline from '@mapbox/polyline'
 import Boundary, {Events} from 'react-native-boundary';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createStackNavigator} from 'react-navigation';
+import NavigationService from './src/services/navigationService'
 import Permissions from 'react-native-permissions'
 import Keys from './src/helpers/Keys'
 import permissionsService from './src/services/permissionsService'
@@ -274,7 +275,11 @@ async getDirections(tripOrigin, tripDestination) {
       setAsHomeWorkButton: this.setAsHomeWorkButton,
       homeButton: this.state.homeButton,
       workButton: this.state.workButton
-    }}/>;
+    }}
+    ref={navigatorRef => {
+      NavigationService.setTopLevelNavigator(navigatorRef)
+    }}
+    />;
   }
 }
 
@@ -282,3 +287,4 @@ const AppContainer = createAppContainer(TripStack);
 console.disableYellowBox = true;
 
 AppRegistry.registerComponent('CityNapper', () => App);
+

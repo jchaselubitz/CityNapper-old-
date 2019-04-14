@@ -2,6 +2,7 @@ import { createStackNavigator } from 'react-navigation'
 import SearchContainer from './containers/SearchContainer'
 import NapContainer from './containers/NapContainer'
 import TripContainer from './containers/TripContainer'
+import LocationErrorContainer from './containers/LocationErrorContainer'
 import {AppRegistry} from 'react-native';
 
 const TripStack = createStackNavigator(
@@ -14,6 +15,9 @@ const TripStack = createStackNavigator(
     },
     Nap: {
       screen: NapContainer
+    },
+    LocationWarning: {
+      screen: LocationErrorContainer
     },
   },
   {

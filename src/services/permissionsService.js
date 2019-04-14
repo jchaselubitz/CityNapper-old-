@@ -1,7 +1,12 @@
 
 import Permissions from 'react-native-permissions'
 import { Alert } from 'react-native'
+import NavigationService from './navigationService';
 
+
+const locationAccessDenied = () => {
+      NavigationService.navigate('LocationWarning')
+}
 
 const permissionsCheckpoint = (response, callback) => {
   if (response === 'denied' || response === 'restricted') {
@@ -11,8 +16,7 @@ const permissionsCheckpoint = (response, callback) => {
       [
       {
         text: 'No way',
-        onPress: () => Alert.alert("Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app."),
-        // onPress: () => noLocationAccess()
+        onPress: () => locationAccessDenied(),
         style: 'cancel',
       },
       { text: 'Open Settings', 
@@ -28,7 +32,7 @@ const permissionsCheckpoint = (response, callback) => {
       [
         {
           text: 'No way',
-          onPress: () => Alert.alert("Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app."),
+          onPress: () => locationAccessDenied(),
           style: 'cancel',
         },
         { text: 'OK', 
