@@ -4,7 +4,9 @@ const NapColors = {
   primaryBlue: "#5c6174",
   subtleBlue: '#626a7f',
   shadowBlue: '#3f4354',
-  actionOrange: '#f58b44', 
+  actionOrange: '#f58b44',
+  actionBlue: '#559ad1', 
+  systemBlue: '#4786f6',
   calmBlue: '#818dab', 
   cancelRed: '#c63131',
   pulldownLine: '#c4c8d1'
@@ -358,7 +360,19 @@ listDivider: {
 //================ Nap =================
 
 // inside tripSelectionContainer
+
+napScreenContainer: {
+  opacity: 1,
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+
+},
+
 napContainer: {
+  
   paddingTop: 32,
   paddingBottom: 0,
   position: 'absolute',
@@ -408,27 +422,84 @@ endNapText: {
 //see Global for destinationTitleText
 //================ Warning =================
 
+warningScreenContainer: {
+  position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  margin: 0,
+  padding: 8,
+  flex: 1,
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignContent: 'center',
+  alignItems: 'center',
+},
 
+warningContainer: {
+  opacity: 1,
+  margin: 16,
+  padding: 8,
+  alignSelf: 'center',
+  // flexDirection: 'column',
+  // justifyContent: 'space-between',
+  // alignContent: 'space-between',
+  // alignItems: 'center',
+  borderRadius: 12,
+},
 
+warningTitleText: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  color: NapColors.primaryBlue,
+  marginBottom: 6,
+
+},
+warningText: {
+  fontSize: 14,
+  color: NapColors.primaryBlue,
+},
+
+warningActionButton: {
+  marginTop: 16,
+  height: 54,
+  backgroundColor: NapColors.systemBlue,
+  borderColor: NapColors.actionBlue,
+  borderWidth: 0,
+  borderRadius: 8,
+  flexDirection:'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignSelf: 'stretch',
+},
+
+warningActionButtonText: {
+  fontSize: 24,
+  color: 'white',
+},
+
+warningActionButtonOutLine: {
+  marginTop: 16,
+  height: 54,
+  backgroundColor: "white",
+  borderColor: NapColors.systemBlue,
+  borderWidth: 2,
+  borderRadius: 8,
+  flexDirection:'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignSelf: 'stretch',
+},
+
+warningActionButtonOutlineText: {
+  fontSize: 24,
+  color: NapColors.systemBlue,
+},
 
 
  
-  
-  
- 
-  
 
- 
-
-
-  // separator: {
-  //   borderBottomColor: '#bbb',
-  //   borderBottomWidth: StyleSheet.hairlineWidth,
-  // },
-
-  //================CONTAINERS AND SPACERS=================
-
-  
 })
 
 export default {

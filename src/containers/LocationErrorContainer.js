@@ -8,23 +8,50 @@ const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
 class LocationErrorContainer extends Component {
-  static navigationOptions = { header: null }
 
+  getPermissionStatus = () => {
+    Permissions.check('location')
+    .then(response => { return response })
+  }
+  
   tryAgainButton = () => {
-    Permissions.check('location').then(response => {
-      response === 'authorized' ? <Button onPress={() => this.props.navigation.navigate('Trip')} title='Try again' /> : null
-    })
+    response = this.getPermissionStatus()
+      if (response === 'undetermined') {
+        return <TouchableOpacity 
+          onPress={() => this.props.navigation.navigate('Trip')}
+          style={styles.warningActionOutlineButton} 
+          >
+          <View>
+            <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
+          </View>
+      </TouchableOpacity>
+        
+      } else {
+        return <TouchableOpacity 
+        onPress={Permissions.openSettings}
+        style={styles.warningActionButton} 
+        >
+        <View>
+          <Text style={styles.warningActionButtonText}> Go to Settings </Text>
+        </View>
+      </TouchableOpacity>
+      
+      }
   }
 
-  state = {  }
+                    
   render() { 
     return (  
-      <View style={styles.warningContainer}>
-        <Text style={styles.warningText}>
-        Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app.
-        </Text>
-        <Button onPress={Permissions.openSettings} title='Go to Settings' />
-        {this.tryAgainButton()}
+      <View style={styles.warningScreenContainer}>
+        <View style={styles.warningContainer}>
+          <Text style={styles.warningTitleText}>
+          CityNapper needs location access.
+          </Text>
+          <Text style={styles.warningText}>
+          Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app.
+          </Text>
+          {this.tryAgainButton()}
+        </View>
       </View>
     );
   }

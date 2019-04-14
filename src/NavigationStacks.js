@@ -17,15 +17,17 @@ const TripStack = createStackNavigator(
       screen: NapContainer
     },
     LocationWarning: {
-      screen: LocationErrorContainer
+      screen: LocationErrorContainer,
+     
     },
   },
   {
     mode: 'modal',
-    header: null
-  }
+    headerMode: 'none',
+  },
 );
 
 export default TripStack
 
 AppRegistry.registerComponent('CityNapper', () => TripStack);
+

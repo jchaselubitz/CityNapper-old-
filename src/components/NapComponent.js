@@ -11,9 +11,7 @@ const NapColors = StyleHelper.NapColors
 export default class NapContainer extends Component {
   
 
-
-   render () {
-  
+  render () {
      return (
       <View style={styles.napContainer}>
         <TouchableOpacity

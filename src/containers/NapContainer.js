@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, View } from 'react-native';
+import StyleHelper from '../helpers/StyleHelper'
 import MapComponent from '../components/MapComponent'
 import NapComponent from '../components/NapComponent'
 import Video from 'react-native-video'
 
-export default class NapContainer extends Component {
-  static navigationOptions = { header: null }
+const styles = StyleHelper.styles
 
+export default class NapContainer extends Component {
+      
   state = {
     paused: true,
     soundFile: null
@@ -55,8 +57,8 @@ export default class NapContainer extends Component {
     }
 
      return (
-       <>
-        <MapComponent
+       <View style={styles.napScreenContainer}>
+          <MapComponent
           currentLatitude={currentLatitude}
           currentLongitude={currentLongitude}
           destLatitude={destLatitude}
@@ -72,7 +74,9 @@ export default class NapContainer extends Component {
           clickVideo={this.clickVideo}
           playPause={this.playPause}
         />
-      </>
+       </View>
+       
+     
      )
    }
 
