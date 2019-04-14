@@ -12,13 +12,13 @@ class LocationErrorContainer extends Component {
 
 
   getPermissionStatus = () => {
-    Permissions.check('location')
+    Permissions.check('location' {type: 'always'})
     .then(response => { return response })
   }
   
   tryAgainButton = () => {
     response = this.getPermissionStatus()
-      if (response === 'undetermined') {
+      if (response === 'undetermined' || response === 'authorized') {
         return <TouchableOpacity 
           onPress={() => this.props.navigation.navigate('Trip')}
           style={styles.warningActionOutlineButton} 
