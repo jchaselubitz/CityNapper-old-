@@ -12,7 +12,7 @@ class LocationErrorContainer extends Component {
 
 
   getPermissionStatus = () => {
-    Permissions.check('location' {type: 'always'})
+    Permissions.check('location', { type: 'always'})
     .then(response => { return response })
   }
   
@@ -52,9 +52,9 @@ class LocationErrorContainer extends Component {
           <Text style={styles.warningText}>
           Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app.
           </Text>
-          {/* {this.tryAgainButton()} */}
+          {this.tryAgainButton()}
           
-        <TouchableOpacity onPress={Permissions.openSettings}>
+        {/* <TouchableOpacity onPress={Permissions.openSettings}>
           <View style={styles.warningActionButton} >
             <Text style={styles.warningActionButtonText}> Go to Settings </Text>
           </View>
@@ -64,7 +64,7 @@ class LocationErrorContainer extends Component {
           <View style={styles.warningActionButtonOutLine} >
             <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         </View>
       </View>

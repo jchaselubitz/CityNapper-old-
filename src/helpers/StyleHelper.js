@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const NapColors = {
+const lightColors = {
   primaryBlue: "#5c6174",
   subtleBlue: '#626a7f',
   shadowBlue: '#3f4354',
@@ -9,8 +9,32 @@ const NapColors = {
   systemBlue: '#4786f6',
   calmBlue: '#818dab', 
   cancelRed: '#c63131',
-  pulldownLine: '#c4c8d1'
+  pulldownLine: '#c4c8d1',
+  darkgrey: 'darkgrey',
+  white: "white",
+  divider: 'grey',
+  black: "black"
 }
+
+
+const darkColors = {
+  primaryBlue: "#5c6174",
+  subtleBlue: '#626a7f',
+  shadowBlue: '#3f4354',
+  actionOrange: '#8e5127',
+  actionBlue: '#559ad1', 
+  systemBlue: '#4786f6',
+  calmBlue: '#818dab', 
+  cancelRed: '#c63131',
+  pulldownLine: '#c4c8d1',
+  darkgrey: 'darkgrey',
+  white: 'lightgrey',
+  divider: 'grey',
+  black: "white"
+}
+
+
+let NapColors = darkColors
 
 const selectedMapType = "standard"
 
@@ -61,7 +85,7 @@ favoriteButton: {
   height: 36,
   paddingTop: 7,
   padding: 6,
-  backgroundColor: 'white',
+  backgroundColor: NapColors.white,
   borderColor: NapColors.cancelRed,
   borderWidth: 0,
   borderRadius: 20,
@@ -116,7 +140,7 @@ buttonSearch: {
   marginBottom: 16,
   height: 54,
   padding: 8,
-  backgroundColor: 'white',
+  backgroundColor: NapColors.white,
   borderWidth: 0,
   borderRadius: 8,
   flexDirection:'column',
@@ -135,7 +159,7 @@ buttonSearch: {
 tripSelectionCard: {
   zIndex: 1,
   backgroundColor: NapColors.primaryBlue,
-  shadowColor: "darkgrey",
+  shadowColor: NapColors.darkgrey,
   shadowRadius: 16,
   shadowOpacity: 0.9,
   position: 'relative',
@@ -178,7 +202,7 @@ savedButton: {
 savedButtonText: {
   flex: 9,
   fontSize: 18,
-  color: 'white',
+  color: NapColors.white,
   alignSelf: 'center'
 },
 
@@ -187,8 +211,8 @@ savedButtonText: {
 // inside tripSelectionContainer
 tripDisplayCard: {
   zIndex: 1,
-  backgroundColor: 'white',
-  shadowColor: "darkgrey",
+  backgroundColor: NapColors.white,
+  shadowColor: NapColors.darkgrey,
   shadowRadius: 16,
   shadowOpacity: 0.9,
   position: 'relative',
@@ -243,7 +267,7 @@ buttonStartNap: {
 buttonNapText: {
   fontSize: 24,
   fontWeight: 'bold',
-  color: 'white',
+  color: NapColors.white,
 },
 
 cancelButton: {
@@ -255,7 +279,7 @@ cancelButton: {
   marginBottom: 0,
   height: 36,
   padding: 6,
-  backgroundColor: 'white',
+  backgroundColor: NapColors.white,
   borderColor: NapColors.cancelRed,
   borderWidth: 0,
   borderRadius: 20,
@@ -263,7 +287,7 @@ cancelButton: {
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'stretch',
-  shadowColor: "darkgrey",
+  shadowColor: NapColors.darkgrey,
   shadowRadius: 8,
   shadowOpacity: 0.8,
   shadowOffset: {
@@ -304,7 +328,7 @@ actionToggle: {
 
 actionToggleText: {
   fontSize: 24,
-  color: 'white',
+  color: NapColors.white,
  
 },
 
@@ -333,7 +357,7 @@ searchBar: {
   margin: 16,
   marginTop: 48,
   borderColor: NapColors.primaryBlue,
-  backgroundColor: 'white',
+  backgroundColor: NapColors.white,
   borderWidth: 0,
   borderRadius: 8,
   flexDirection:'column',
@@ -399,7 +423,7 @@ listIcon: {
 },
 
 listDivider: {
-    backgroundColor: 'grey',
+    backgroundColor: NapColors.divider,
     marginLeft: 10,
 },
 
@@ -452,7 +476,7 @@ endNapButton: {
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'stretch',
-  shadowColor: "black",
+  shadowColor: NapColors.black,
   shadowRadius: 8,
   shadowOpacity: 0.5,
   shadowOffset: {
@@ -463,7 +487,7 @@ endNapButton: {
 endNapText: {
   fontSize: 24,
   fontWeight: 'bold',
-  color: 'white',
+  color: NapColors.white,
 },
 
 playButton: {
@@ -538,7 +562,7 @@ warningActionButton: {
 
 warningActionButtonText: {
   fontSize: 24,
-  color: 'white',
+  color: NapColors.white,
 },
 
 warningActionButtonOutLine: {

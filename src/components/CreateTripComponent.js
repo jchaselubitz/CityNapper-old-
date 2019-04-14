@@ -28,7 +28,7 @@ class CreateTripComponent extends Component {
           <Icon
               name='favorite'
               type='material'
-              color='white'
+              color={NapColors.white}
             />
           </View>
 
@@ -77,7 +77,7 @@ class CreateTripComponent extends Component {
               <Icon
                   name='home'
                   type='material'
-                  color='white'
+                  color={NapColors.white}
                 />
               </View>
           <Text style={styles.savedButtonText}>Home stop</Text>
@@ -102,7 +102,7 @@ class CreateTripComponent extends Component {
               <Icon
                   name='work'
                   type='material'
-                  color='white'
+                  color={NapColors.white}
                 />
               </View>
           <Text style={styles.savedButtonText}>Work stop</Text>

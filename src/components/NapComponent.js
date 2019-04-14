@@ -110,14 +110,14 @@ export default class NapContainer extends Component {
                     size={32}
                     name='play-arrow'
                     type='material'
-                    color='white'
+                    color={NapColors.white}
                     />
               :
                 <Icon
                       size={32}
                       name='pause'
                       type='material'
-                      color='white'
+                      color={NapColors.white}
                     /> 
               }
           </TouchableOpacity>
