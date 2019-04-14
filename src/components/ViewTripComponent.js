@@ -61,20 +61,25 @@ class ViewTripComponent extends Component {
             "The name for this destination is missing!" 
             : 
             <>
-            
             <View style={{
                flexDirection: 'row',
                justifyContent: 'flex-start',
                alignItems: 'center',
                }}>
-
               <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
             </View>
             <View>
               <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
             </View>
-              
             </> }
+
+          {/* //All new code inside the display card goes here */}
+        <TouchableOpacity onPress={() => this.props.toggleTransitMode()}>
+          <View style={styles.actionButton} >
+          <Text style={styles.actionButtonText}>Transit</Text>
+          </View>
+        </TouchableOpacity>
+          
         </View>
 
     </View>

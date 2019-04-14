@@ -262,6 +262,25 @@ favoriteButton: {
 
 //see Global for destinationTitleText
 
+
+actionButton: {
+  marginTop: 16,
+  height: 54,
+  backgroundColor: NapColors.actionBlue,
+  borderColor: NapColors.actionBlue,
+  borderWidth: 0,
+  borderRadius: 8,
+  flexDirection:'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignSelf: 'stretch',
+},
+
+actionButtonText: {
+  fontSize: 24,
+  color: 'white',
+},
+
 //================ Search/Save =================
 
 searchButtonText: {

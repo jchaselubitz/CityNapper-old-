@@ -26,6 +26,7 @@ export default class App extends Component  {
     routeCoords: [],
     x: 'true',
     napping: false,
+    mode: 'transit',
     homeButton: null,
     workButton: null
   }
@@ -37,30 +38,34 @@ export default class App extends Component  {
 
   checkForExistingUser = async () => {
     try {
-      savedData = await AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton'])
-      console.log('####', savedData)
+      savedData = await AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode'])
+      // console.log('####', savedData)
       if (savedData !== null) { 
         savedData.map((result, i, store) => {
           this.setUserData( store[i][0], store[i][1])
       })
       } 
     } catch (error) {
-      console.log("#### runWakeUp error", error)
+      // console.log("#### runWakeUp error", error)
     
     }
   }
 
-
   setUserData = (key, value) => {
     switch (key) {
       case 'userFavorites':
-        console.log('#### user incoming', key, value )
+        // console.log('#### user incoming', key, value )
         if (value !== null)
         this.setState({ userFavorites: JSON.parse(value)}, console.log('####', this.state.userFavorites))
       case 'homeButton':
         this.setState({ homeButton: JSON.parse(value)});
       case 'workButton':
         this.setState({ workButton: JSON.parse(value)});
+      case 'mode':
+      console.log('#### mode incoming', key, value )
+      if (JSON.parse(value) === "transit" || JSON.parse(value) === "driving")
+      console.log('#### mode after if', value )
+        this.setState({ mode: JSON.parse(value)});
     }
   }
 
@@ -93,40 +98,6 @@ export default class App extends Component  {
       },
     )
   } 
-  
-
-//============= NAP FUNCTIONS ======================
-
-startNap = () => {
-  pushNotification.requestPermissions()
-  this.checkMapLocationPermissions(this.setBoundary())
-  this.setState({ napping: true  });
-} 
-   
-
-endNap = () => {
-  this.dropBoundary()
-  this.stopVibrationFunction()
-  this.clearDestinationSelection()
-  pushNotification.cancelAllLocalNotifications()
-}
-
-//=========== ALERT ==================
-
-PATTERN = [ 50, 50]
-
-startVibrationFunction = () => {
-Vibration.vibrate(this.PATTERN, true)
-}
-
-stopVibrationFunction = () => {
-Vibration.cancel()
-}
-
-alertNotification = () => {
-pushNotification.localNotification(this.state.destName)
-}
-
 
 //============= SETTER FUNCTIONS ======================
 
@@ -145,7 +116,6 @@ sendToLocalStorage = async (key, item) => {
     console.log('#### sendToLocalStorage', error)
   }
 }
-
 
 
 addRemoveFavorite = (item) => {
@@ -189,33 +159,17 @@ clearDestinationSelection = (link) => {
    }, link )
 }
 
-//========== BOUNDARY FUNCTIONS ===============
-
-setBoundary = () => {
-    if (this.state.destName !== "-")
-    Boundary.add({
-      lat: this.state.destLatitude, 
-      lng: this.state.destLongitude,
-      radius: 200, // in meters
-      id: this.state.destName,
-    })
-      .then(() => console.log("boundary set"))
-      .catch(e => console.error("error :(", e));
-   
-    Boundary.on(Events.ENTER, id => {
-      this.alertNotification()
-      this.startVibrationFunction()
-    });
-}
-
-dropBoundary = () => {
-  Boundary.removeAll()
-  .then(() => console.log('Location Dropped'))
-  .catch(e => console.log('failed to drop location', e))
-}
-
-
 //========== ROUTE MAPPING FUNCTIONS ===============
+
+toggleTransitMode = () => {
+  if (this.state.mode === "transit") {
+    this.sendToLocalStorage("mode", "driving")
+    this.setState({ mode: "driving" }, () => this.setRoute()) 
+  } else {
+    this.sendToLocalStorage("mode", "transit")
+    this.setState({ mode: "transit" }, () => this.setRoute());
+  }
+}
 
 setRoute = () => {
   if (this.state.currentLatitude != null && this.state.destLatitude!=null)
@@ -230,7 +184,7 @@ setRoute = () => {
 
 async getDirections(tripOrigin, tripDestination) {
   try {
-      let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${tripOrigin}&destination=${tripDestination}&key=${Keys.GoogleKey}`)
+      let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${tripOrigin}&destination=${tripDestination}&mode=${this.state.mode}&key=${Keys.GoogleKey}`)
       let respJson = await resp.json();
       let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
       let coords = points.map((point, index) => {
@@ -247,6 +201,66 @@ async getDirections(tripOrigin, tripDestination) {
   }
 }
 
+
+//========== BOUNDARY FUNCTIONS ===============
+
+setBoundary = () => {
+    if (this.state.destName !== "-")
+    Boundary.add({
+      lat: this.state.destLatitude, 
+      lng: this.state.destLongitude,
+      radius: 200, // in meters
+      id: this.state.destName,
+    })
+      .then(() => console.log("boundary set"))
+      .catch(e => console.error("error :(", e));
+   
+    Boundary.on(Events.ENTER, id => {
+      this.alertNotification()
+      // this.startVibrationFunction()
+    });
+}
+
+dropBoundary = () => {
+  Boundary.removeAll()
+  .then(() => console.log('Location Dropped'))
+  .catch(e => console.log('failed to drop location', e))
+}
+
+
+//============= NAP FUNCTIONS ======================
+
+startNap = () => {
+  pushNotification.requestPermissions()
+  this.checkMapLocationPermissions(this.setBoundary())
+  this.setState({ napping: true  });
+} 
+   
+
+endNap = () => {
+  this.dropBoundary()
+  // this.stopVibrationFunction()
+  this.clearDestinationSelection()
+  pushNotification.cancelAllLocalNotifications()
+}
+
+//=========== ALERT ==================
+
+alertNotification = () => {
+  pushNotification.localNotification(this.state.destName)
+}
+
+// PATTERN = [ 50, 50]
+
+// startVibrationFunction = () => {
+// Vibration.vibrate(this.PATTERN, true)
+// }
+
+// stopVibrationFunction = () => {
+// Vibration.cancel()
+// }
+
+
 //======================================= VIEWS =================================
 
 
@@ -256,6 +270,8 @@ async getDirections(tripOrigin, tripDestination) {
       userFavorites: this.state.userFavorites,
       currentLatitude: this.state.currentLatitude,
       currentLongitude: this.state.currentLongitude,
+      toggleTransitMode: this.toggleTransitMode,
+      currentMode: this.state.mode,
       destLocation: this.state.destLocation,
       destLatitude: this.state.destLatitude,
       destLongitude: this.state.destLongitude,
