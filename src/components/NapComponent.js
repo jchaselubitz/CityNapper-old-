@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {AppRegistry, View, Text, TouchableOpacity, Button} from 'react-native';
+import { Icon, FlatList, ListItem } from 'react-native-elements';
 import StyleHelper from '../helpers/StyleHelper'
 import air_conditioner from '../media/air_conditioner.mp3'
 import crackling_fireplace from '../media/crackling_fireplace.mp3'
@@ -8,12 +9,71 @@ import rainforest from '../media/rainforest.mp3'
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
+//Could put this in a music manager
+
+const sounds = [
+  {
+    name: 'Rainforest',
+    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Ulva_Island_rainforest.jpg',
+    subtitle: 'Comforting sounds of rain an birds.',
+    sound: rainforest
+  },
+  {
+    name: 'Air Conditioner',
+    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Air_Condition_Unit_Interior_View_USA.jpg/319px-Air_Condition_Unit_Interior_View_USA.jpg',
+    subtitle: 'The whitest of white noise.',
+    sound: air_conditioner
+  },
+  {
+    name: 'Crackling Fireplace',
+    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Fire_from_brazier.jpg/320px-Fire_from_brazier.jpg',
+    subtitle: 'For your coziest commutes.',
+    sound: crackling_fireplace
+  },
+  {
+    name: 'Heavy Rain',
+    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Rain_drops_on_window_01_ies.jpg/320px-Rain_drops_on_window_01_ies.jpg',
+    subtitle: 'Like Air Conditioner, but wetter.',
+    sound: heavy_rain
+  },
+  
+]
+
+
 export default class NapContainer extends Component {
   
-
   render () {
      return (
       <View style={styles.napContainer}>
+      <View style={{
+         position: 'absolute',
+         top: 24,
+         left: 20,
+         zIndex: 3
+      }}>
+
+        <TouchableOpacity
+              style={styles.favoriteButton}
+              onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}>
+              {this.props.isFavorite(this.props.destLocation)
+              ?
+                <Icon
+                    size={24}
+                    name='favorite'
+                    type='material'
+                    color={NapColors.subtleBlue}
+                    />
+              :
+                <Icon
+                      size={24}
+                      name='favorite-border'
+                      type='material'
+                      color={NapColors.subtleBlue}
+                    />
+                      
+              }
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           style={styles.endNapButton} 
           onPress={() => this.props.handleClick()}
@@ -23,17 +83,54 @@ export default class NapContainer extends Component {
         <View style={styles.tripDisplayCard}>
           <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
           <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
-          <Text style={styles.destinationTitleText}>Play some sweet jamz</Text>
-          <Button onPress={() => this.props.clickVideo(air_conditioner)} title='Air conditioner'/>
-          <Button onPress={() => this.props.clickVideo(crackling_fireplace)} title='Fireplace'/>
-          <Button onPress={() => this.props.clickVideo(heavy_rain)} title='Heavy rain'/>
-          <Button onPress={() => this.props.clickVideo(rainforest)} title='Rainforest'/>
-          <Button onPress={() => this.props.playPause()} title='Play/Pause'/>
-           
-           {this.props.sleepSound()}
-         
+        
+        <View style={styles.divider}/>
+
+          <View>
+          {
+            sounds.map((s, i) => (
+              <ListItem
+                key={i}
+                leftAvatar={{ source: { uri: s.avatar_url } }}
+                title={s.name}
+                subtitle={s.subtitle}
+                onPress={() => this.props.clickVideo(s.sound)}
+              />
+            ))
+          }
         </View>
-      </View>
+        <View>
+          {!!this.props.soundFile ? 
+          <TouchableOpacity
+          style={styles.playButton} 
+          onPress={() => this.props.playPause()}>
+            {this.props.isPaused
+              ?
+                <Icon
+                    size={32}
+                    name='play-arrow'
+                    type='material'
+                    color='white'
+                    />
+              :
+                <Icon
+                      size={32}
+                      name='pause'
+                      type='material'
+                      color='white'
+                    /> 
+              }
+          </TouchableOpacity>
+          :
+          null
+          }
+        </View>
+
+           {this.props.sleepSound()}
+
+        </View>
+    </View>
+     
      )
    }
 

@@ -39,13 +39,19 @@ class ViewTripComponent extends Component {
                     color={NapColors.cancelRed}
                    />
           </TouchableOpacity>
+          <View style={{
+             position: 'absolute',
+             top: 24,
+             left: 60,
+             zIndex: 3
+          }}>
             <TouchableOpacity
               style={styles.favoriteButton}
               onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}>
               {this.props.isFavorite(this.props.destLocation)
               ?
                 <Icon
-                    size={22}
+                    size={24}
                     name='favorite'
                     type='material'
                     color={NapColors.subtleBlue}
@@ -60,7 +66,7 @@ class ViewTripComponent extends Component {
                       
               }
           </TouchableOpacity>
-
+          </View>
           <View style={styles.tripDisplayCard}>
           {this.props.destName === "-" ? 
             "The name for this destination is missing!" 

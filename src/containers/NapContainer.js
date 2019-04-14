@@ -50,6 +50,10 @@ export default class NapContainer extends Component {
     const destLatitude = this.props.screenProps.destLatitude
     const destLongitude = this.props.screenProps.destLongitude
     const routeCoords = this.props.screenProps.routeCoords
+    const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
+    const isFavorite = this.props.screenProps.isFavorite
+    const userFavorites = this.props.screenProps.userFavorites
+    const destLocation = this.props.screenProps.destLocation
     const x = this.props.screenProps.x
 
     handleClick = () => {
@@ -74,6 +78,12 @@ export default class NapContainer extends Component {
           sleepSound={this.sleepSound}
           clickVideo={this.clickVideo}
           playPause={this.playPause}
+          isPaused={this.state.paused}
+          isFavorite={isFavorite}
+          userFavorites={userFavorites}
+          addRemoveFavorite={addRemoveFavorite}
+          destLocation={destLocation}
+          soundFile={this.state.soundFile}
         />
        </View>
        

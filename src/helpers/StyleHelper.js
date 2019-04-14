@@ -56,6 +56,35 @@ detailText: {
   marginTop: 6,
 },
 
+favoriteButton: {
+  marginBottom: 0,
+  height: 36,
+  paddingTop: 7,
+  padding: 6,
+  backgroundColor: 'white',
+  borderColor: NapColors.cancelRed,
+  borderWidth: 0,
+  borderRadius: 20,
+  flexDirection:'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  alignSelf: 'stretch',
+  shadowColor: "darkgrey",
+  shadowRadius: 8,
+  shadowOpacity: 0.8,
+  shadowOffset: {
+    height: 4
+  }
+},
+
+divider: {
+  height: 1,
+  width: '100%',
+  backgroundColor: 'grey',
+  marginTop: 20,
+  marginBottom: 10,
+},
+
 //================ Map =================
 
 
@@ -242,31 +271,7 @@ cancelButton: {
   }
 },
 
-favoriteButton: {
-  position: 'absolute',
-    top: 24,
-    // right: 182,
-    left: 60,
-  zIndex: 3,
-  marginBottom: 0,
-  height: 36,
-  paddingTop: 7,
-  padding: 6,
-  backgroundColor: 'white',
-  borderColor: NapColors.cancelRed,
-  borderWidth: 0,
-  borderRadius: 20,
-  flexDirection:'column',
-  alignItems: 'flex-end',
-  justifyContent: 'center',
-  alignSelf: 'stretch',
-  shadowColor: "darkgrey",
-  shadowRadius: 8,
-  shadowOpacity: 0.8,
-  shadowOffset: {
-    height: 4
-  }
-},
+//Favorite button is in Global
 
 //see Global for destinationTitleText
 
@@ -413,7 +418,6 @@ napScreenContainer: {
 },
 
 napContainer: {
-  
   paddingTop: 32,
   paddingBottom: 0,
   position: 'absolute',
@@ -432,12 +436,14 @@ napContainer: {
 endNapButton: {
   position: 'absolute',
     top: 0,
-    left: 24,
-    right: 24,
+
+    right: 16,
   zIndex: 3,
-  marginBottom: 16,
-  height: 54,
-  padding: 8,
+  marginBottom: 8,
+  marginLeft: 16,
+  marginRight: 16,
+  height: 60,
+  padding: 16,
   backgroundColor: NapColors.actionOrange,
   borderColor: 'blue',
   borderWidth: 0,
@@ -447,10 +453,10 @@ endNapButton: {
   justifyContent: 'center',
   alignSelf: 'stretch',
   shadowColor: "black",
-  shadowRadius: 16,
-  shadowOpacity: 0.7,
+  shadowRadius: 8,
+  shadowOpacity: 0.5,
   shadowOffset: {
-    height: 6
+    height: 4
   }
 },
 
@@ -458,6 +464,19 @@ endNapText: {
   fontSize: 24,
   fontWeight: 'bold',
   color: 'white',
+},
+
+playButton: {
+  marginTop: 16,
+  height: 54,
+  width: 54,
+  backgroundColor: NapColors.subtleBlue,
+  borderColor: NapColors.primaryBlue,
+  borderWidth: 1,
+  borderRadius: 50,
+  flexDirection:'column',
+  justifyContent: 'center',
+  alignSelf: 'center',
 },
 
 //see Global for destinationTitleText
