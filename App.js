@@ -74,9 +74,9 @@ export default class App extends Component  {
       permissionsService.permissionsCheckpoint(response, nextFunction))
   }
 
-  checkBoundaryLocationPermissions = () => {
+  checkBoundaryLocationPermissions = (nextFunction) => {
     Permissions.check('location', { type: 'always' }).then(response => 
-      permissionsService.permissionsCheckpoint(response))
+      permissionsService.permissionsCheckpoint(response, nextFunction))
   }
 
   
@@ -246,7 +246,7 @@ dropBoundary = () => {
 
 startNap = () => {
   pushNotification.requestPermissions()
-  this.checkMapLocationPermissions(this.setBoundary())
+  this.checkBoundaryLocationPermissions(() => this.setBoundary())
   this.setState({ napping: true  });
 } 
    

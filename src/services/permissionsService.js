@@ -4,12 +4,15 @@ import { Alert } from 'react-native'
 import NavigationService from './navigationService';
 
 
+
 const locationAccessDenied = () => {
       NavigationService.navigate('LocationWarning')
 }
 
 const permissionsCheckpoint = (response, callback) => {
+  console.log('#####', response)
   if (response === 'denied' || response === 'restricted') {
+    console.log('#### I GOT THROUGH')
     Alert.alert(
       'CityNapper does not have "always" location access!',
       'Please go to Settings and change the location permissions for this app to "Always".',
@@ -23,9 +26,9 @@ const permissionsCheckpoint = (response, callback) => {
         onPress: Permissions.openSettings
       },
     ],
-    )
-  }
-  if (response === 'undetermined') {
+    ) 
+    return
+  } else if (response === 'undetermined') {
     Alert.alert(
       'Can we access your location?',
       'CityNapper needs permission to track your "always" in order to wake you up when you are close to your stop.',
