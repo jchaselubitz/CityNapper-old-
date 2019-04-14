@@ -4,7 +4,6 @@ import StylesHelper from '../helpers/StyleHelper'
 import {AppRegistry} from 'react-native';
 
 const styles = StylesHelper.styles
-const selectedMapType = "standard"
 
 export default class MapComponent extends Component {
 
@@ -12,7 +11,7 @@ export default class MapComponent extends Component {
      return (
       <MapView 
       style={styles.map}
-      mapType={selectedMapType}
+      mapType={styles.selectedMapType}
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
         longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,

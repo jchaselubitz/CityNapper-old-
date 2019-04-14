@@ -32,7 +32,7 @@ class ViewTripComponent extends Component {
                     name='close'
                     type='material'
                     color={NapColors.cancelRed}
-                    onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}/>
+                   />
           </TouchableOpacity>
             <TouchableOpacity
               style={styles.favoriteButton}

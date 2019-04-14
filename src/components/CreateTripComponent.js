@@ -21,8 +21,8 @@ class CreateTripComponent extends Component {
     return this.props.userFavorites.map(favorite => 
     <TouchableOpacity 
       onPress={() => this.props.setDestinationLocation(favorite.item)} 
-      style={styles.buttonFavorite} >
-    <View style={styles.buttonContainer}>
+      style={styles.savedButton} >
+    <View style={styles.savedButtonContainer}>
         <View style={styles.listIcon}>
           <Icon
               name='favorite'
@@ -31,12 +31,12 @@ class CreateTripComponent extends Component {
             />
           </View>
 
-      <Text style={styles.buttonFavoriteText}>
+      <Text style={styles.savedButtonText}>
       {favorite.item.name}
       </Text>
   
         <TouchableOpacity onPress={() => this.props.addRemoveFavorite(favorite.item)} >
-        <View style={styles.tripButtonIcon}>
+        <View style={styles.modifySavedIcon}>
           <Icon
               name='close'
               type='material'
@@ -70,8 +70,8 @@ class CreateTripComponent extends Component {
       <View style={styles.tripSelectionCard}>
         <TouchableOpacity 
           onPress={() => handleWorkHomeSave(this.props.home, "home")} 
-          style={styles.buttonFavorite} >
-        <View style={styles.buttonContainer}>
+          style={styles.savedButton} >
+        <View style={styles.savedButtonContainer}>
             <View style={styles.listIcon}>
               <Icon
                   name='home'
@@ -79,9 +79,9 @@ class CreateTripComponent extends Component {
                   color='white'
                 />
               </View>
-          <Text style={styles.buttonFavoriteText}>Home stop</Text>
+          <Text style={styles.savedButtonText}>Home stop</Text>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'home'})} >
-        <View style={styles.tripButtonIcon}>
+        <View style={styles.modifySavedIcon}>
           <Icon
               name='edit'
               type='material'
@@ -95,8 +95,8 @@ class CreateTripComponent extends Component {
   {/* +++++++++++++++++++++WORK+++++++++++++++++++++++++ */}
         <TouchableOpacity 
           onPress={() => handleWorkHomeSave(this.props.work, "work")} 
-          style={styles.buttonFavorite} >
-        <View style={styles.buttonContainer}>
+          style={styles.savedButton} >
+        <View style={styles.savedButtonContainer}>
             <View style={styles.listIcon}>
               <Icon
                   name='work'
@@ -104,9 +104,9 @@ class CreateTripComponent extends Component {
                   color='white'
                 />
               </View>
-          <Text style={styles.buttonFavoriteText}>Work stop</Text>
+          <Text style={styles.savedButtonText}>Work stop</Text>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'work'})} >
-        <View style={styles.tripButtonIcon}>
+        <View style={styles.modifySavedIcon}>
           <Icon
               name='edit'
               type='material'
