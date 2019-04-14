@@ -1,7 +1,19 @@
 import {StyleSheet} from 'react-native';
 
 const lightColors = {
-  primaryBlue: "#5c6174",
+  map: "standard",
+  searchBackground: 'dark',
+  searchResultText: 'dark',
+  searchIcons: 'white',
+  lightIcon: 'lightgrey',
+  blueIcon: "#5c6174",
+  primaryText: 'black',
+  lightText: 'white',
+  savedButton: '#626a7f',
+  savedButtionText: 'white',
+  placeHolderText: '#5c6174',
+  darkCard: "#5c6174",
+  primaryBlue: "#5c6174", //cards
   subtleBlue: '#626a7f',
   shadowBlue: '#3f4354',
   actionOrange: '#f58b44',
@@ -18,7 +30,19 @@ const lightColors = {
 
 
 const darkColors = {
-  primaryBlue: "#5c6174",
+  map: "satellite",
+  searchBackground: 'darkgrey',
+  searchResultText: 'lightgrey',
+  searchIcons: 'lightgrey',
+  lightIcon: 'darkgrey',
+  blueIcon: "lightGrey",
+  searchBarText: 'lightgrey',
+  primaryText: 'lightgrey',
+  savedButton: '#5c6174',
+  savedButtionText: 'lightgrey',
+  lightCard: '#55575e',
+  placeHolderText: 'lightgrey',
+  primaryBlue: "#33353f", //cards
   subtleBlue: '#626a7f',
   shadowBlue: '#3f4354',
   actionOrange: '#8e5127',
@@ -27,16 +51,16 @@ const darkColors = {
   calmBlue: '#818dab', 
   cancelRed: '#c63131',
   pulldownLine: '#c4c8d1',
-  darkgrey: 'darkgrey',
-  white: 'lightgrey',
+  darkgrey: 'lightgrey',
+  white: '#55575e',
   divider: 'grey',
   black: "white"
 }
 
 
-let NapColors = darkColors
+let NapColors = lightColors
 
-const selectedMapType = "standard"
+const selectedMapType = "satellite"
 
 const styles = StyleSheet.create({
 //================ Global =================
@@ -158,7 +182,7 @@ buttonSearch: {
 // inside tripSelectionContainer
 tripSelectionCard: {
   zIndex: 1,
-  backgroundColor: NapColors.primaryBlue,
+  backgroundColor: NapColors.darkCard,
   shadowColor: NapColors.darkgrey,
   shadowRadius: 16,
   shadowOpacity: 0.9,
@@ -192,7 +216,7 @@ savedButton: {
   marginRight: 16,
   height: 48,
   padding: 8,
-  backgroundColor: NapColors.subtleBlue,
+  backgroundColor: NapColors.savedButton,
   borderRadius: 8,
   flexDirection:'column',
   alignItems: 'flex-start',
@@ -202,7 +226,7 @@ savedButton: {
 savedButtonText: {
   flex: 9,
   fontSize: 18,
-  color: NapColors.white,
+  color: NapColors.savedButtionText,
   alignSelf: 'center'
 },
 
@@ -337,7 +361,7 @@ actionToggleText: {
 searchButtonText: {
   flex: 9,
   fontSize: 18,
-  color: NapColors.primaryBlue,
+  color: NapColors.placeHolderText,
   alignSelf: 'center'
 },
 
@@ -358,6 +382,7 @@ searchBar: {
   marginTop: 48,
   borderColor: NapColors.primaryBlue,
   backgroundColor: NapColors.white,
+  color: NapColors.primaryText,
   borderWidth: 0,
   borderRadius: 8,
   flexDirection:'column',
@@ -373,9 +398,9 @@ searchBar: {
   fontSize: 18
 },
 
-searchInput: {
-  color: "black",
-},
+// searchInput: {
+//   color: NapColors.primaryText,
+// },
 
 pulldownEr: {
   flexDirection: "column",

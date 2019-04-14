@@ -20,7 +20,7 @@ class SearchComponent extends Component {
           <TextInput
             style={styles.searchBar}
             placeholder="Where are you going?"
-            placeholderTextColor={NapColors.primaryBlue}
+            placeholderTextColor={NapColors.placeHolderText}
             onChangeText={text => this.props.setSearchText(text)}
             autoCorrect={false}    
           />

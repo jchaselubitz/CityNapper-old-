@@ -28,7 +28,7 @@ class CreateTripComponent extends Component {
           <Icon
               name='favorite'
               type='material'
-              color={NapColors.white}
+              color={NapColors.primaryText}
             />
           </View>
 
@@ -41,7 +41,7 @@ class CreateTripComponent extends Component {
           <Icon
               name='close'
               type='material'
-              color='lightgrey'
+              color={NapColors.lightIcon}
               size={18}
             />
           </View>
@@ -61,7 +61,7 @@ class CreateTripComponent extends Component {
               <Icon
                   name='search'
                   type='material'
-                  color={NapColors.primaryBlue}
+                  color={NapColors.placeHolderText}
                 />
               </View>
         <Text style={styles.searchButtonText}>Where are you going?</Text>
@@ -77,7 +77,7 @@ class CreateTripComponent extends Component {
               <Icon
                   name='home'
                   type='material'
-                  color={NapColors.white}
+                  color={NapColors.lightIcon}
                 />
               </View>
           <Text style={styles.savedButtonText}>Home stop</Text>
@@ -86,7 +86,7 @@ class CreateTripComponent extends Component {
           <Icon
               name='edit'
               type='material'
-              color='lightgrey'
+              color={NapColors.lightIcon}
               size={18}
             />
           </View>
@@ -102,7 +102,7 @@ class CreateTripComponent extends Component {
               <Icon
                   name='work'
                   type='material'
-                  color={NapColors.white}
+                  color={NapColors.lightIcon}
                 />
               </View>
           <Text style={styles.savedButtonText}>Work stop</Text>
@@ -111,7 +111,7 @@ class CreateTripComponent extends Component {
           <Icon
               name='edit'
               type='material'
-              color='lightgrey'
+              color={NapColors.lightIcon}
               size={18}
             />
           </View>
