@@ -27,8 +27,35 @@ class ViewTripComponent extends Component {
           <TouchableOpacity
             style={styles.cancelButton}
             onPress={() => this.props.rejectSelection()}>
-            <Text style={styles.cancelText}>cancel</Text>
+             <Icon
+                    size={24}
+                    name='close'
+                    type='material'
+                    color={NapColors.cancelRed}
+                    onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}/>
           </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.favoriteButton}
+              onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}>
+              {this.props.isFavorite(this.props.destLocation)
+              ?
+                <Icon
+                    size={22}
+                    name='favorite'
+                    type='material'
+                    color={NapColors.subtleBlue}
+                    />
+              :
+                <Icon
+                      size={24}
+                      name='favorite-border'
+                      type='material'
+                      color={NapColors.subtleBlue}
+                    />
+                      
+              }
+          </TouchableOpacity>
+
           <View style={styles.tripDisplayCard}>
           {this.props.destName === "-" ? 
             "The name for this destination is missing!" 
@@ -40,25 +67,6 @@ class ViewTripComponent extends Component {
                justifyContent: 'flex-start',
                alignItems: 'center',
                }}>
-
-              <View style={styles.viewPageIcon}>
-              {this.props.isFavorite(this.props.destLocation)
-              ?
-                <Icon
-                    size={24}
-                    name='favorite'
-                    type='material'
-                    color={NapColors.subtleBlue}
-                    onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}/>
-              :
-                <Icon
-                      size={24}
-                      name='favorite-border'
-                      type='material'
-                      color={NapColors.subtleBlue}
-                      onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}/>
-              }
-              </View>
 
               <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
             </View>

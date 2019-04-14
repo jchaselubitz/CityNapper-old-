@@ -12,6 +12,27 @@ const NapColors = {
 
 //add fonts here
 
+//================ Global =================
+
+//================ Map =================
+
+
+//================ Create Trip =================
+
+
+//================ View Trip =================
+
+
+//================ Search/Save =================
+
+
+//================ Nap =================
+
+
+//================ Warning =================
+
+
+
 const styles = StyleSheet.create({
   //================ MAP =================
   map: {
@@ -81,10 +102,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'stretch',
     shadowColor: "black",
-    shadowRadius: 16,
-    shadowOpacity: 0.7,
+    shadowRadius: 8,
+    shadowOpacity: 0.5,
     shadowOffset: {
-      height: 6
+      height: 4
     }
   },
   buttonNapText: {
@@ -145,18 +166,49 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
 },
 
+// cancelButton: {
+//   position: 'absolute',
+//     top: 24,
+//     right: 180,
+//   zIndex: 3,
+//   marginBottom: 16,
+//   height: 32,
+//   padding: 8,
+//   backgroundColor: 'white',
+//   borderColor: NapColors.cancelRed,
+//   borderWidth: 1,
+//   borderRadius: 16,
+//   flexDirection:'column',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   alignSelf: 'stretch',
+//   shadowColor: "darkgrey",
+//   shadowRadius: 8,
+//   shadowOpacity: 0.8,
+//   shadowOffset: {
+//     height: 4
+//   }
+// },
+
+// cancelText: {
+//   fontSize: 13,
+//   fontWeight: 'bold',
+//   color: NapColors.cancelRed,
+// },
+
 cancelButton: {
   position: 'absolute',
     top: 24,
-    right: 180,
+    // right: 182,
+    left: 16,
   zIndex: 3,
-  marginBottom: 16,
-  height: 32,
-  padding: 8,
+  marginBottom: 0,
+  height: 36,
+  padding: 6,
   backgroundColor: 'white',
   borderColor: NapColors.cancelRed,
-  borderWidth: 1,
-  borderRadius: 16,
+  borderWidth: 0,
+  borderRadius: 20,
   flexDirection:'column',
   alignItems: 'center',
   justifyContent: 'center',
@@ -169,10 +221,30 @@ cancelButton: {
   }
 },
 
-cancelText: {
-  fontSize: 13,
-  fontWeight: 'bold',
-  color: NapColors.cancelRed,
+favoriteButton: {
+  position: 'absolute',
+    top: 24,
+    // right: 182,
+    left: 60,
+  zIndex: 3,
+  marginBottom: 0,
+  height: 36,
+  paddingTop: 7,
+  padding: 6,
+  backgroundColor: 'white',
+  borderColor: NapColors.cancelRed,
+  borderWidth: 0,
+  borderRadius: 20,
+  flexDirection:'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  alignSelf: 'stretch',
+  shadowColor: "darkgrey",
+  shadowRadius: 8,
+  shadowOpacity: 0.8,
+  shadowOffset: {
+    height: 4
+  }
 },
 
   //================ SEARCH =================
