@@ -11,7 +11,8 @@ const permissionsCheckpoint = (response, callback) => {
       [
       {
         text: 'No way',
-        onPress: () => console.log('Permission denied'), // should send to a failure screen
+        onPress: () => Alert.alert("Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app."),
+        // onPress: () => noLocationAccess()
         style: 'cancel',
       },
       { text: 'Open Settings', 
@@ -27,7 +28,7 @@ const permissionsCheckpoint = (response, callback) => {
       [
         {
           text: 'No way',
-          onPress: () => console.log('Permission denied'), // should send to a failure screen
+          onPress: () => Alert.alert("Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app."),
           style: 'cancel',
         },
         { text: 'OK', 
