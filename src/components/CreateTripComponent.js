@@ -28,7 +28,7 @@ class CreateTripComponent extends Component {
           <Icon
               name='favorite'
               type='material'
-              color={NapColors.primaryText}
+              color={NapColors.lightIcon}
             />
           </View>
 

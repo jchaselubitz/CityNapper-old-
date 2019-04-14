@@ -10,7 +10,7 @@ const lightColors = {
   primaryText: 'black',
   lightText: 'white',
   savedButton: '#626a7f',
-  savedButtionText: 'white',
+  savedButtonText: 'white',
   placeHolderText: '#5c6174',
   darkCard: "#5c6174",
   primaryBlue: "#5c6174", //cards
@@ -39,7 +39,7 @@ const darkColors = {
   searchBarText: 'lightgrey',
   primaryText: 'lightgrey',
   savedButton: '#5c6174',
-  savedButtionText: 'lightgrey',
+  savedButtonText: 'lightgrey',
   lightCard: '#55575e',
   placeHolderText: 'lightgrey',
   primaryBlue: "#33353f", //cards
@@ -226,7 +226,7 @@ savedButton: {
 savedButtonText: {
   flex: 9,
   fontSize: 18,
-  color: NapColors.savedButtionText,
+  color: NapColors.savedButtonText,
   alignSelf: 'center'
 },
 
