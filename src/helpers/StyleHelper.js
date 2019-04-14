@@ -48,6 +48,7 @@ destinationSubtitleText: {
 },
 
 
+
 //================ Map =================
 
 
@@ -262,10 +263,23 @@ favoriteButton: {
 
 //see Global for destinationTitleText
 
-
-actionButton: {
+largeToggleContainer: {
   marginTop: 16,
   height: 54,
+  backgroundColor: NapColors.subtleBlue,
+  borderColor: NapColors.primaryBlue,
+  borderWidth: 1,
+  borderRadius: 10,
+  flexDirection:'column',
+  justifyContent: 'center',
+  alignSelf: 'stretch',
+},
+
+
+actionToggle: {
+  margin: 3,
+  height: 48,
+  width: '50%',
   backgroundColor: NapColors.actionBlue,
   borderColor: NapColors.actionBlue,
   borderWidth: 0,
@@ -273,12 +287,13 @@ actionButton: {
   flexDirection:'column',
   alignItems: 'center',
   justifyContent: 'center',
-  alignSelf: 'stretch',
+ 
 },
 
-actionButtonText: {
+actionToggleText: {
   fontSize: 24,
   color: 'white',
+ 
 },
 
 //================ Search/Save =================

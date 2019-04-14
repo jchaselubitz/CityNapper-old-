@@ -73,12 +73,14 @@ class ViewTripComponent extends Component {
             </View>
             </> }
 
-          {/* //All new code inside the display card goes here */}
-        <TouchableOpacity onPress={() => this.props.toggleTransitMode()}>
-          <View style={styles.actionButton} >
-          <Text style={styles.actionButtonText}>Transit</Text>
+          <View style={styles.largeToggleContainer}>
+            <TouchableOpacity onPress={() => this.props.toggleTransitMode()}>
+            <View style={styles.actionToggle} >
+            <Text style={styles.actionToggleText}>Transit</Text>
+            </View>
+          </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        
           
         </View>
 
