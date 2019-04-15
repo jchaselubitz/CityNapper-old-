@@ -49,6 +49,9 @@ class SearchComponent extends Component {
               <ListItem
                 title={item.name}
                 subtitle={item.address}
+                containerStyle={styles.listItem}
+                titleStyle={styles.listItem}
+                subtitleStyle={styles.listItem}
                 onPress={() => this.props.handleSelection(item)}
               />
             </View>
@@ -57,14 +60,14 @@ class SearchComponent extends Component {
               <Icon
                   name={'favorite'}
                   type='material'
-                  color={NapColors.primaryBlue}
+                  color={NapColors.listIcon}
                   onPress={() => this.props.addRemoveFavorite(item)}
                 />
                 : 
               <Icon
                   name={'favorite-border'}
                   type='material'
-                  color={NapColors.primaryBlue}
+                  color={NapColors.listIcon}
                   onPress={() => this.props.addRemoveFavorite(item)}
                 />
               }

@@ -54,14 +54,14 @@ class ViewTripComponent extends Component {
                     size={24}
                     name='favorite'
                     type='material'
-                    color={NapColors.subtleBlue}
+                    color={NapColors.listIcon}
                     />
               :
                 <Icon
                       size={24}
                       name='favorite-border'
                       type='material'
-                      color={NapColors.subtleBlue}
+                      color={NapColors.listIcon}
                     />
                       
               }

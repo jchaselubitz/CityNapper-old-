@@ -3,8 +3,10 @@ import SearchContainer from './containers/SearchContainer'
 import NapContainer from './containers/NapContainer'
 import TripContainer from './containers/TripContainer'
 import LocationErrorContainer from './containers/LocationErrorContainer'
+import StyleHelper from './helpers/StyleHelper'
 import {AppRegistry} from 'react-native';
 
+const NapColors = StyleHelper.NapColors
 const TripStack = createStackNavigator(
   {
     Trip: {
@@ -27,7 +29,10 @@ const TripStack = createStackNavigator(
   },
   {
     mode: 'modal',
-    header: null
+    header: null,
+    cardStyle: {
+      backgroundColor: NapColors.NavBackground
+    }
   },
 );
 

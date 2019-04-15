@@ -61,14 +61,14 @@ export default class NapContainer extends Component {
                     size={24}
                     name='favorite'
                     type='material'
-                    color={NapColors.subtleBlue}
+                    color={NapColors.listIcon}
                     />
               :
                 <Icon
                       size={24}
                       name='favorite-border'
                       type='material'
-                      color={NapColors.subtleBlue}
+                      color={NapColors.listIcon}
                     />
                       
               }
@@ -94,6 +94,9 @@ export default class NapContainer extends Component {
                 leftAvatar={{ source: { uri: s.avatar_url } }}
                 title={s.name}
                 subtitle={s.subtitle}
+                containerStyle={styles.soundItem}
+                titleStyle={styles.soundItem}
+                subtitleStyle={styles.soundItem}
                 onPress={() => this.props.clickVideo(s.sound)}
               />
             ))

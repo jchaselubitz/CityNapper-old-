@@ -19,7 +19,7 @@ class SavedComponent extends Component {
           <TextInput
             style={styles.searchBar}
             placeholder="Search for a location to save."
-            placeholderTextColor={NapColors.primaryBlue}
+            placeholderTextColor={NapColors.placeHolderText}
             onChangeText={text => this.props.setSearchText(text)}
             autoCorrect={false}    
           />
@@ -48,6 +48,9 @@ class SavedComponent extends Component {
               <ListItem
                 title={item.name}
                 subtitle={item.address}
+                containerStyle={styles.listItem}
+                titleStyle={styles.listItem}
+                subtitleStyle={styles.listItem}
                 onPress={() => this.props.handleFavoriteSelection(item)}
               />
             </View>
@@ -55,7 +58,7 @@ class SavedComponent extends Component {
               <Icon
                   name={'add'}
                   type='material'
-                  color={NapColors.primaryBlue}
+                  color={NapColors.listIcon}
                   onPress={() => this.props.handleFavoriteSelection(item)}
                 />
               </View>

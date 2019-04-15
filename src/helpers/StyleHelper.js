@@ -2,17 +2,31 @@ import {StyleSheet} from 'react-native';
 
 const lightColors = {
   map: "standard",
-  searchBackground: 'dark',
-  searchResultText: 'dark',
+  tripCard: 'white',
+  NavBackground: "white",
+  searchBarColor: "white",
+  searchResultText: 'black',
   searchIcons: 'white',
   lightIcon: 'lightgrey',
+  listIcon: "#5c6174",
+  iconShadow: 'darkgrey',
   blueIcon: "#5c6174",
   primaryText: 'black',
+  titleText: "#5c6174",
+  subtitleText: "#5c6174",
+  detailText: '#626a7f',
   lightText: 'white',
   savedButton: '#626a7f',
   savedButtonText: 'white',
   placeHolderText: '#5c6174',
   darkCard: "#5c6174",
+  startButton: "#5c6174",
+  toggleButton: '#559ad1',
+  toggleText: 'white',
+  endNapButton: '#f58b44',
+  activeButtonShadow: "black",
+  buttonNapText: "white",
+  soundItemBackground: "white",
   primaryBlue: "#5c6174", //cards
   subtleBlue: '#626a7f',
   shadowBlue: '#3f4354',
@@ -31,15 +45,31 @@ const lightColors = {
 
 const darkColors = {
   map: "satellite",
-  searchBackground: 'darkgrey',
+  tripCard: '#3d3e44',
+  NavBackground: "#3d3e44",
+  searchBarColor: "#55575e",
   searchResultText: 'lightgrey',
   searchIcons: 'lightgrey',
-  lightIcon: 'darkgrey',
+  lightIcon: '#eaeaea',
+  listIcon:'#eaeaea',
+  iconShadow: 'black',
   blueIcon: "lightGrey",
   searchBarText: 'lightgrey',
   primaryText: 'lightgrey',
-  savedButton: '#5c6174',
-  savedButtonText: 'lightgrey',
+  titleText: "lightgrey",
+  subtitleText: "lightgrey",
+  detailText: 'darkgrey',
+  savedButton: '#626a7f',
+  savedButtonText: '#eaeaea',
+  darkCard: "#5c6174",
+  soundItem: "white",
+  startButton: "#5c6174",
+  toggleButton: '#818dab',
+  toggleText: 'white',
+  endNapButton: '#bc662d',
+  activeButtonShadow: "black",
+  buttonNapText: "white",
+  soundItemBackground: '#3d3e44',
   lightCard: '#55575e',
   placeHolderText: 'lightgrey',
   primaryBlue: "#33353f", //cards
@@ -49,7 +79,7 @@ const darkColors = {
   actionBlue: '#559ad1', 
   systemBlue: '#4786f6',
   calmBlue: '#818dab', 
-  cancelRed: '#c63131',
+  cancelRed: 'white',
   pulldownLine: '#c4c8d1',
   darkgrey: 'lightgrey',
   white: '#55575e',
@@ -58,7 +88,7 @@ const darkColors = {
 }
 
 
-let NapColors = lightColors
+let NapColors = darkColors
 
 const selectedMapType = "satellite"
 
@@ -84,7 +114,7 @@ tripSelectionContainer: {
 destinationTitleText: {
   fontSize: 20,
   fontWeight: 'bold',
-  color: NapColors.primaryBlue,
+  color: NapColors.titleText,
   marginTop: 4,
   marginBottom: 4,
   marginRight: 6,
@@ -92,14 +122,14 @@ destinationTitleText: {
 },
 destinationSubtitleText: {
   fontSize: 14,
-  color: NapColors.primaryBlue,
+  color: NapColors.subtitleText,
   alignSelf: 'stretch',
 },
 
 detailText: {
   fontSize: 12,
   fontStyle: 'italic',
-  color: NapColors.subtleBlue,
+  color: NapColors.detailText,
   alignSelf: 'center',
   marginTop: 6,
 },
@@ -117,7 +147,7 @@ favoriteButton: {
   alignItems: 'flex-end',
   justifyContent: 'center',
   alignSelf: 'stretch',
-  shadowColor: "darkgrey",
+  shadowColor: NapColors.iconShadow,
   shadowRadius: 8,
   shadowOpacity: 0.8,
   shadowOffset: {
@@ -235,7 +265,7 @@ savedButtonText: {
 // inside tripSelectionContainer
 tripDisplayCard: {
   zIndex: 1,
-  backgroundColor: NapColors.white,
+  backgroundColor: NapColors.tripCard,
   shadowColor: NapColors.darkgrey,
   shadowRadius: 16,
   shadowOpacity: 0.9,
@@ -275,13 +305,13 @@ buttonStartNap: {
   marginRight: 16,
   height: 60,
   padding: 16,
-  backgroundColor: NapColors.primaryBlue,
+  backgroundColor: NapColors.startButton,
   borderRadius: 8,
   flexDirection:'column',
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'stretch',
-  shadowColor: "black",
+  shadowColor: NapColors.activeButtonShadow,
   shadowRadius: 8,
   shadowOpacity: 0.5,
   shadowOffset: {
@@ -291,7 +321,7 @@ buttonStartNap: {
 buttonNapText: {
   fontSize: 24,
   fontWeight: 'bold',
-  color: NapColors.white,
+  color: NapColors.buttonNapText,
 },
 
 cancelButton: {
@@ -311,7 +341,7 @@ cancelButton: {
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'stretch',
-  shadowColor: NapColors.darkgrey,
+  shadowColor: NapColors.iconShadow,
   shadowRadius: 8,
   shadowOpacity: 0.8,
   shadowOffset: {
@@ -340,8 +370,8 @@ actionToggle: {
   marginTop: 16,
   height: 48,
 
-  backgroundColor: NapColors.actionBlue,
-  borderColor: NapColors.actionBlue,
+  backgroundColor: NapColors.toggleButton,
+  borderColor: NapColors.toggleButton,
   borderWidth: 0,
   borderRadius: 8,
   flexDirection:'column',
@@ -352,7 +382,7 @@ actionToggle: {
 
 actionToggleText: {
   fontSize: 24,
-  color: NapColors.white,
+  color: NapColors.toggleText,
  
 },
 
@@ -381,7 +411,7 @@ searchBar: {
   margin: 16,
   marginTop: 48,
   borderColor: NapColors.primaryBlue,
-  backgroundColor: NapColors.white,
+  backgroundColor: NapColors.searchBarColor,
   color: NapColors.primaryText,
   borderWidth: 0,
   borderRadius: 8,
@@ -447,6 +477,11 @@ listIcon: {
     marginRight: 8
 },
 
+listItem: {
+  backgroundColor: NapColors.NavBackground,
+  color: NapColors.searchResultText
+},
+
 listDivider: {
     backgroundColor: NapColors.divider,
     marginLeft: 10,
@@ -479,7 +514,6 @@ napContainer: {
   justifyContent: 'space-between',
   alignContent: 'space-between',
   margin: 0,
-  borderRadius: 12,
 },
 
 endNapButton: {
@@ -493,7 +527,7 @@ endNapButton: {
   marginRight: 16,
   height: 60,
   padding: 16,
-  backgroundColor: NapColors.actionOrange,
+  backgroundColor: NapColors.endNapButton,
   borderColor: 'blue',
   borderWidth: 0,
   borderRadius: 8,
@@ -501,7 +535,7 @@ endNapButton: {
   alignItems: 'center',
   justifyContent: 'center',
   alignSelf: 'stretch',
-  shadowColor: NapColors.black,
+  shadowColor: NapColors.activeButtonShadow,
   shadowRadius: 8,
   shadowOpacity: 0.5,
   shadowOffset: {
@@ -512,7 +546,7 @@ endNapButton: {
 endNapText: {
   fontSize: 24,
   fontWeight: 'bold',
-  color: NapColors.white,
+  color: NapColors.buttonNapText,
 },
 
 playButton: {
@@ -526,6 +560,11 @@ playButton: {
   flexDirection:'column',
   justifyContent: 'center',
   alignSelf: 'center',
+},
+
+soundItem: {
+  backgroundColor: NapColors.soundItemBackground,
+  color: NapColors.searchResultText
 },
 
 //see Global for destinationTitleText
