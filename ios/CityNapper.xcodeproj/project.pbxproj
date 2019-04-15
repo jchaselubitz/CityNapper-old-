@@ -31,6 +31,7 @@
 		23A1633C2256617900FF3C34 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A1633B2256617900FF3C34 /* MapKit.framework */; };
 		23A164C9225CCA1400FF3C34 /* PushNotificationIOS in Resources */ = {isa = PBXBuildFile; fileRef = 23A164C8225CCA1300FF3C34 /* PushNotificationIOS */; };
 		23A164CA225CCA1400FF3C34 /* PushNotificationIOS in Resources */ = {isa = PBXBuildFile; fileRef = 23A164C8225CCA1300FF3C34 /* PushNotificationIOS */; };
+		23DCBB6422647BF000F01055 /* church_chime.wav in Resources */ = {isa = PBXBuildFile; fileRef = 23DCBB6322647BF000F01055 /* church_chime.wav */; settings = {ASSET_TAGS = (New, ); }; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -464,6 +465,7 @@
 		233EF527225D13F000205FCB /* CityNapper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CityNapper.entitlements; path = CityNapper/CityNapper.entitlements; sourceTree = "<group>"; };
 		23A1633B2256617900FF3C34 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		23A164C8225CCA1300FF3C34 /* PushNotificationIOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PushNotificationIOS; path = "../node_modules/react-native/Libraries/PushNotificationIOS"; sourceTree = "<group>"; };
+		23DCBB6322647BF000F01055 /* church_chime.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = church_chime.wav; path = ../src/media/church_chime.wav; sourceTree = "<group>"; };
 		247DEFF2F96A420C91846C04 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* CityNapper-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CityNapper-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* CityNapper-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CityNapper-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -860,6 +862,7 @@
 		A15552B370994007B71645E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				23DCBB6322647BF000F01055 /* church_chime.wav */,
 				9571FDA1C40946F789A2E074 /* AntDesign.ttf */,
 				1C38B15E37994D148BCC8E0A /* Entypo.ttf */,
 				1EB378649C214CC6B1248CD2 /* EvilIcons.ttf */,
@@ -1473,6 +1476,7 @@
 				DECE38FC3872496BBB17F6E7 /* AntDesign.ttf in Resources */,
 				23A164C9225CCA1400FF3C34 /* PushNotificationIOS in Resources */,
 				52424FFDD5A74C5AA3649F8B /* Entypo.ttf in Resources */,
+				23DCBB6422647BF000F01055 /* church_chime.wav in Resources */,
 				E3779613268D4556AD467B33 /* EvilIcons.ttf in Resources */,
 				3CE91499A69F408DAB6CB645 /* Feather.ttf in Resources */,
 				897FE137363C420ABD018848 /* FontAwesome.ttf in Resources */,

@@ -29,7 +29,8 @@ class LocationErrorContainer extends Component {
       </TouchableOpacity>
         
       } else {
-        return <TouchableOpacity 
+        return <> 
+        <TouchableOpacity 
         onPress={Permissions.openSettings}
         style={styles.warningActionButton} 
         >
@@ -37,7 +38,15 @@ class LocationErrorContainer extends Component {
           <Text style={styles.warningActionButtonText}> Go to Settings </Text>
         </View>
       </TouchableOpacity>
-      
+      <TouchableOpacity 
+        onPress={() => this.props.navigation.navigate('Trip')}
+        style={styles.warningActionOutlineButton} 
+        >
+        <View>
+          <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
+        </View>
+      </TouchableOpacity>   
+      </> 
       }
   }
 
