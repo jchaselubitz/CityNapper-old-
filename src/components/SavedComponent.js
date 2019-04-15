@@ -32,7 +32,7 @@ class SavedComponent extends Component {
 
         <View style={styles.flatList}>
         <FlatList 
-          data={this.props.searchResults} 
+          data={this.props.presentRecent()} 
           keyboardShouldPersistTaps="always"
           renderItem={({item}) => 
           <>

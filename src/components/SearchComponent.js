@@ -32,7 +32,7 @@ class SearchComponent extends Component {
         <View style={styles.flatList}>
         
         <FlatList 
-          data={this.props.searchResults} 
+          data={this.props.presentRecent()} 
           extraData={this.props.userFavorites}
           keyboardShouldPersistTaps="always"
           renderItem={({item}) => 

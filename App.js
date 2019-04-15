@@ -329,6 +329,7 @@ geoNotification = () => {
       routeCoords: this.state.routeCoords,
       x: this.state.x,
       timeToDest: this.state.timeToDest,
+      recentSelections: this.state.recentSelections,
       napping: this.state.napping,
       startNap: this.startNap,
       endNap: this.endNap,
