@@ -40,44 +40,36 @@ export default class App extends Component  {
     this.checkMapLocationPermissions(() => this.watchLocation())
   } 
 
-  checkForExistingUser = async () => {
+  checkForExistingUser = () => {
+    console.log('check for existing user')
     try {
-      savedData = await AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'recentSelections'])
-      // console.log('####', savedData)
-      if (savedData !== null) { 
-        savedData.map((result, i, store) => {
-          this.setUserData( store[i][0], store[i][1])
-      })
-      } 
+      AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'recentSelections'], (error, stores) => {
+        console.log('#### Stores', stores.length,  JSON.stringify(stores))
+
+        if (stores !== null) { 
+          stores.map((result, i, store) => {
+            this.setUserData( result[0], result[1])
+          })
+        } 
+      })  
     } catch (error) {
-      // console.log("#### runWakeUp error", error)
-    
+      console.log("#### runWakeUp error", error)
     }
   }
 
   
 
   setUserData = (key, valueIn) => {
-     value = JSON.parse(valueIn)
+    console.log("#### Blaaaarg")
+    value = JSON.parse(valueIn)
+     
     switch (key) {
-      case 'userFavorites':
-        // console.log('#### userFavorites', value)
-        if (value !== null)
-        this.setState({ userFavorites: value}, console.log('####', this.state.userFavorites))
-      case 'homeButton':
-        // console.log('#### homeButton', value)
-        this.setState({ homeButton: value});
-      case 'workButton':
-      // console.log('#### WorkButton', value)
-        this.setState({ workButton: value});
       case 'mode':
-      // console.log('#### mode', value)
         if (value === "transit" || value === "driving")
           this.setState({ mode: value});
-      // case 'recentSelections':
-      // // console.log('#### userFavorites', value)
-      //   if (value !== null)
-      //   this.setState({ recentSelections: value}, console.log('####', this.state.recentSelections))
+      default:
+        if (value !== null)
+          this.setState({ [key]: value})
     }
   }
 
