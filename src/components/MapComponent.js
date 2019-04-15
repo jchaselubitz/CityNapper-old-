@@ -7,10 +7,22 @@ const styles = StylesHelper.styles
 
 export default class MapComponent extends Component {
 
+  fitMap = () => {
+    MapView.fitToCoordinates({
+      coordinates: [
+        {latitude: this.props.currentLatitude, longitude: this.props.currentLongitude},
+        {latitude: this.props.destLatitude, longitude: this.props.destLongitude} 
+      ]
+    })
+  }
+
    render () {
      return (
       <MapView 
       style={styles.map}
+      showsPointsOfInterest={true}
+      showsMyLocationButton={true}
+      
       mapType={styles.selectedMapType}
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
@@ -46,12 +58,16 @@ export default class MapComponent extends Component {
                   strokeWidth={2}
                   strokeColor="red"
           />
-        }          
+        }    
+   
     </MapView>
+
      )
    }
-
-
 }
+
+
+
+
 
 AppRegistry.registerComponent('CityNapper', () => MapComponent);
