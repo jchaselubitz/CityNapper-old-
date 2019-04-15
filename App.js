@@ -214,7 +214,6 @@ async getDirections(tripOrigin, tripDestination) {
       this.setState({routeCoords: coords})
       return coords
   } catch(error) {
-      alert(error)
       return error
   }
 }
