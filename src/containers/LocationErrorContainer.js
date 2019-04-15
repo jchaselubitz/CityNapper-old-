@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Icon } from 'react-native-elements';
 import {AppRegistry, View, Text, Button, TouchableOpacity} from 'react-native';
 import Permissions from 'react-native-permissions'
 import StyleHelper from '../helpers/StyleHelper'

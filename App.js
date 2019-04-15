@@ -1,9 +1,9 @@
 //HomeScreen
 import React, {Component} from 'react';
-import { AppRegistry, Vibration, AsyncStorage } from 'react-native';
+import { AppRegistry, AsyncStorage } from 'react-native';
 import * as Polyline from '@mapbox/polyline'
 import Boundary, {Events} from 'react-native-boundary';
-import { createAppContainer, createStackNavigator} from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
 import NavigationService from './src/services/navigationService'
 import Permissions from 'react-native-permissions'
 import Keys from './src/helpers/Keys'
