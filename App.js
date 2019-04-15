@@ -31,7 +31,8 @@ export default class App extends Component  {
     napping: false,
     mode: 'transit',
     homeButton: null,
-    workButton: null
+    workButton: null,
+    recentSelections: []
   }
 
   componentDidMount () {
@@ -41,7 +42,7 @@ export default class App extends Component  {
 
   checkForExistingUser = async () => {
     try {
-      savedData = await AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode'])
+      savedData = await AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'recentSelections'])
       // console.log('####', savedData)
       if (savedData !== null) { 
         savedData.map((result, i, store) => {
@@ -71,8 +72,12 @@ export default class App extends Component  {
         this.setState({ workButton: value});
       case 'mode':
       // console.log('#### mode', value)
-      if (value === "transit" || value === "driving")
-        this.setState({ mode: value});
+        if (value === "transit" || value === "driving")
+          this.setState({ mode: value});
+      // case 'recentSelections':
+      // // console.log('#### userFavorites', value)
+      //   if (value !== null)
+      //   this.setState({ recentSelections: value}, console.log('####', this.state.recentSelections))
     }
   }
 
@@ -124,6 +129,13 @@ sendToLocalStorage = async (key, item) => {
   }
 }
 
+addRecentSelection = (item) => {
+  newArray = this.state.recentSelections.length > 2 ? this.state.recentSelections.slice(1) : this.state.recentSelections
+  locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
+    if (!newArray.map( i => i.id).includes(locationObject.id)) {
+      this.setState({ recentSelections: [...newArray, locationObject ]});  
+    }
+}
 
 addRemoveFavorite = (item) => {
   locationObject = {item, id: `${item.location.latitude},${item.location.longitude}`}
@@ -146,6 +158,7 @@ generateETA = (callback) => {
 
 
 setDestinationLocation = (destination) => {
+  this.addRecentSelection(destination)
   this.checkBoundaryLocationPermissions()
   this.setState({ 
     destLocation: destination,
