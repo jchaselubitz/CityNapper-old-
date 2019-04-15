@@ -590,7 +590,7 @@ warningActionButtonText: {
   color: NapColors.white,
 },
 
-warningActionButtonOutLine: {
+warningActionOutlineButton: {
   marginTop: 8,
   height: 54,
   backgroundColor: "white",

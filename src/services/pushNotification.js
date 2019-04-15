@@ -19,12 +19,6 @@ const localNotification = (destName) => {
   // cancelAllLocalNotifications()
 }
 
-// const endNapOnOpen = (notificationId, endNap) => {
-//   PushNotificationIOS.addEventListener(
-//     notificationId, 
-//     endNap)
-//   }
-
 const cancelAllLocalNotifications = () => {
   PushNotificationIOS.cancelAllLocalNotifications()
 }

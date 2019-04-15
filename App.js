@@ -223,7 +223,7 @@ setBoundary = () => {
     Boundary.add({
       lat: this.state.destLatitude, 
       lng: this.state.destLongitude,
-      radius: 200, // in meters
+      radius: 500, // in meters
       id: this.state.destName,
     })
       .then(() => console.log("boundary set"))

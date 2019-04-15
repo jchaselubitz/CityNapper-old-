@@ -3,24 +3,30 @@ import { Icon } from 'react-native-elements';
 import {AppRegistry, View, Text, Button, TouchableOpacity} from 'react-native';
 import Permissions from 'react-native-permissions'
 import StyleHelper from '../helpers/StyleHelper'
-
+import permissionsService from '../services/permissionsService'
 const styles = StyleHelper.styles
 const NapColors = StyleHelper.NapColors
 
 class LocationErrorContainer extends Component {
   static navigationOptions = { header: null }
 
+  tryAgainButton = () => {
+    Permissions.check('location', { type: 'always' })
+    .then(response => 
+      permissionsService.permissionsCheckpoint(response, () => this.props.navigation.navigate('Trip')))
+  
+  }
 
   getPermissionStatus = () => {
     Permissions.check('location', { type: 'always'})
     .then(response => { return response })
   }
   
-  tryAgainButton = () => {
+  buttonPresenter = () => {
     response = this.getPermissionStatus()
       if (response === 'undetermined' || response === 'authorized') {
         return <TouchableOpacity 
-          onPress={() => this.props.navigation.navigate('Trip')}
+          onPress={() => this.tryAgainButton()}
           style={styles.warningActionOutlineButton} 
           >
           <View>
@@ -38,11 +44,8 @@ class LocationErrorContainer extends Component {
           <Text style={styles.warningActionButtonText}> Go to Settings </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity 
-        onPress={() => this.props.navigation.navigate('Trip')}
-        style={styles.warningActionOutlineButton} 
-        >
-        <View>
+      <TouchableOpacity onPress={() => this.tryAgainButton()}>
+        <View style={styles.warningActionOutlineButton} >
           <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
         </View>
       </TouchableOpacity>   
@@ -61,7 +64,7 @@ class LocationErrorContainer extends Component {
           <Text style={styles.warningText}>
           Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app.
           </Text>
-          {this.tryAgainButton()}
+          {this.buttonPresenter()}
           
         {/* <TouchableOpacity onPress={Permissions.openSettings}>
           <View style={styles.warningActionButton} >
