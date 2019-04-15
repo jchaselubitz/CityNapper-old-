@@ -26,6 +26,7 @@ export default class App extends Component  {
     routeCoords: [],
     x: 'true',
     timeToDest: null,
+    secondsToDest: null,
     eta: null,
     napping: false,
     mode: 'transit',
@@ -53,18 +54,25 @@ export default class App extends Component  {
     }
   }
 
-  setUserData = (key, value) => {
+  
+
+  setUserData = (key, valueIn) => {
+     value = JSON.parse(valueIn)
     switch (key) {
       case 'userFavorites':
+        // console.log('#### userFavorites', value)
         if (value !== null)
-        this.setState({ userFavorites: JSON.parse(value)}, console.log('####', this.state.userFavorites))
+        this.setState({ userFavorites: value}, console.log('####', this.state.userFavorites))
       case 'homeButton':
-        this.setState({ homeButton: JSON.parse(value)});
+        // console.log('#### homeButton', value)
+        this.setState({ homeButton: value});
       case 'workButton':
-        this.setState({ workButton: JSON.parse(value)});
+      // console.log('#### WorkButton', value)
+        this.setState({ workButton: value});
       case 'mode':
-      if (JSON.parse(value) === "transit" || JSON.parse(value) === "driving")
-        this.setState({ mode: JSON.parse(value)});
+      // console.log('#### mode', value)
+      if (value === "transit" || value === "driving")
+        this.setState({ mode: value});
     }
   }
 
@@ -130,6 +138,11 @@ addRemoveFavorite = (item) => {
   }
 }
 
+generateETA = (callback) => {
+  const now = new Date()
+  now.setSeconds(now.getSeconds()+this.state.secondsToDest - 180);
+  this.setState({eta: now}, callback);
+}
 
 
 setDestinationLocation = (destination) => {
@@ -205,8 +218,9 @@ async getTimeToDest(tripOrigin, tripDestination) {
   try {
       let resp = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${tripOrigin}&destinations=${tripDestination}&mode=${this.state.mode}&key=${Keys.GoogleKey}`)
       let respJson = await resp.json();
-      let timeToDest = respJson.rows[0].elements[0].duration.text
-      this.setState({timeToDest})
+        let timeToDest = respJson.rows[0].elements[0].duration.text
+        let secondsToDest = respJson.rows[0].elements[0].duration.value
+      this.setState({timeToDest, secondsToDest})
   } catch(error) {
       alert("Looks like we couldn't calculate the length of your trip")
       console.log('#### getTimeToDest error', error)
@@ -230,7 +244,7 @@ setBoundary = () => {
       .catch(e => console.error("error :(", e));
    
     Boundary.on(Events.ENTER, id => {
-      this.alertNotification()
+      this.geoNotification()
       // this.startVibrationFunction()
     });
 }
@@ -246,6 +260,7 @@ dropBoundary = () => {
 
 startNap = () => {
   pushNotification.requestPermissions()
+  this.generateETA(() => this.scheduleNotification())
   this.checkBoundaryLocationPermissions(() => this.setBoundary())
   this.setState({ napping: true  });
 } 
@@ -260,7 +275,13 @@ endNap = () => {
 
 //=========== ALERT ==================
 
-alertNotification = () => {
+scheduleNotification = () => {
+  this.state.secondsToDest > 200 ?
+  pushNotification.scheduledNotification(this.state.destName, this.state.eta) 
+  :
+  null
+}
+geoNotification = () => {
   pushNotification.localNotification(this.state.destName)
 }
 
