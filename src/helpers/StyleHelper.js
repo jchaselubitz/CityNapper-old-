@@ -183,7 +183,7 @@ const setStyles = () => {
       marginLeft: 16,
       marginRight: 16,
       flex: 1,
-      backgroundColor: NapColors.toggleDarkModeButton,
+      // backgroundColor: NapColors.toggleDarkModeButton,
       borderColor: NapColors.toggleDarkModeButtonBorder,
       padding: 8,
       borderWidth: 0,
