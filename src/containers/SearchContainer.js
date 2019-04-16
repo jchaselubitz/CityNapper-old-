@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import SearchComponent from '../components/SearchComponent'
 import SavedComponent from '../components/SavedComponent'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
-import {AppRegistry} from 'react-native';
+import StyleHelper from "../helpers/StyleHelper"
+import {AppRegistry, View } from 'react-native';
 
+const { getColors, getStyles } = StyleHelper
 
 class SearchContainer extends Component {
   static navigationOptions = { header: null }
@@ -97,9 +99,12 @@ class SearchContainer extends Component {
       />
     }
     
-     return setSearchType()
+     return (
+     <View style={getStyles().searchBackground}>
+      {setSearchType()} 
+      </View>
+     )
     
-
    }
 }
 

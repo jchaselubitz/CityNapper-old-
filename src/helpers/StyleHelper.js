@@ -424,6 +424,15 @@ const setStyles = () => {
     
     //================ Search/Save =================
     
+    searchBackground: {
+      backgroundColor: NapColors.NavBackground,
+      position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    },
+
     searchButtonText: {
       flex: 9,
       fontSize: 18,

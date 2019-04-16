@@ -31,9 +31,6 @@ const TripStack = createStackNavigator(
   {
     mode: 'modal',
     header: null,
-    cardStyle: {
-      backgroundColor: getColors().NavBackground
-    }
   },
 );
 
