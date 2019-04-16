@@ -34,25 +34,25 @@ export default class App extends Component  {
     homeButton: null,
     workButton: null,
     recentSelections: [],
-    darkMode: true
+    darkMode: false
   }
 
   componentDidMount () {
     console.log('#### initialModeState', this.state.darkMode)
-    StyleHelper.setColorMode(this.state.darkMode)
     this.checkForExistingUser()
+    
     this.checkMapLocationPermissions(() => this.watchLocation())
   } 
 
   toggleDarkMode = () => {
     console.log('#### toggle dark mode',  )
     StyleHelper.setColorMode(!this.state.darkMode)
-    this.setState({ darkMode: !this.state.darkMode })
+    this.setState({ darkMode: !this.state.darkMode }, () => this.sendToLocalStorage("darkMode", this.state.darkMode))
   }
 
   checkForExistingUser = () => {
     try {
-      AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'recentSelections'], (error, stores) => {
+      AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'recentSelections', "darkMode"], (error, stores) => {
         if (stores !== null) { 
           stores.map((result, i, store) => {
             this.setUserData( result[0], result[1])
@@ -64,11 +64,13 @@ export default class App extends Component  {
     }
   }
 
-
   setUserData = (key, valueIn) => {
     value = JSON.parse(valueIn)
      
     switch (key) {
+      case 'darkMode':
+        if (value === "true" || value === "false")
+          this.setState({ darkMode: value}, )
       case 'mode':
         if (value === "transit" || value === "driving")
           this.setState({ mode: value});
@@ -76,6 +78,7 @@ export default class App extends Component  {
         if (value !== null)
           this.setState({ [key]: value})
     }
+    StyleHelper.setColorMode(this.state.darkMode)
   }
 
 

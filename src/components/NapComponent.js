@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {AppRegistry, View, Text, TouchableOpacity, Button} from 'react-native';
-import { Icon, FlatList, ListItem } from 'react-native-elements';
+import { Icon, ListItem } from 'react-native-elements';
 import StyleHelper from '../helpers/StyleHelper'
 import air_conditioner from '../media/air_conditioner.mp3'
 import crackling_fireplace from '../media/crackling_fireplace.mp3'
 import heavy_rain from '../media/heavy_rain.mp3'
 import rainforest from '../media/rainforest.mp3'
+import air_conditioner_img from '../media/air_conditioner.jpg'
+import fireplace_img from '../media/fireplace.jpg'
+import rainforest_img from '../media/rainforest.jpg'
+import rain_img from '../media/rain.jpg'
+
 
 const { getStyles, getColors } = StyleHelper
 //Could put this in a music manager
@@ -13,25 +18,25 @@ const { getStyles, getColors } = StyleHelper
 const sounds = [
   {
     name: 'Rainforest',
-    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Ulva_Island_rainforest.jpg',
+    avatar_url: rainforest_img,
     subtitle: 'Comforting sounds of rain an birds.',
     sound: rainforest
   },
   {
     name: 'Air Conditioner',
-    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Air_Condition_Unit_Interior_View_USA.jpg/319px-Air_Condition_Unit_Interior_View_USA.jpg',
+    avatar_url: air_conditioner_img,
     subtitle: 'The whitest of white noise.',
     sound: air_conditioner
   },
   {
     name: 'Crackling Fireplace',
-    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Fire_from_brazier.jpg/320px-Fire_from_brazier.jpg',
+    avatar_url: fireplace_img,
     subtitle: 'For your coziest commutes.',
     sound: crackling_fireplace
   },
   {
     name: 'Heavy Rain',
-    avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Rain_drops_on_window_01_ies.jpg/320px-Rain_drops_on_window_01_ies.jpg',
+    avatar_url: rain_img,
     subtitle: 'Like Air Conditioner, but wetter.',
     sound: heavy_rain
   },
@@ -90,7 +95,7 @@ export default class NapContainer extends Component {
             sounds.map((s, i) => (
               <ListItem
                 key={i}
-                leftAvatar={{ source: { uri: s.avatar_url } }}
+                leftAvatar={{ source:  s.avatar_url }}
                 title={s.name}
                 subtitle={s.subtitle}
                 containerStyle={getStyles().soundItem}
