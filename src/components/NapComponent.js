@@ -6,9 +6,8 @@ import air_conditioner from '../media/air_conditioner.mp3'
 import crackling_fireplace from '../media/crackling_fireplace.mp3'
 import heavy_rain from '../media/heavy_rain.mp3'
 import rainforest from '../media/rainforest.mp3'
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
 
+const { getStyles, getColors } = StyleHelper
 //Could put this in a music manager
 
 const sounds = [
@@ -44,7 +43,7 @@ export default class NapContainer extends Component {
   
   render () {
      return (
-      <View style={styles.napContainer}>
+      <View style={getStyles().napContainer}>
       <View style={{
          position: 'absolute',
          top: 24,
@@ -53,7 +52,7 @@ export default class NapContainer extends Component {
       }}>
 
         <TouchableOpacity
-              style={styles.favoriteButton}
+              style={getStyles().favoriteButton}
               onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}>
               {this.props.isFavorite(this.props.destLocation)
               ?
@@ -61,30 +60,30 @@ export default class NapContainer extends Component {
                     size={24}
                     name='favorite'
                     type='material'
-                    color={NapColors.listIcon}
+                    color={getColors().listIcon}
                     />
               :
                 <Icon
                       size={24}
                       name='favorite-border'
                       type='material'
-                      color={NapColors.listIcon}
+                      color={getColors().listIcon}
                     />
                       
               }
           </TouchableOpacity>
         </View>
         <TouchableOpacity
-          style={styles.endNapButton} 
+          style={getStyles().endNapButton} 
           onPress={() => this.props.handleClick()}
           >
-          <Text style={styles.endNapText}>End Nap</Text>
+          <Text style={getStyles().endNapText}>End Nap</Text>
         </TouchableOpacity>
-        <View style={styles.tripDisplayCard}>
-          <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
-          <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
+        <View style={getStyles().tripDisplayCard}>
+          <Text style={getStyles().destinationTitleText}>{this.props.destName}</Text>
+          <Text style={getStyles().destinationSubtitleText}>{this.props.destAddress}</Text>
         
-        <View style={styles.divider}/>
+        <View style={getStyles().divider}/>
 
           <View>
           {
@@ -94,9 +93,9 @@ export default class NapContainer extends Component {
                 leftAvatar={{ source: { uri: s.avatar_url } }}
                 title={s.name}
                 subtitle={s.subtitle}
-                containerStyle={styles.soundItem}
-                titleStyle={styles.soundItem}
-                subtitleStyle={styles.soundItem}
+                containerStyle={getStyles().soundItem}
+                titleStyle={getStyles().soundItem}
+                subtitleStyle={getStyles().soundItem}
                 onPress={() => this.props.clickVideo(s.sound)}
               />
             ))
@@ -105,7 +104,7 @@ export default class NapContainer extends Component {
         <View>
           {!!this.props.soundFile ? 
           <TouchableOpacity
-          style={styles.playButton} 
+          style={getStyles().playButton} 
           onPress={() => this.props.playPause()}>
             {this.props.isPaused
               ?
@@ -113,14 +112,14 @@ export default class NapContainer extends Component {
                     size={32}
                     name='play-arrow'
                     type='material'
-                    color={NapColors.white}
+                    color={getColors().white}
                     />
               :
                 <Icon
                       size={32}
                       name='pause'
                       type='material'
-                      color={NapColors.white}
+                      color={getColors().white}
                     /> 
               }
           </TouchableOpacity>

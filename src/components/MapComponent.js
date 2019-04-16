@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import MapView from 'react-native-maps'
-import StylesHelper from '../helpers/StyleHelper'
+import StyleHelper from '../helpers/StyleHelper'
 import {AppRegistry} from 'react-native';
 
-const styles = StylesHelper.styles
+const { getStyles, getColors } = StyleHelper
 
 export default class MapComponent extends Component {
+  
 
   fitMap = () => {
     MapView.fitToCoordinates({
@@ -17,13 +18,14 @@ export default class MapComponent extends Component {
   }
 
    render () {
+
      return (
       <MapView 
-      style={styles.map}
+      style={getStyles().map}
       showsPointsOfInterest={true}
       showsMyLocationButton={true}
       
-      mapType={styles.selectedMapType}
+      mapType={getStyles().selectedMapType}
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
         longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,

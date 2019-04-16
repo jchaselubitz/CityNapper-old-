@@ -6,7 +6,8 @@ import LocationErrorContainer from './containers/LocationErrorContainer'
 import StyleHelper from './helpers/StyleHelper'
 import {AppRegistry} from 'react-native';
 
-const NapColors = StyleHelper.NapColors
+const { styles, getStyles, NapColors } = StyleHelper
+
 const TripStack = createStackNavigator(
   {
     Trip: {
@@ -31,7 +32,7 @@ const TripStack = createStackNavigator(
     mode: 'modal',
     header: null,
     cardStyle: {
-      backgroundColor: NapColors.NavBackground
+      // backgroundColor: NapColors.NavBackground
     }
   },
 );

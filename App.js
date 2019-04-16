@@ -10,6 +10,7 @@ import Keys from './src/helpers/Keys'
 import permissionsService from './src/services/permissionsService'
 import TripStack from './src/NavigationStacks'
 import pushNotification from './src/services/pushNotification';
+import StyleHelper from './src/helpers/StyleHelper'
 
 export default class App extends Component  {
 
@@ -32,20 +33,26 @@ export default class App extends Component  {
     mode: 'transit',
     homeButton: null,
     workButton: null,
-    recentSelections: []
+    recentSelections: [],
+    darkMode: true
   }
 
   componentDidMount () {
+    console.log('#### initialModeState', this.state.darkMode)
+    StyleHelper.setColorMode(this.state.darkMode)
     this.checkForExistingUser()
     this.checkMapLocationPermissions(() => this.watchLocation())
   } 
 
+  toggleDarkMode = () => {
+    console.log('#### toggle dark mode',  )
+    StyleHelper.setColorMode(!this.state.darkMode)
+    this.setState({ darkMode: !this.state.darkMode })
+  }
+
   checkForExistingUser = () => {
-    console.log('check for existing user')
     try {
       AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'recentSelections'], (error, stores) => {
-        console.log('#### Stores', stores.length,  JSON.stringify(stores))
-
         if (stores !== null) { 
           stores.map((result, i, store) => {
             this.setUserData( result[0], result[1])
@@ -57,10 +64,8 @@ export default class App extends Component  {
     }
   }
 
-  
 
   setUserData = (key, valueIn) => {
-    console.log("#### Blaaaarg")
     value = JSON.parse(valueIn)
      
     switch (key) {
@@ -289,19 +294,9 @@ geoNotification = () => {
   pushNotification.localNotification(this.state.destName)
 }
 
-// PATTERN = [ 50, 50]
-
-// startVibrationFunction = () => {
-// Vibration.vibrate(this.PATTERN, true)
-// }
-
-// stopVibrationFunction = () => {
-// Vibration.cancel()
-// }
-
+//======================================= Colors =================================
 
 //======================================= VIEWS =================================
-
 
   render() {
     return <AppContainer screenProps={{
@@ -331,7 +326,9 @@ geoNotification = () => {
       clearDestinationSelection: this.clearDestinationSelection,
       setAsHomeWorkButton: this.setAsHomeWorkButton,
       homeButton: this.state.homeButton,
-      workButton: this.state.workButton
+      workButton: this.state.workButton,
+      toggleDarkMode: this.toggleDarkMode,
+      darkMode: this.state.darkMode,
     }}
     ref={navigatorRef => {
       NavigationService.setTopLevelNavigator(navigatorRef)

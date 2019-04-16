@@ -3,8 +3,7 @@ import { Icon } from 'react-native-elements';
 import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
 import StyleHelper from '../helpers/StyleHelper'
 
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
+const { getStyles, getColors } = StyleHelper
 
 class ViewTripComponent extends Component {
   
@@ -14,29 +13,29 @@ class ViewTripComponent extends Component {
 
   render() { 
     return (
-      <View style={styles.tripSelectionContainer}>
+      <View style={getStyles().tripSelectionContainer}>
           {this.props.napping === false
         ?   
           <TouchableOpacity
-            style={styles.buttonStartNap}
+            style={getStyles().buttonStartNap}
             onPress={() => this.props.napStarter()}>
-            <Text style={styles.buttonNapText}>Start Nap</Text>
+            <Text style={getStyles().buttonNapText}>Start Nap</Text>
           </TouchableOpacity>
         :
           <TouchableOpacity
-            style={styles.buttonStartNap}
+            style={getStyles().buttonStartNap}
             onPress={() => this.props.goToNap()}>
-            <Text style={styles.buttonNapText}>Resume Nap</Text>
+            <Text style={getStyles().buttonNapText}>Resume Nap</Text>
           </TouchableOpacity>
         }
           <TouchableOpacity
-            style={styles.cancelButton}
+            style={getStyles().cancelButton}
             onPress={() => this.props.rejectSelection()}>
              <Icon
                     size={24}
                     name='close'
                     type='material'
-                    color={NapColors.cancelRed}
+                    color={getColors().cancelRed}
                    />
           </TouchableOpacity>
           <View style={{
@@ -46,7 +45,7 @@ class ViewTripComponent extends Component {
              zIndex: 3
           }}>
             <TouchableOpacity
-              style={styles.favoriteButton}
+              style={getStyles().favoriteButton}
               onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}>
               {this.props.isFavorite(this.props.destLocation)
               ?
@@ -54,20 +53,20 @@ class ViewTripComponent extends Component {
                     size={24}
                     name='favorite'
                     type='material'
-                    color={NapColors.listIcon}
+                    color={getColors().listIcon}
                     />
               :
                 <Icon
                       size={24}
                       name='favorite-border'
                       type='material'
-                      color={NapColors.listIcon}
+                      color={getColors().listIcon}
                     />
                       
               }
           </TouchableOpacity>
           </View>
-          <View style={styles.tripDisplayCard}>
+          <View style={getStyles().tripDisplayCard}>
           {this.props.destName === "-" ? 
             "The name for this destination is missing!" 
             : 
@@ -78,18 +77,18 @@ class ViewTripComponent extends Component {
                alignItems: 'center',
          
                }}>
-              <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
-              <Text style={styles.detailText}>~{this.props.timeToDest}</Text>
+              <Text style={getStyles().destinationTitleText}>{this.props.destName}</Text>
+              <Text style={getStyles().detailText}>~{this.props.timeToDest}</Text>
             </View>
             <View>
-              <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
+              <Text style={getStyles().destinationSubtitleText}>{this.props.destAddress}</Text>
             </View>
             </> }
 
-          {/* <View style={styles.largeToggleContainer}> */}
+          {/* <View style={getStyles().largeToggleContainer}> */}
           <TouchableOpacity onPress={() => this.props.toggleTransitMode()}>
-            <View style={styles.actionToggle} >
-            <Text style={styles.actionToggleText}>{this.transitTypeName()}</Text>
+            <View style={getStyles().actionToggle} >
+            <Text style={getStyles().actionToggleText}>{this.transitTypeName()}</Text>
             </View>
           </TouchableOpacity>
           {/* </View> */}

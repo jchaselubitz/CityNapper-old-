@@ -32,6 +32,8 @@ class TripContainer extends Component {
     const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
     const home = this.props.screenProps.homeButton
     const work = this.props.screenProps.workButton
+    const darkMode = this.props.screenProps.darkMode
+    const toggleDarkMode = this.props.screenProps.toggleDarkMode
 
 
     napStarter = () => {
@@ -77,6 +79,8 @@ class TripContainer extends Component {
         addRemoveFavorite={addRemoveFavorite}
         home={home}
         work={work}
+        toggleDarkMode={toggleDarkMode}
+        darkMode={darkMode}
       /> 
     }
 

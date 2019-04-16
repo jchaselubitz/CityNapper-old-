@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Icon } from 'react-native-elements';
 import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
 import StyleHelper from '../helpers/StyleHelper'
+import ColorModeToggleComponent from './ColorModeToggleComponent';
 
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
+const { getStyles, getColors, } = StyleHelper
 
 class CreateTripComponent extends Component {
 
   render() { 
-
   handleWorkHomeSave = (targetButton, label) => {
     if (targetButton !== null) {
       this.props.setDestinationLocation(targetButton)
@@ -22,26 +21,26 @@ class CreateTripComponent extends Component {
     return this.props.userFavorites.map(favorite => 
     <TouchableOpacity 
       onPress={() => this.props.setDestinationLocation(favorite.item)} 
-      style={styles.savedButton} >
-    <View style={styles.savedButtonContainer}>
-        <View style={styles.listIcon}>
+      style={getStyles().savedButton} >
+    <View style={getStyles().savedButtonContainer}>
+        <View style={getStyles().listIcon}>
           <Icon
               name='favorite'
               type='material'
-              color={NapColors.lightIcon}
+              color={getColors().lightIcon}
             />
           </View>
 
-      <Text style={styles.savedButtonText}>
+      <Text style={getStyles().savedButtonText}>
       {favorite.item.name}
       </Text>
   
         <TouchableOpacity onPress={() => this.props.addRemoveFavorite(favorite.item)} >
-        <View style={styles.modifySavedIcon}>
+        <View style={getStyles().modifySavedIcon}>
           <Icon
               name='close'
               type='material'
-              color={NapColors.lightIcon}
+              color={getColors().lightIcon}
               size={18}
             />
           </View>
@@ -52,41 +51,41 @@ class CreateTripComponent extends Component {
 
     
     return (
-      <View style={styles.tripSelectionContainer}>
+      <View style={getStyles().tripSelectionContainer}>
         <TouchableOpacity
-        style={styles.buttonSearch}
+        style={getStyles().buttonSearch}
         onPress={() => this.props.navigation.navigate('Search', {searchType: 'search'})}>
-        <View style={styles.searchButtonContainer}>
-        <View style={styles.listIcon}>
+        <View style={getStyles().searchButtonContainer}>
+        <View style={getStyles().listIcon}>
               <Icon
                   name='search'
                   type='material'
-                  color={NapColors.placeHolderText}
+                  color={getColors().placeHolderText}
                 />
               </View>
-        <Text style={styles.searchButtonText}>Where are you going?</Text>
+        <Text style={getStyles().searchButtonText}>Where are you going?</Text>
         </View>
       </TouchableOpacity>
   {/* +++++++++++++++++++++HOME+++++++++++++++++++++++++ */}
-      <View style={styles.tripSelectionCard}>
+      <View style={getStyles().tripSelectionCard}>
         <TouchableOpacity 
           onPress={() => handleWorkHomeSave(this.props.home, "home")} 
-          style={styles.savedButton} >
-        <View style={styles.savedButtonContainer}>
-            <View style={styles.listIcon}>
+          style={getStyles().savedButton} >
+        <View style={getStyles().savedButtonContainer}>
+            <View style={getStyles().listIcon}>
               <Icon
                   name='home'
                   type='material'
-                  color={NapColors.lightIcon}
+                  color={getColors().lightIcon}
                 />
               </View>
-          <Text style={styles.savedButtonText}>Home stop</Text>
+          <Text style={getStyles().savedButtonText}>Home stop</Text>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'home'})} >
-        <View style={styles.modifySavedIcon}>
+        <View style={getStyles().modifySavedIcon}>
           <Icon
               name='edit'
               type='material'
-              color={NapColors.lightIcon}
+              color={getColors().lightIcon}
               size={18}
             />
           </View>
@@ -96,22 +95,22 @@ class CreateTripComponent extends Component {
   {/* +++++++++++++++++++++WORK+++++++++++++++++++++++++ */}
         <TouchableOpacity 
           onPress={() => handleWorkHomeSave(this.props.work, "work")} 
-          style={styles.savedButton} >
-        <View style={styles.savedButtonContainer}>
-            <View style={styles.listIcon}>
+          style={getStyles().savedButton} >
+        <View style={getStyles().savedButtonContainer}>
+            <View style={getStyles().listIcon}>
               <Icon
                   name='work'
                   type='material'
-                  color={NapColors.lightIcon}
+                  color={getColors().lightIcon}
                 />
               </View>
-          <Text style={styles.savedButtonText}>Work stop</Text>
+          <Text style={getStyles().savedButtonText}>Work stop</Text>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Search', {searchType: 'saved', label: 'work'})} >
-        <View style={styles.modifySavedIcon}>
+        <View style={getStyles().modifySavedIcon}>
           <Icon
               name='edit'
               type='material'
-              color={NapColors.lightIcon}
+              color={getColors().lightIcon}
               size={18}
             />
           </View>
@@ -119,6 +118,10 @@ class CreateTripComponent extends Component {
           </View>
         </TouchableOpacity>
         {presentFavoriteButtons()}
+        <ColorModeToggleComponent 
+          toggleDarkMode={this.props.toggleDarkMode}
+          darkMode={this.props.darkMode}
+        />
       </View>
 
     </View>

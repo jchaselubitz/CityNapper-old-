@@ -4,8 +4,7 @@ import { Icon, ListItem } from 'react-native-elements';
 import { AppRegistry, View, FlatList, TextInput } from 'react-native';
 import { Divider } from 'react-native-elements';
 
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
+const { getStyles, getColors } = StyleHelper
 
 class SavedComponent extends Component {
   
@@ -15,22 +14,22 @@ class SavedComponent extends Component {
        
       <View>
        <View>
-       <View style={styles.modalHeader}/>
+       <View style={getStyles().modalHeader}/>
           <TextInput
-            style={styles.searchBar}
+            style={getStyles().searchBar}
             placeholder="Search for a location to save."
-            placeholderTextColor={NapColors.placeHolderText}
+            placeholderTextColor={getColors().placeHolderText}
             onChangeText={text => this.props.setSearchText(text)}
             autoCorrect={false}    
           />
         </View>
 
-        <View style={styles.pulldownEr} >
-          <View style={styles.pulldownErLine1}/>
-          <View style={styles.pulldownErLine2}/>
+        <View style={getStyles().pulldownEr} >
+          <View style={getStyles().pulldownErLine1}/>
+          <View style={getStyles().pulldownErLine2}/>
         </View>
 
-        <View style={styles.flatList}>
+        <View style={getStyles().flatList}>
         <FlatList 
           data={this.props.presentRecent()} 
           keyboardShouldPersistTaps="always"
@@ -48,22 +47,22 @@ class SavedComponent extends Component {
               <ListItem
                 title={item.name}
                 subtitle={item.address}
-                containerStyle={styles.listItem}
-                titleStyle={styles.listItem}
-                subtitleStyle={styles.listItem}
+                containerStyle={getStyles().listItem}
+                titleStyle={getStyles().listItem}
+                subtitleStyle={getStyles().listItem}
                 onPress={() => this.props.handleFavoriteSelection(item)}
               />
             </View>
-              <View style={styles.listIcon}>
+              <View style={getStyles().listIcon}>
               <Icon
                   name={'add'}
                   type='material'
-                  color={NapColors.listIcon}
+                  color={getColors().listIcon}
                   onPress={() => this.props.handleFavoriteSelection(item)}
                 />
               </View>
           </View>
-            <Divider style={styles.listDivider} />
+            <Divider style={getStyles().listDivider} />
             </>
           } 
           keyExtractor={item => item.address} 

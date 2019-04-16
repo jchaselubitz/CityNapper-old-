@@ -5,7 +5,7 @@ import MapComponent from '../components/MapComponent'
 import NapComponent from '../components/NapComponent'
 import Video from 'react-native-video'
 
-const styles = StyleHelper.styles
+const { getStyles } = StyleHelper
 
 export default class NapContainer extends Component {
   static navigationOptions = { header: null }
@@ -62,7 +62,7 @@ export default class NapContainer extends Component {
     }
 
      return (
-       <View style={styles.napScreenContainer}>
+       <View style={getStyles().napScreenContainer}>
           <MapComponent
           currentLatitude={currentLatitude}
           currentLongitude={currentLongitude}

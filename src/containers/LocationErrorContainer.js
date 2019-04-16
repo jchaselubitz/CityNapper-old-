@@ -3,8 +3,8 @@ import {AppRegistry, View, Text, Button, TouchableOpacity} from 'react-native';
 import Permissions from 'react-native-permissions'
 import StyleHelper from '../helpers/StyleHelper'
 import permissionsService from '../services/permissionsService'
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
+
+const { getStyles, getColors } = StyleHelper
 
 class LocationErrorContainer extends Component {
   static navigationOptions = { header: null }
@@ -26,10 +26,10 @@ class LocationErrorContainer extends Component {
       if (response === 'undetermined' || response === 'authorized') {
         return <TouchableOpacity 
           onPress={() => this.tryAgainButton()}
-          style={styles.warningActionOutlineButton} 
+          style={getStyles().warningActionOutlineButton} 
           >
           <View>
-            <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
+            <Text style={getStyles().warningActionButtonOutlineText}> Try again </Text>
           </View>
       </TouchableOpacity>
         
@@ -37,15 +37,15 @@ class LocationErrorContainer extends Component {
         return <> 
         <TouchableOpacity 
         onPress={Permissions.openSettings}
-        style={styles.warningActionButton} 
+        style={getStyles().warningActionButton} 
         >
         <View>
-          <Text style={styles.warningActionButtonText}> Go to Settings </Text>
+          <Text style={getStyles().warningActionButtonText}> Go to Settings </Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => this.tryAgainButton()}>
-        <View style={styles.warningActionOutlineButton} >
-          <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
+        <View style={getStyles().warningActionOutlineButton} >
+          <Text style={getStyles().warningActionButtonOutlineText}> Try again </Text>
         </View>
       </TouchableOpacity>   
       </> 
@@ -55,25 +55,25 @@ class LocationErrorContainer extends Component {
                     
   render() { 
     return (  
-      <View style={styles.warningScreenContainer}>
-        <View style={styles.warningContainer}>
-          <Text style={styles.warningTitleText}>
+      <View style={getStyles().warningScreenContainer}>
+        <View style={getStyles().warningContainer}>
+          <Text style={getStyles().warningTitleText}>
           CityNapper needs location access.
           </Text>
-          <Text style={styles.warningText}>
+          <Text style={getStyles().warningText}>
           Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app.
           </Text>
           {this.buttonPresenter()}
           
         {/* <TouchableOpacity onPress={Permissions.openSettings}>
-          <View style={styles.warningActionButton} >
-            <Text style={styles.warningActionButtonText}> Go to Settings </Text>
+          <View style={getStyles().warningActionButton} >
+            <Text style={getStyles().warningActionButtonText}> Go to Settings </Text>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Trip')}>
-          <View style={styles.warningActionButtonOutLine} >
-            <Text style={styles.warningActionButtonOutlineText}> Try again </Text>
+          <View style={getStyles().warningActionButtonOutLine} >
+            <Text style={getStyles().warningActionButtonOutlineText}> Try again </Text>
           </View>
         </TouchableOpacity> */}
 

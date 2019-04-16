@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {AppRegistry, View, Text} from 'react-native';
-import StylesHelper from '../helpers/StyleHelper'
+import StyleHelper from '../helpers/StyleHelper'
 
 export default class LoadingComponent extends Component {
 
