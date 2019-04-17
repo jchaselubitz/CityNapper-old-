@@ -3,54 +3,55 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy.jpg",
+      "filename" : "logoCropped-40.jpg",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy-1.jpg",
+      "filename" : "logoCropped-60.jpg",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy-2.jpg",
+      "filename" : "logoCropped 58.jpg",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy-3.jpg",
+      "filename" : "logoCropped-87.jpg",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy-6.jpg",
+      "filename" : "logoCropped-80.jpg",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy-4.jpg",
+      "filename" : "logoCropped-121.jpg",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy-5.jpg",
+      "filename" : "logoCropped-120.jpg",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "logo-light_copy-7.jpg",
+      "filename" : "logoCropped-180.jpg",
       "scale" : "3x"
     },
     {
-      "idiom" : "ios-marketing",
       "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "logoCropped-1024.jpg",
       "scale" : "1x"
     }
   ],
