@@ -21,8 +21,10 @@ const light = {
   placeHolderText: '#5c6174',
   darkCard: "#5c6174",
   startButton: "#5c6174",
-  toggleButton: '#559ad1',
-  toggleDarkModeButton:'#818dab',
+  transitButtonSelected: '#559ad1',
+  transitButtonUnselected: '#818dab',
+  transitButtonBackground: '#626a7f',
+  // toggleDarkModeButton:'#818dab',
   toggleText: 'white',
   endNapButton: '#f58b44',
   activeButtonShadow: "black",
@@ -66,8 +68,10 @@ const dark = {
   darkCard: "#5c6174",
   soundItem: "white",
   startButton: "#5c6174",
-  toggleButton: '#818dab',
-  toggleDarkModeButton:"#55575e",
+  transitButtonSelected: '#818dab',
+  transitButtonUnselected: "#5c6174",
+  transitButtonBackground: '#626a7f',
+  // toggleDarkModeButton:"#55575e",
   toggleText: 'white',
   endNapButton: '#bc662d',
   activeButtonShadow: "black",
@@ -391,37 +395,145 @@ const setStyles = () => {
     
     //see Global for destinationTitleText
     
-    largeToggleContainer: {
+    transitButtonContainer: {
       marginTop: 16,
       height: 54,
-      backgroundColor: NapColors.subtleBlue,
-      borderColor: NapColors.primaryBlue,
+      backgroundColor: NapColors.transitButtonBackground,
       borderWidth: 1,
       borderRadius: 10,
-      flexDirection:'column',
-      justifyContent: 'center',
-      alignSelf: 'stretch',
+      flex: 4,
+      flexDirection:'row',
+      justifyContent: 'space-between',
+      alignSelf: 'center',
     },
     
-    
-    actionToggle: {
-      marginTop: 16,
+    actionToggleSelected: {
+      zIndex: 3,
+      flex: 1,
+      paddingLeft: 16,
+      paddingRight: 16,
       height: 48,
-    
-      backgroundColor: NapColors.toggleButton,
-      borderColor: NapColors.toggleButton,
+      backgroundColor: NapColors.transitButtonSelected,
+      borderColor: NapColors.transitButtonSelected,
       borderWidth: 0,
-      borderRadius: 8,
+      
       flexDirection:'column',
       alignItems: 'center',
       justifyContent: 'center',
-     
+      // shadowRadius: 2,
+      // shadowOpacity: 0.8,
+      // shadowOffset: {
+      //   height: 0
+      // },
+    },
+
+    actionToggleUnselected: {
+      zIndex: 1,
+      flex: 1,
+      paddingLeft: 16,
+      paddingRight: 16,
+      height: 48,
+      backgroundColor: NapColors.transitButtonUnselected,
+      borderColor: NapColors.transitButtonUnselected,
+      borderWidth: 0,
+    
+      flexDirection:'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      
+      
+    },
+
+    actionToggleSelectedFIRST: {
+      zIndex: 3,
+      flex: 1,
+      paddingLeft: 16,
+      paddingRight: 16,
+      height: 48,
+      backgroundColor: NapColors.transitButtonSelected,
+      borderColor: NapColors.transitButtonSelected,
+      borderWidth: 0,
+      borderBottomLeftRadius: 8,
+      borderTopLeftRadius: 8,
+      flexDirection:'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      // shadowRadius: 2,
+      // shadowOpacity: 0.8,
+      // shadowOffset: {
+      //   height: 0
+      // },
+    },
+
+    actionToggleUnselectedFIRST: {
+      zIndex: 1,
+      flex: 1,
+      paddingLeft: 16,
+      paddingRight: 16,
+      height: 48,
+      backgroundColor: NapColors.transitButtonUnselected,
+      borderColor: NapColors.transitButtonUnselected,
+      borderWidth: 0,
+      borderBottomLeftRadius: 8,
+      borderTopLeftRadius: 8,
+      flexDirection:'column',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     
     actionToggleText: {
-      fontSize: 24,
+      fontSize: 18,
       color: NapColors.toggleText,
      
+    },
+
+
+    actionToggleSelectedLAST: {
+      zIndex: 3,
+      flex: 1,
+      paddingLeft: 16,
+      paddingRight: 16,
+      height: 48,
+      backgroundColor: NapColors.transitButtonSelected,
+      borderColor: NapColors.transitButtonSelected,
+      borderWidth: 0,
+      borderBottomRightRadius: 8,
+      borderTopRightRadius: 8,
+      flexDirection:'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      // shadowRadius: 2,
+      // shadowOpacity: 0.8,
+      // shadowOffset: {
+      //   height: 0
+      // },
+    },
+
+    actionToggleUnselectedLAST: {
+      zIndex: 1,
+      flex: 1,
+      paddingLeft: 16,
+      paddingRight: 16,
+      height: 48,
+      backgroundColor: NapColors.transitButtonUnselected,
+      borderColor: NapColors.transitButtonUnselected,
+      borderWidth: 0,
+      borderBottomRightRadius: 8,
+      borderTopRightRadius: 8,
+      flexDirection:'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    
+    actionToggleText: {
+      fontSize: 18,
+      color: NapColors.toggleText,
+     
+    },
+
+    actionButtonDivider: {
+      backgroundColor: NapColors.subtleBlue,
+      width: 1
     },
     
     //================ Search/Save =================

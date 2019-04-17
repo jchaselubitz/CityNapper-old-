@@ -31,6 +31,7 @@ export default class App extends Component  {
     eta: null,
     napping: false,
     mode: 'transit',
+    transitMode: 'bus',
     homeButton: null,
     workButton: null,
     recentSelections: [],
@@ -52,7 +53,7 @@ export default class App extends Component  {
 
   checkForExistingUser = () => {
     try {
-      AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'recentSelections', "darkMode"], (error, stores) => {
+      AsyncStorage.multiGet(['userFavorites', 'homeButton', 'workButton', 'mode', 'transitMode', 'recentSelections', "darkMode"], (error, stores) => {
         if (stores !== null) { 
           stores.map((result, i, store) => {
             this.setUserData( result[0], result[1])
@@ -73,6 +74,9 @@ export default class App extends Component  {
           this.setState({ darkMode: value}, )
       case 'mode':
         if (value === "transit" || value === "driving")
+          this.setState({ mode: value});
+      case 'transitMode':
+        if (value === "bus" || value === "train" | value === "subway")
           this.setState({ mode: value});
       default:
         if (value !== null)
@@ -186,14 +190,40 @@ clearDestinationSelection = (link) => {
 
 //========== ROUTE MAPPING FUNCTIONS ===============
 
-toggleTransitMode = () => {
-  if (this.state.mode === "transit") {
-    this.sendToLocalStorage("mode", "driving")
-    this.setState({ mode: "driving" }, () => this.setRoute()) 
-  } else {
-    this.sendToLocalStorage("mode", "transit")
-    this.setState({ mode: "transit" }, () => this.setRoute());
+changeTransitMode = (newMode) => {
+  // console.log('#### newMode', newMode)
+  switch (newMode) {
+    case 'private':
+      this.sendToLocalStorage("mode", "driving")
+      this.setState({ mode: "driving" }, () => this.setRoute()) 
+      break
+    case 'bus':
+      this.sendToLocalStorage("mode", "transit")
+      this.sendToLocalStorage("transitMode", "bus")
+      this.setState({ mode: "transit", transitMode: "bus" }, () => this.setRoute()) 
+      break
+    case 'subway':
+      this.sendToLocalStorage("mode", "transit")
+      this.sendToLocalStorage("transitMode", "subway")
+      this.setState({ mode: "transit", transitMode: "subway" }, () => this.setRoute()) 
+      break
+    case 'train':
+      this.sendToLocalStorage("mode", "transit")
+      this.sendToLocalStorage("transitMode", "train")
+      this.setState({ mode: "transit", transitMode: "train" }, () => this.setRoute()) 
+      break
+    default:
+      this.sendToLocalStorage("mode", "transit")
+      this.sendToLocalStorage("transitMode", "bus")
+      this.setState({ mode: "transit", transitMode: "bus" }, () => this.setRoute())
+    }
+
   }
+  
+getCurrentMode = () => {
+  console.log('#### getCurrentMode', this.props.transitMode)
+  mode = this.state.mode === 'transit' ? this.state.transitMode : this.state.mode
+  return `${mode[0].toUpperCase()}${mode.slice(1)}`
 }
 
 setRoute = () => {
@@ -210,7 +240,8 @@ setRoute = () => {
 
 async getDirections(tripOrigin, tripDestination) {
   try {
-      let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${tripOrigin}&destination=${tripDestination}&mode=${this.state.mode}&key=${Keys.GoogleKey}`)
+      transitMode = this.state.mode === 'transit' ? this.state.transitMode : ""
+      let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${tripOrigin}&destination=${tripDestination}&mode=${this.state.mode}&transit_mode=${transitMode}&key=${Keys.GoogleKey}`)
       let respJson = await resp.json();
       let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
       let coords = points.map((point, index) => {
@@ -228,7 +259,8 @@ async getDirections(tripOrigin, tripDestination) {
 
 async getTimeToDest(tripOrigin, tripDestination) {
   try {
-      let resp = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${tripOrigin}&destinations=${tripDestination}&mode=${this.state.mode}&key=${Keys.GoogleKey}`)
+      transitMode = this.state.mode === 'transit' ? this.state.transitMode : ""
+      let resp = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${tripOrigin}&destinations=${tripDestination}&mode=${this.state.mode}&transit_mode=${transitMode}&key=${Keys.GoogleKey}`)
       let respJson = await resp.json();
         let timeToDest = respJson.rows[0].elements[0].duration.text
         let secondsToDest = respJson.rows[0].elements[0].duration.value
@@ -307,8 +339,8 @@ geoNotification = () => {
       userFavorites: this.state.userFavorites,
       currentLatitude: this.state.currentLatitude,
       currentLongitude: this.state.currentLongitude,
-      toggleTransitMode: this.toggleTransitMode,
-      currentMode: this.state.mode,
+      changeTransitMode: this.changeTransitMode,
+      currentMode: this.getCurrentMode,
       destLocation: this.state.destLocation,
       destLatitude: this.state.destLatitude,
       destLongitude: this.state.destLongitude,

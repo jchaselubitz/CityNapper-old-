@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Icon } from 'react-native-elements';
 import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
 import StyleHelper from '../helpers/StyleHelper'
+import TransitButtonComponent from './TransitButtonComponent';
 
 const { getStyles, getColors } = StyleHelper
 
 class ViewTripComponent extends Component {
   
-  transitTypeName = () => {
-    return `${this.props.currentMode[0].toUpperCase()}${this.props.currentMode.slice(1)}`
-  }
+  
 
   render() { 
     return (
@@ -85,15 +84,11 @@ class ViewTripComponent extends Component {
             </View>
             </> }
 
-          {/* <View style={getStyles().largeToggleContainer}> */}
-          <TouchableOpacity onPress={() => this.props.toggleTransitMode()}>
-            <View style={getStyles().actionToggle} >
-            <Text style={getStyles().actionToggleText}>{this.transitTypeName()}</Text>
-            </View>
-          </TouchableOpacity>
-          {/* </View> */}
+            <TransitButtonComponent 
+              currentMode={this.props.currentMode}
+              changeTransitMode={this.props.changeTransitMode}
+            />
         
-          
         </View>
 
     </View>

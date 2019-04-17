@@ -13,7 +13,7 @@ class TripContainer extends Component {
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude
     const currentMode = this.props.screenProps.currentMode
-    const toggleTransitMode = this.props.screenProps.toggleTransitMode
+    const changeTransitMode = this.props.screenProps.changeTransitMode
     const destLocation = this.props.screenProps.destLocation
     const destLatitude = this.props.screenProps.destLatitude
     const destLongitude = this.props.screenProps.destLongitude
@@ -68,7 +68,7 @@ class TripContainer extends Component {
         isFavorite={isFavorite}
         userFavorites={userFavorites}
         currentMode={currentMode}
-        toggleTransitMode={toggleTransitMode}
+        changeTransitMode={changeTransitMode}
         timeToDest={timeToDest}
       /> 
       : 
