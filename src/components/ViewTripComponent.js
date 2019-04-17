@@ -8,7 +8,6 @@ const { getStyles, getColors } = StyleHelper
 
 class ViewTripComponent extends Component {
   
-  
 
   render() { 
     let styles = getStyles()

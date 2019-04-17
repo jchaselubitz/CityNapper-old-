@@ -6,25 +6,24 @@ import {AppRegistry} from 'react-native';
 const { getStyles, getColors } = StyleHelper
 
 export default class MapComponent extends Component {
-  
 
-  fitMap = () => {
-    MapView.fitToCoordinates({
-      coordinates: [
-        {latitude: this.props.currentLatitude, longitude: this.props.currentLongitude},
-        {latitude: this.props.destLatitude, longitude: this.props.destLongitude} 
-      ]
-    })
+  constructor() {
+    super()
+    this._mapView = React.createRef()
+  }
+  
+  componentDidUpdate () {
+    this._mapView.current.fitToElements(true)
   }
 
+ 
    render () {
     let styles = getStyles()
      return (
       <MapView 
+      ref={this._mapView}
       style={styles.map}
       showsPointsOfInterest={true}
-      showsMyLocationButton={true}
-      
       mapType={styles.selectedMapType}
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
@@ -32,6 +31,7 @@ export default class MapComponent extends Component {
         latitudeDelta: .2,
         longitudeDelta: .2 ,
       }}
+   
       >
         {!!this.props.currentLatitude && !!this.props.currentLongitude && <MapView.Marker
           coordinate={{"latitude": this.props.currentLatitude,"longitude": this.props.currentLongitude}}
