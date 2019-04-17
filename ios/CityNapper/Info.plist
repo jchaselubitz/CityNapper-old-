@@ -85,7 +85,7 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string></string>
+		<string/>
 		<string>audio</string>
 		<string>location</string>
 	</array>
