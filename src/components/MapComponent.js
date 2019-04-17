@@ -12,8 +12,16 @@ export default class MapComponent extends Component {
     this._mapView = React.createRef()
   }
   
-  componentDidUpdate () {
-    this._mapView.current.fitToElements(true)
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.destLatitude !== this.props.destLatitude ||
+        prevProps.destLongitude !== this.props.destLongitude ||
+        prevProps.currentLatitude !== this.props.currentLatitude ||
+        prevProps.currentLongitude !== this.props.currentLongitude ||
+        prevProps.routeCoords !== this.props.routeCoords
+      ) {
+      this._mapView.current.fitToElements(true)
+    }
+    
   }
 
  
