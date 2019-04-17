@@ -13,7 +13,7 @@ const requestPermissions = () => {
 const localNotification = (destName) => {
   PushNotificationIOS.presentLocalNotification({
     alertTitle:"Wake up!!",
-    alertBody: `You are about to arrive at ${destName}.`, 
+    alertBody: `You are getting close to ${destName}.`, 
     playSound: true, 
     soundName: 'church_chime.wav' // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
   }) 

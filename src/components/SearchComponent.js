@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StyleHelper from '../helpers/StyleHelper'
 import { Icon, ListItem} from 'react-native-elements';
+import PullDownComponent from './PullDownComponent'
 import {AppRegistry, View, FlatList, TextInput, Text} from 'react-native';
 import { Divider } from 'react-native-elements';
 
@@ -23,10 +24,7 @@ class SearchComponent extends Component {
             autoCorrect={false}    
           />
         </View>
-        <View style={getStyles().pulldownEr} >
-          <View style={getStyles().pulldownErLine1}/>
-          <View style={getStyles().pulldownErLine2}/>
-        </View>
+        <PullDownComponent />
         <View style={getStyles().flatList}>
         
         <FlatList 

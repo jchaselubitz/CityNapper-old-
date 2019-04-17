@@ -29,6 +29,7 @@ const light = {
   buttonNapText: "white",
   soundItemBackground: "white",
   colorModeToggle: '#559ad1',
+  pulldownLine: '#c4c8d1',
 
   primaryBlue: "#5c6174", //cards
   subtleBlue: '#626a7f',
@@ -38,7 +39,7 @@ const light = {
   systemBlue: '#4786f6',
   calmBlue: '#818dab', 
   cancelRed: '#c63131',
-  pulldownLine: '#c4c8d1',
+  
   darkgrey: 'darkgrey',
   white: "white",
   divider: 'grey',
@@ -75,6 +76,7 @@ const dark = {
   placeHolderText: 'lightgrey',
   soundItemBackground: '#3d3e44',
   colorModeToggle: '#559ad1',
+  pulldownLine: '#5b5d60',
 
   primaryBlue: "#33353f", //cards
   subtleBlue: '#626a7f',
@@ -84,7 +86,7 @@ const dark = {
   systemBlue: '#4786f6',
   calmBlue: '#818dab', 
   cancelRed: 'white',
-  pulldownLine: '#c4c8d1',
+  
   darkgrey: 'lightgrey',
   white: '#55575e',
   divider: 'grey',
@@ -478,7 +480,6 @@ const setStyles = () => {
     // },
     
     pulldownEr: {
-      flexDirection: "column",
       backgroundColor: NapColors.primaryBlue,
       height: 20,
       width: 260,
@@ -487,24 +488,44 @@ const setStyles = () => {
       alignSelf: "center",
       borderBottomLeftRadius: 8,
       borderBottomRightRadius: 8,
-      paddingBottom: 5
+      paddingBottom: 2
     },
+
+    // pulldownErContainer: {
+    //   // position: 'relative',
+    //   //   top: 0,
+    //   flex: 3,
+    //   flexDirection: "row",
+    //   // backgroundColor: NapColors.primaryBlue,
+    //   alignContent: 'center',
+    //   justifyContent: 'flex-start',
+    //   alignSelf: "center",
+    // },
     
+    // pulldownIcon: {
+    //   flex: 1,
+    // },
+
     pulldownErLine1: {
+    
+      // alignSelf: 'center',
       height: 1,
       backgroundColor: NapColors.pulldownLine,
       marginLeft: 20,
       marginRight: 20,
+      marginTop: 0,
       marginBottom: 2
-     
     },
+
+  
     
     pulldownErLine2: {
       height: 1,
       backgroundColor: NapColors.pulldownLine,
       marginLeft: 20,
       marginRight: 20,
-      marginTop: 3
+      marginTop: 3,
+      // alignSelf: 'center',
     },
     
      //=== Saved/Search - RESULTS LIST ===

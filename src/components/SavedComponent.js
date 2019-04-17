@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StyleHelper from '../helpers/StyleHelper'
+import PullDownComponent from './PullDownComponent'
 import { Icon, ListItem } from 'react-native-elements';
 import { AppRegistry, View, FlatList, TextInput } from 'react-native';
 import { Divider } from 'react-native-elements';
@@ -11,7 +12,6 @@ class SavedComponent extends Component {
    render () {
      
      return (
-       
       <View>
        <View>
        <View style={getStyles().modalHeader}/>
@@ -23,12 +23,9 @@ class SavedComponent extends Component {
             autoCorrect={false}    
           />
         </View>
-
-        <View style={getStyles().pulldownEr} >
-          <View style={getStyles().pulldownErLine1}/>
-          <View style={getStyles().pulldownErLine2}/>
-        </View>
-
+        
+        <PullDownComponent />
+        
         <View style={getStyles().flatList}>
         <FlatList 
           data={this.props.presentRecent()} 
