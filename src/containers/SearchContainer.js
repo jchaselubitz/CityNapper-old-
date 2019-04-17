@@ -32,7 +32,7 @@ class SearchContainer extends Component {
 
 
     const presentRecent = () => {
-      if (this.state.searchResults.length === 0){
+      if (this.state.searchResults !== null && this.state.searchResults.length === 0){
         return recentSelections.map(selection => selection.item)
       } else {
         return this.state.searchResults
@@ -59,7 +59,7 @@ class SearchContainer extends Component {
         (err, results) => {
           this.setState({
             error: err,
-            searchResults: this.state.searchText !== "" ? results : []
+            searchResults: this.state.searchText !== "" && this.state.searchText !== null ? results : []
           });
         }
       );
