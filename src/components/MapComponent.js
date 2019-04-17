@@ -24,7 +24,8 @@ export default class MapComponent extends Component {
     
   }
 
- 
+  //Get deltas to maintain state 
+  
    render () {
     let styles = getStyles()
      return (
