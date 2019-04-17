@@ -54,29 +54,17 @@ class LocationErrorContainer extends Component {
 
                     
   render() { 
+    let styles = getStyles()
     return (  
-      <View style={getStyles().warningScreenContainer}>
-        <View style={getStyles().warningContainer}>
-          <Text style={getStyles().warningTitleText}>
+      <View style={styles.warningScreenContainer}>
+        <View style={styles.warningContainer}>
+          <Text style={styles.warningTitleText}>
           CityNapper needs location access.
           </Text>
-          <Text style={getStyles().warningText}>
+          <Text style={styles.warningText}>
           Unfortunately, CityNapper only works when it has access to your location. If you would like to use CityNapper in the future, you can give it location access in your iPhone's Settings app.
           </Text>
           {this.buttonPresenter()}
-          
-        {/* <TouchableOpacity onPress={Permissions.openSettings}>
-          <View style={getStyles().warningActionButton} >
-            <Text style={getStyles().warningActionButtonText}> Go to Settings </Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Trip')}>
-          <View style={getStyles().warningActionButtonOutLine} >
-            <Text style={getStyles().warningActionButtonOutlineText}> Try again </Text>
-          </View>
-        </TouchableOpacity> */}
-
         </View>
       </View>
     );

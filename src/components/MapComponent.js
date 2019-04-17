@@ -18,14 +18,14 @@ export default class MapComponent extends Component {
   }
 
    render () {
-
+    let styles = getStyles()
      return (
       <MapView 
-      style={getStyles().map}
+      style={styles.map}
       showsPointsOfInterest={true}
       showsMyLocationButton={true}
       
-      mapType={getStyles().selectedMapType}
+      mapType={styles.selectedMapType}
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
         longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,

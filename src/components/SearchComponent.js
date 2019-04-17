@@ -10,22 +10,23 @@ const { getStyles, getColors } = StyleHelper
 class SearchComponent extends Component {
 
    render () {
-     
+    let styles = getStyles()
+    let colors = getColors()
      return (
        
       <View>
        <View>
-       <View style={getStyles().modalHeader}/>
+       <View style={styles.modalHeader}/>
           <TextInput
-            style={getStyles().searchBar}
+            style={styles.searchBar}
             placeholder="Where are you going?"
-            placeholderTextColor={getColors().placeHolderText}
+            placeholderTextColor={colors.placeHolderText}
             onChangeText={text => this.props.setSearchText(text)}
             autoCorrect={false}    
           />
         </View>
         <PullDownComponent />
-        <View style={getStyles().flatList}>
+        <View style={styles.flatList}>
         
         <FlatList 
           data={this.props.presentRecent()} 
@@ -45,31 +46,31 @@ class SearchComponent extends Component {
               <ListItem
                 title={item.name}
                 subtitle={item.address}
-                containerStyle={getStyles().listItem}
-                titleStyle={getStyles().listItem}
-                subtitleStyle={getStyles().listItem}
+                containerStyle={styles.listItem}
+                titleStyle={styles.listItem}
+                subtitleStyle={styles.listItem}
                 onPress={() => this.props.handleSelection(item)}
               />
             </View>
-              <View style={getStyles().listIcon}>
+              <View style={styles.listIcon}>
               {this.props.isFavorite(item) ? 
               <Icon
                   name={'favorite'}
                   type='material'
-                  color={getColors().listIcon}
+                  color={colors.listIcon}
                   onPress={() => this.props.addRemoveFavorite(item)}
                 />
                 : 
               <Icon
                   name={'favorite-border'}
                   type='material'
-                  color={getColors().listIcon}
+                  color={colors.listIcon}
                   onPress={() => this.props.addRemoveFavorite(item)}
                 />
               }
               </View>
           </View>
-            <Divider style={getStyles().listDivider} />
+            <Divider style={styles.listDivider} />
             </>
           } 
           keyExtractor={item => item.address} 

@@ -17,7 +17,7 @@ class SearchContainer extends Component {
   }
 
    render () {
-     
+    let styles = getStyles()
     const { navigation } = this.props;
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude

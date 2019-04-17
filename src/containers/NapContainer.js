@@ -56,6 +56,7 @@ export default class NapContainer extends Component {
     const destLocation = this.props.screenProps.destLocation
     const x = this.props.screenProps.x
 
+    
     handleClick = () => {
       endNap()
       navigation.goBack()

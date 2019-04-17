@@ -47,8 +47,10 @@ const sounds = [
 export default class NapContainer extends Component {
   
   render () {
+    let styles = getStyles()
+    let colors = getColors()
      return (
-      <View style={getStyles().napContainer}>
+      <View style={styles.napContainer}>
       <View style={{
          position: 'absolute',
          top: 24,
@@ -57,7 +59,7 @@ export default class NapContainer extends Component {
       }}>
 
         <TouchableOpacity
-              style={getStyles().favoriteButton}
+              style={styles.favoriteButton}
               onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}>
               {this.props.isFavorite(this.props.destLocation)
               ?
@@ -65,30 +67,30 @@ export default class NapContainer extends Component {
                     size={24}
                     name='favorite'
                     type='material'
-                    color={getColors().listIcon}
+                    color={colors.listIcon}
                     />
               :
                 <Icon
                       size={24}
                       name='favorite-border'
                       type='material'
-                      color={getColors().listIcon}
+                      color={colors.listIcon}
                     />
                       
               }
           </TouchableOpacity>
         </View>
         <TouchableOpacity
-          style={getStyles().endNapButton} 
+          style={styles.endNapButton} 
           onPress={() => this.props.handleClick()}
           >
-          <Text style={getStyles().endNapText}>End Nap</Text>
+          <Text style={styles.endNapText}>End Nap</Text>
         </TouchableOpacity>
-        <View style={getStyles().tripDisplayCard}>
-          <Text style={getStyles().destinationTitleText}>{this.props.destName}</Text>
-          <Text style={getStyles().destinationSubtitleText}>{this.props.destAddress}</Text>
+        <View style={styles.tripDisplayCard}>
+          <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
+          <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
         
-        <View style={getStyles().divider}/>
+        <View style={styles.divider}/>
 
           <View>
           {
@@ -98,9 +100,9 @@ export default class NapContainer extends Component {
                 leftAvatar={{ source:  s.avatar_url }}
                 title={s.name}
                 subtitle={s.subtitle}
-                containerStyle={getStyles().soundItem}
-                titleStyle={getStyles().soundItem}
-                subtitleStyle={getStyles().soundItem}
+                containerStyle={styles.soundItem}
+                titleStyle={styles.soundItem}
+                subtitleStyle={styles.soundItem}
                 onPress={() => this.props.clickVideo(s.sound)}
               />
             ))
@@ -109,7 +111,7 @@ export default class NapContainer extends Component {
         <View>
           {!!this.props.soundFile ? 
           <TouchableOpacity
-          style={getStyles().playButton} 
+          style={styles.playButton} 
           onPress={() => this.props.playPause()}>
             {this.props.isPaused
               ?
@@ -117,14 +119,14 @@ export default class NapContainer extends Component {
                     size={32}
                     name='play-arrow'
                     type='material'
-                    color={getColors().white}
+                    color={colors.white}
                     />
               :
                 <Icon
                       size={32}
                       name='pause'
                       type='material'
-                      color={getColors().white}
+                      color={colors.white}
                     /> 
               }
           </TouchableOpacity>

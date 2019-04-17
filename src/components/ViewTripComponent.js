@@ -11,30 +11,32 @@ class ViewTripComponent extends Component {
   
 
   render() { 
+    let styles = getStyles()
+    let colors = getColors()
     return (
-      <View style={getStyles().tripSelectionContainer}>
+      <View style={styles.tripSelectionContainer}>
           {this.props.napping === false
         ?   
           <TouchableOpacity
-            style={getStyles().buttonStartNap}
+            style={styles.buttonStartNap}
             onPress={() => this.props.napStarter()}>
-            <Text style={getStyles().buttonNapText}>Start Nap</Text>
+            <Text style={styles.buttonNapText}>Start Nap</Text>
           </TouchableOpacity>
         :
           <TouchableOpacity
-            style={getStyles().buttonStartNap}
+            style={styles.buttonStartNap}
             onPress={() => this.props.goToNap()}>
-            <Text style={getStyles().buttonNapText}>Resume Nap</Text>
+            <Text style={styles.buttonNapText}>Resume Nap</Text>
           </TouchableOpacity>
         }
           <TouchableOpacity
-            style={getStyles().cancelButton}
+            style={styles.cancelButton}
             onPress={() => this.props.rejectSelection()}>
              <Icon
                     size={24}
                     name='close'
                     type='material'
-                    color={getColors().cancelRed}
+                    color={colors.cancelRed}
                    />
           </TouchableOpacity>
           <View style={{
@@ -44,7 +46,7 @@ class ViewTripComponent extends Component {
              zIndex: 3
           }}>
             <TouchableOpacity
-              style={getStyles().favoriteButton}
+              style={styles.favoriteButton}
               onPress={() => this.props.addRemoveFavorite(this.props.destLocation)}>
               {this.props.isFavorite(this.props.destLocation)
               ?
@@ -52,20 +54,20 @@ class ViewTripComponent extends Component {
                     size={24}
                     name='favorite'
                     type='material'
-                    color={getColors().listIcon}
+                    color={colors.listIcon}
                     />
               :
                 <Icon
                       size={24}
                       name='favorite-border'
                       type='material'
-                      color={getColors().listIcon}
+                      color={colors.listIcon}
                     />
                       
               }
           </TouchableOpacity>
           </View>
-          <View style={getStyles().tripDisplayCard}>
+          <View style={styles.tripDisplayCard}>
           {this.props.destName === "-" ? 
             "The name for this destination is missing!" 
             : 
@@ -76,11 +78,11 @@ class ViewTripComponent extends Component {
                alignItems: 'center',
          
                }}>
-              <Text style={getStyles().destinationTitleText}>{this.props.destName}</Text>
-              <Text style={getStyles().detailText}>~{this.props.timeToDest}</Text>
+              <Text style={styles.destinationTitleText}>{this.props.destName}</Text>
+              <Text style={styles.detailText}>~{this.props.timeToDest}</Text>
             </View>
             <View>
-              <Text style={getStyles().destinationSubtitleText}>{this.props.destAddress}</Text>
+              <Text style={styles.destinationSubtitleText}>{this.props.destAddress}</Text>
             </View>
             </> }
 
