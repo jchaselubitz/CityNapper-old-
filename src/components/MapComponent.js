@@ -7,6 +7,11 @@ const { getStyles, getColors } = StyleHelper
 
 export default class MapComponent extends Component {
 
+  state = {
+    latitudeDelta: .2,
+    longitudeDelta: .2,
+  }
+
   constructor() {
     super()
     this._mapView = React.createRef()
@@ -18,14 +23,23 @@ export default class MapComponent extends Component {
         prevProps.currentLatitude !== this.props.currentLatitude ||
         prevProps.currentLongitude !== this.props.currentLongitude ||
         prevProps.routeCoords !== this.props.routeCoords
+        // prevState.latitudeDelta !== this.state.latitudeDelta ||
+        // prevState.longitudeDelta !== this.state.longitudeDelta
       ) {
-      this._mapView.current.fitToElements(true)
+      this._mapView.current.fitToElements(false)
     }
     
   }
 
+  regionChange = (e) => {
+    this.setState({ 
+      latitudeDelta: e.latitudeDelta,
+      longitudeDelta: e.longitudeDelta
+      })
+  }
+
   //Get deltas to maintain state 
-  
+
    render () {
     let styles = getStyles()
      return (
@@ -33,12 +47,13 @@ export default class MapComponent extends Component {
       ref={this._mapView}
       style={styles.map}
       showsPointsOfInterest={true}
+      // onRegionChangeComplete={(e) => this.regionChange(e)}
       mapType={styles.selectedMapType}
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
         longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,
-        latitudeDelta: .2,
-        longitudeDelta: .2 ,
+        latitudeDelta: !!this.state.latitudeDelta ? this.state.latitudeDelta : 0,
+        longitudeDelta: !!this.state.longitudeDelta ? this.state.longitudeDelta : 0,
       }}
    
       >

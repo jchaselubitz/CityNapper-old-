@@ -19,7 +19,7 @@ const sounds = [
   {
     name: 'Rainforest',
     avatar_url: rainforest_img,
-    subtitle: 'Comforting sounds of rain an birds.',
+    subtitle: 'Comforting sounds of rain and birds.',
     sound: rainforest
   },
   {
