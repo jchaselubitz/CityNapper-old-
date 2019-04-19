@@ -1,15 +1,43 @@
 import React, { Component } from 'react';
-import {AppRegistry, View, Text, TouchableOpacity} from 'react-native';
-import MapComponent from '../components/MapComponent'
+import { AppRegistry, View } from 'react-native';
 import StyleHelper from '../helpers/StyleHelper'
-const styles = StyleHelper.styles
-const NapColors = StyleHelper.NapColors
+import MapComponent from '../components/MapComponent'
+import NapComponent from '../components/NapComponent'
+import Video from 'react-native-video'
+
+const { getStyles } = StyleHelper
 
 export default class NapContainer extends Component {
   static navigationOptions = { header: null }
-
+      
   state = {
-    
+    paused: true,
+    soundFile: null
+  }
+
+  playPause = () => {
+    this.setState({ paused: !this.state.paused });
+  }
+
+  clickVideo = (soundFile) => {
+    this.setState({ paused: false })
+    this.setState({ soundFile: soundFile },)
+}
+
+  sleepSound = () => {
+    if (this.state.paused === false) {
+      return <Video source= {this.state.soundFile}
+      ref={(ref) => {
+        this.player = ref
+      }}                    
+      audioOnly={true}
+      repeat={true}
+      playInBackground={true}
+      ignoreSilentSwitch={'ignore'}
+      playWhenInactive={true}
+
+    />
+    }
   }
 
    render () {
@@ -22,17 +50,21 @@ export default class NapContainer extends Component {
     const destLatitude = this.props.screenProps.destLatitude
     const destLongitude = this.props.screenProps.destLongitude
     const routeCoords = this.props.screenProps.routeCoords
+    const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
+    const isFavorite = this.props.screenProps.isFavorite
+    const userFavorites = this.props.screenProps.userFavorites
+    const destLocation = this.props.screenProps.destLocation
     const x = this.props.screenProps.x
 
+    
     handleClick = () => {
       endNap()
-      
       navigation.goBack()
-
     }
+
      return (
-       <>
-        <MapComponent
+       <View style={getStyles().napScreenContainer}>
+          <MapComponent
           currentLatitude={currentLatitude}
           currentLongitude={currentLongitude}
           destLatitude={destLatitude}
@@ -40,21 +72,23 @@ export default class NapContainer extends Component {
           routeCoords={routeCoords}
           x={x}
         />
-      <View style={styles.napContainer}>
-        <TouchableOpacity
-          style={styles.endNapButton} 
-          onPress={() => handleClick()}
-          >
-          <Text style={styles.endNapText}>End Nap</Text>
-        </TouchableOpacity>
-        <View style={styles.tripDisplayCard}>
-          <Text style={styles.destinationTitleText}>{destName}</Text>
-          <Text style={styles.destinationSubtitleText}>{destAddress}</Text>
-          <Text style={styles.destinationTitleText}>Blah Blah Blah</Text>
-          <Text style={styles.destinationSubtitleText}>Some super cool features</Text>
-        </View>
-      </View>
-      </>
+        <NapComponent 
+          destName={destName}
+          destAddress={destAddress}
+          handleClick={handleClick}
+          sleepSound={this.sleepSound}
+          clickVideo={this.clickVideo}
+          playPause={this.playPause}
+          isPaused={this.state.paused}
+          isFavorite={isFavorite}
+          userFavorites={userFavorites}
+          addRemoveFavorite={addRemoveFavorite}
+          destLocation={destLocation}
+          soundFile={this.state.soundFile}
+        />
+       </View>
+       
+     
      )
    }
 

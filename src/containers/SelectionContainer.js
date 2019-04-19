@@ -5,7 +5,7 @@ import MapContainer from './MapContainer'
 import { withNavigation } from 'react-navigation'
 
 class SelectionContainer extends Component {
-
+  static navigationOptions = { header: null }
   render() { 
     return (
       <>
@@ -17,7 +17,7 @@ class SelectionContainer extends Component {
  
           <View style={{
               flex: 3, 
-              backgroundColor: 'white',
+              backgroundColor: NapColors.white,
               flexDirection: 'column',
               justifyContent: 'center'
             }}>
@@ -32,7 +32,7 @@ class SelectionContainer extends Component {
           </View>
           <View style={{
               flex: 1, 
-              backgroundColor: 'white',
+              backgroundColor: NapColors.white,
               flexDirection: 'column',
               justifyContent: 'center'
             }}>
@@ -45,7 +45,7 @@ class SelectionContainer extends Component {
           </View>
           <View style={{
               flex: 2, 
-              backgroundColor: 'white',
+              backgroundColor: NapColors.white,
               flexDirection: 'column',
               justifyContent: 'center'
             }}>

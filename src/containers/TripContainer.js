@@ -12,11 +12,14 @@ class TripContainer extends Component {
     
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude
+    const currentMode = this.props.screenProps.currentMode
+    const changeTransitMode = this.props.screenProps.changeTransitMode
     const destLocation = this.props.screenProps.destLocation
     const destLatitude = this.props.screenProps.destLatitude
     const destLongitude = this.props.screenProps.destLongitude
     const destName = this.props.screenProps.destName
     const destAddress = this.props.screenProps.destAddress
+    const timeToDest = this.props.screenProps.timeToDest
     const startNap = this.props.screenProps.startNap
     const userFavorites = this.props.screenProps.userFavorites
     const isFavorite = this.props.screenProps.isFavorite
@@ -29,6 +32,8 @@ class TripContainer extends Component {
     const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
     const home = this.props.screenProps.homeButton
     const work = this.props.screenProps.workButton
+    const darkMode = this.props.screenProps.darkMode
+    const toggleDarkMode = this.props.screenProps.toggleDarkMode
 
 
     napStarter = () => {
@@ -42,7 +47,7 @@ class TripContainer extends Component {
 
     rejectSelection = () => {
       dropBoundary()
-      clearDestinationSelection(() => this.props.navigation.navigate('Search', {searchType: 'search'}))
+      clearDestinationSelection(() => this.props.navigation.navigate('Trip'))
 
     }
 
@@ -62,6 +67,9 @@ class TripContainer extends Component {
         addRemoveFavorite={addRemoveFavorite}
         isFavorite={isFavorite}
         userFavorites={userFavorites}
+        currentMode={currentMode}
+        changeTransitMode={changeTransitMode}
+        timeToDest={timeToDest}
       /> 
       : 
       <CreateTripComponent 
@@ -71,6 +79,8 @@ class TripContainer extends Component {
         addRemoveFavorite={addRemoveFavorite}
         home={home}
         work={work}
+        toggleDarkMode={toggleDarkMode}
+        darkMode={darkMode}
       /> 
     }
 

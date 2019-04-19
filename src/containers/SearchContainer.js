@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import SearchComponent from '../components/SearchComponent'
 import SavedComponent from '../components/SavedComponent'
 import RNReverseGeocode from "@kiwicom/react-native-reverse-geocode";
-import {AppRegistry} from 'react-native';
+import StyleHelper from "../helpers/StyleHelper"
+import {AppRegistry, View } from 'react-native';
 
+const { getColors, getStyles } = StyleHelper
 
 class SearchContainer extends Component {
   static navigationOptions = { header: null }
@@ -15,7 +17,7 @@ class SearchContainer extends Component {
   }
 
    render () {
-     
+    let styles = getStyles()
     const { navigation } = this.props;
     const currentLatitude = this.props.screenProps.currentLatitude
     const currentLongitude = this.props.screenProps.currentLongitude
@@ -24,11 +26,18 @@ class SearchContainer extends Component {
     const addRemoveFavorite = this.props.screenProps.addRemoveFavorite
     const isFavorite = this.props.screenProps.isFavorite
     const setAsHomeWorkButton = this.props.screenProps.setAsHomeWorkButton
+    const recentSelections = this.props.screenProps.recentSelections
     const label = this.props.navigation.getParam('label')
     const searchType = this.props.navigation.getParam('searchType')
 
 
-
+    const presentRecent = () => {
+      if (this.state.searchResults !== null && this.state.searchResults.length === 0){
+        return recentSelections.map(selection => selection.item)
+      } else {
+        return this.state.searchResults
+      }
+    }
 
     const searchRegion = () => ({
       latitude: !!currentLatitude ? currentLatitude : 0,
@@ -36,11 +45,6 @@ class SearchContainer extends Component {
       latitudeDelta: 0.01,
       longitudeDelta: 0.01
     });
-
-    const searchFilter = () => {
-      //limit search based on custom geofence
-    }
-
     
     const setSearchText = (text) => {
       this.setState({
@@ -55,7 +59,7 @@ class SearchContainer extends Component {
         (err, results) => {
           this.setState({
             error: err,
-            searchResults: this.state.searchText !== "" ? results : []
+            searchResults: this.state.searchText !== "" && this.state.searchText !== null ? results : []
           });
         }
       );
@@ -71,35 +75,36 @@ class SearchContainer extends Component {
       navigation.navigate('Trip')
     }
 
-    const favoriteIcon = (item) => {
-      return userFavorites.map( l => l.id).includes(`${item.location.latitude},${item.location.longitude}`)
-    }
+
 
     const setSearchType = () => {
       return searchType === 'search'
       ?
       <SearchComponent 
-        searchResults={this.state.searchResults}
         setSearchText={setSearchText}
         userFavorites={userFavorites}
         handleSelection={handleSelection}
         isFavorite={isFavorite}
         addRemoveFavorite={addRemoveFavorite}
+        presentRecent={presentRecent}
       />
       :
        <SavedComponent 
         setAsHomeWorkButton={setAsHomeWorkButton}
         label={label}
         handleFavoriteSelection={handleFavoriteSelection}
-        searchResults={this.state.searchResults}
         setSearchText={setSearchText}
-          
+        presentRecent={presentRecent}
+
       />
     }
     
-     return setSearchType()
+     return (
+     <View style={getStyles().searchBackground}>
+      {setSearchType()} 
+      </View>
+     )
     
-
    }
 }
 

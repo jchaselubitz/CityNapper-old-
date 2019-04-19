@@ -85,8 +85,8 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string/>
 		<string>audio</string>
-		<string></string>
 		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

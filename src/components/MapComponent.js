@@ -1,24 +1,61 @@
 import React, { Component } from 'react';
 import MapView from 'react-native-maps'
-import StylesHelper from '../helpers/StyleHelper'
+import StyleHelper from '../helpers/StyleHelper'
 import {AppRegistry} from 'react-native';
 
-const styles = StylesHelper.styles
-const selectedMapType = "standard"
+const { getStyles, getColors } = StyleHelper
 
 export default class MapComponent extends Component {
 
+  state = {
+    latitudeDelta: .2,
+    longitudeDelta: .2,
+  }
+
+  constructor() {
+    super()
+    this._mapView = React.createRef()
+  }
+  
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.destLatitude !== this.props.destLatitude ||
+        prevProps.destLongitude !== this.props.destLongitude ||
+        prevProps.currentLatitude !== this.props.currentLatitude ||
+        prevProps.currentLongitude !== this.props.currentLongitude ||
+        prevProps.routeCoords !== this.props.routeCoords
+        // prevState.latitudeDelta !== this.state.latitudeDelta ||
+        // prevState.longitudeDelta !== this.state.longitudeDelta
+      ) {
+      this._mapView.current.fitToElements(false)
+    }
+    
+  }
+
+  regionChange = (e) => {
+    this.setState({ 
+      latitudeDelta: e.latitudeDelta,
+      longitudeDelta: e.longitudeDelta
+      })
+  }
+
+  //Get deltas to maintain state 
+
    render () {
+    let styles = getStyles()
      return (
       <MapView 
+      ref={this._mapView}
       style={styles.map}
-      mapType={selectedMapType}
+      showsPointsOfInterest={true}
+      // onRegionChangeComplete={(e) => this.regionChange(e)}
+      mapType={styles.selectedMapType}
       region={{
         latitude: !!this.props.currentLatitude ? this.props.currentLatitude : 0,
         longitude: !!this.props.currentLongitude ? this.props.currentLongitude : 0,
-        latitudeDelta: .2,
-        longitudeDelta: .2 ,
+        latitudeDelta: !!this.state.latitudeDelta ? this.state.latitudeDelta : 0,
+        longitudeDelta: !!this.state.longitudeDelta ? this.state.longitudeDelta : 0,
       }}
+   
       >
         {!!this.props.currentLatitude && !!this.props.currentLongitude && <MapView.Marker
           coordinate={{"latitude": this.props.currentLatitude,"longitude": this.props.currentLongitude}}
@@ -47,12 +84,16 @@ export default class MapComponent extends Component {
                   strokeWidth={2}
                   strokeColor="red"
           />
-        }          
+        }    
+   
     </MapView>
+
      )
    }
-
-
 }
+
+
+
+
 
 AppRegistry.registerComponent('CityNapper', () => MapComponent);
