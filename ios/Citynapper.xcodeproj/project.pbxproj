@@ -447,7 +447,7 @@
 		1305962B60D842EA9C1525C5 /* RNBoundary.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBoundary.xcodeproj; path = "../node_modules/react-native-boundary/ios/RNBoundary.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* CityNapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityNapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Citynapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Citynapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CityNapper/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = CityNapper/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -645,7 +645,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* CityNapper */ = {
+		13B07FAE1A68108700A75B9A /* Citynapper */ = {
 			isa = PBXGroup;
 			children = (
 				233EF527225D13F000205FCB /* CityNapper.entitlements */,
@@ -657,7 +657,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = CityNapper;
+			name = Citynapper;
 			sourceTree = "<group>";
 		};
 		146834001AC3E56700842450 /* Products */ = {
@@ -852,7 +852,7 @@
 			isa = PBXGroup;
 			children = (
 				23DCBB7F22648FF100F01055 /* Library */,
-				13B07FAE1A68108700A75B9A /* CityNapper */,
+				13B07FAE1A68108700A75B9A /* Citynapper */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* CityNapperTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -869,7 +869,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* CityNapper.app */,
+				13B07F961A680F5B00A75B9A /* Citynapper.app */,
 				00E356EE1AD99517003FC87E /* CityNapperTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* CityNapper-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* CityNapper-tvOSTests.xctest */,
@@ -944,7 +944,7 @@
 			);
 			name = CityNapper;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* CityNapper.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Citynapper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* CityNapper-tvOS */ = {
@@ -1022,7 +1022,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CityNapper" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Citynapper" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1661,7 +1661,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityNapper.app/CityNapper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Citynapper.temp_caseinsensitive_rename.app/Citynapper.temp_caseinsensitive_rename";
 			};
 			name = Debug;
 		};
@@ -1706,7 +1706,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityNapper.app/CityNapper";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Citynapper.temp_caseinsensitive_rename.app/Citynapper.temp_caseinsensitive_rename";
 			};
 			name = Release;
 		};
@@ -1741,7 +1741,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Flatiron.Final.Project.CityNapper.1.0;
-				PRODUCT_NAME = CityNapper;
+				PRODUCT_NAME = Citynapper;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1778,7 +1778,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Flatiron.Final.Project.CityNapper.1.0;
-				PRODUCT_NAME = CityNapper;
+				PRODUCT_NAME = Citynapper;
 				STRIP_INSTALLED_PRODUCT = YES;
 				"STRIP_INSTALLED_PRODUCT[sdk=*]" = YES;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1934,7 +1934,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.CityNapper-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityNapper-tvOS.app/CityNapper-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Citynapper.temp_caseinsensitive_rename-tvOS.app/Citynapper.temp_caseinsensitive_rename-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -1985,7 +1985,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.CityNapper-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityNapper-tvOS.app/CityNapper-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Citynapper.temp_caseinsensitive_rename-tvOS.app/Citynapper.temp_caseinsensitive_rename-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -2039,6 +2039,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Citynapper;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2084,6 +2085,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Citynapper;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2128,7 +2130,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CityNapper" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Citynapper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
