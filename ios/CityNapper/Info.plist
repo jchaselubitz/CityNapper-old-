@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's bluetooth devices.</string>
+<key>NSCalendarsUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's calendar.</string>
+<key>NSCameraUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's camera.</string>
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's photo library.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's photo library.</string>
+<key>NSSpeechRecognitionUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's microphone.</string>
+<key>NSAppleMusicUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's music.</string>
+<key>NSMotionUsageDescription</key>
+<string>This app uses a user permissions manager. It does not access the user's motion.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
