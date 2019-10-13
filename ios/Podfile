@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'Citynapper' do
+target 'CityNapper' do
   # Pods for Citynapper
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
@@ -37,7 +37,7 @@ target 'Citynapper' do
 
   pod 'RNReverseGeocode', :path => '../node_modules/@kiwicom/react-native-reverse-geocode'
 
-  target 'CitynapperTests' do
+  target 'CityNapperTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -45,10 +45,10 @@ target 'Citynapper' do
   use_native_modules!
 end
 
-target 'Citynapper-tvOS' do
-  # Pods for Citynapper-tvOS
+target 'CityNapper-tvOS' do
+  # Pods for CityNapper-tvOS
 
-  target 'Citynapper-tvOSTests' do
+  target 'CityNapper-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
