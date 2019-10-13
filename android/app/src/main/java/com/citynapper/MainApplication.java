@@ -6,8 +6,6 @@ import com.facebook.react.ReactApplication;
 import com.kiwi.reversegeocode.RNReverseGeocodePackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.eddieowens.RNBoundaryPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -33,8 +31,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNReverseGeocodePackage(),
             new ReactVideoPackage(),
             new ReactNativePushNotificationPackage(),
-            new RNGestureHandlerPackage(),
-            new MapsPackage(),
             new RNBoundaryPackage(),
             new VectorIconsPackage()
       );
