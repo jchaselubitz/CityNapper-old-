@@ -3,13 +3,13 @@ package com.citynapper;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.kiwi.reversegeocode.RNReverseGeocodePackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.eddieowens.RNBoundaryPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.kiwi.reversegeocode.RNReverseGeocodePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -30,13 +30,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNReverseGeocodePackage(),
             new ReactVideoPackage(),
             new ReactNativePushNotificationPackage(),
             new RNGestureHandlerPackage(),
             new MapsPackage(),
             new RNBoundaryPackage(),
-            new VectorIconsPackage(),
-            new RNReverseGeocodePackage()
+            new VectorIconsPackage()
       );
     }
 
